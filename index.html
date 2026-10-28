@@ -1,10 +1,20 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="th">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
-<title>Panudetch Konklin Port Forio</title>
+<title>Future For Us · Panudetch Konklin</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Future For Us · Panudetch Konklin: graphic design, photo production and producer work, looked after from first idea to finished piece. See the work and send a hiring request by email.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C1281C'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' text-anchor='middle' fill='%23FCEBD2'%3EF%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Future For Us · Panudetch Konklin">
+<meta property="og:description" content="Graphic design, photo production and producer work, looked after from first idea to finished piece.">
+<meta property="og:image" content="works/p-cover-1343.webp">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#C1281C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Pinyon+Script&family=Prompt:wght@100;200;300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Pinyon+Script&family=Nothing+You+Could+Do&family=Prompt:wght@100;200;300;400;500;600;700&display=swap">
 <style>
 /* LAYOUT CONCEPT
    Three 16:9 colour pages stacked vertically, each split on the golden ratio (61.8 / 38.2).
@@ -73,7 +83,11 @@ img{display:block}
 .p1{display:grid;background:var(--p1-bg);color:var(--p1-fg)}
 .p1 .haze{background:radial-gradient(42% 52% at 18% 28%,var(--haze1-a),transparent 72%),radial-gradient(48% 58% at 84% 74%,var(--haze1-b),transparent 72%)}
 .p1-in{display:grid;grid-template-columns:38.2fr 61.8fr;grid-template-rows:auto 1fr auto;padding-block:clamp(1.2rem,3vw,3rem);padding-left:var(--gl);padding-right:var(--gr);min-width:0}
-.script{grid-area:1/1;white-space:nowrap;align-self:start;font-family:var(--script);font-size:clamp(2.2rem,4.4vw,4.8rem);line-height:1.1;color:var(--p1-accent);animation:rise 2.4s ease both}
+.script{grid-area:1/1;white-space:nowrap;align-self:start;font-family:'Nothing You Could Do','Bradley Hand','Segoe Print',cursive;font-size:clamp(2rem,3.9vw,4.2rem);line-height:1.25;color:var(--p1-accent)}
+/* tagline is "written" by hand: each letter is revealed left to right like a pen stroke (letters built by writeOn() in the script) */
+.script .wr{display:inline-block;white-space:pre;clip-path:inset(-80% 160% -80% -60%);animation:pen-in .45s cubic-bezier(.4,0,.2,1) forwards;animation-delay:calc(1s + var(--i) * 140ms)}
+@keyframes pen-in{to{clip-path:inset(-80% -80% -80% -60%)}}
+@media (prefers-reduced-motion: reduce){.script .wr{animation:none;clip-path:none}}
 .folio{grid-area:1/2;justify-self:end;text-align:right;font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,2.6vw,2.8rem);letter-spacing:.3em;line-height:1.2;color:var(--p1-accent);margin-right:-.3em}
 .portrait{grid-area:1/2/4/3;justify-self:center;align-self:center;width:clamp(260px,40vw,720px);animation:rise 3s ease both}
 /* full desktop page: the flower blown up past the edges of the screen, cropped by the page, behind the name */
@@ -94,7 +108,7 @@ img{display:block}
 }
 @media (prefers-reduced-motion: reduce){.portrait img{animation:none}}
 /* red silhouette of the same flower, laid exactly over the photo; filled with the cover-title red (--p1-accent) so the colour always matches the Future For Us lettering — same 16s timing as flower-haze */
-.portrait .pt-red{position:absolute;inset:0;width:100%;height:100%;background:var(--p1-accent);-webkit-mask:var(--sil) center/100% 100% no-repeat;mask:var(--sil) center/100% 100% no-repeat;opacity:0;filter:blur(18px);animation:flower-red 16s cubic-bezier(.45,0,.55,1) 3.5s infinite}
+.portrait .pt-red{position:absolute;inset:0;width:100%;height:100%;opacity:0;filter:blur(18px);animation:flower-red 16s cubic-bezier(.45,0,.55,1) 3.5s infinite}
 @keyframes flower-red{0%,36%{opacity:0;filter:blur(10px)}47%,88%{opacity:1;filter:blur(0)}97%,100%{opacity:0;filter:blur(8px)}}
 @media (max-width:899px){.portrait{position:relative}}
 @media (prefers-reduced-motion: reduce){.portrait .pt-red{display:none}}
@@ -102,8 +116,6 @@ img{display:block}
 .name{grid-area:2/1/3/3;align-self:end;position:relative;z-index:2;font-weight:400;line-height:.88;animation:rise 2.8s ease .3s both}
 .nm-a{display:block;font-family:var(--display);font-variation-settings:'opsz' 96;font-size:clamp(3.2rem,11.2vw,13rem);letter-spacing:-.035em;color:var(--p1-accent)}
 .nm-a span,.nm-b span{display:inline-block;white-space:pre;transition:font-weight 1.6s cubic-bezier(.2,.6,.2,1)}
-.name:hover .nm-a span{font-weight:var(--w2)!important}
-.name:hover .nm-b span{font-weight:var(--w2)!important}
 .nm-b{display:block;font-family:var(--sans);font-size:clamp(2rem,6.4vw,7.4rem);letter-spacing:-.05em;color:var(--p1-accent);margin-top:-.02em}
 .disc{grid-area:3/1;align-self:end;display:grid;gap:.7rem;padding-top:1.6rem;animation:rise 2.8s ease .6s both}
 .by{display:flex;align-items:baseline;flex-wrap:wrap;gap:.3rem 1rem;color:var(--p1-fg)}
@@ -422,7 +434,7 @@ img{display:block}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sum-bg:var(--ink);--sum-fg:#FF4B3E;--sum-mute:rgba(255,75,62,.7);--sum-line:rgba(255,75,62,.3);--sum-h1:#2F292A;--sum-h2:#1B1819}}
 :root[data-theme="dark"]{--sum-bg:var(--ink);--sum-fg:#FF4B3E;--sum-mute:rgba(255,75,62,.7);--sum-line:rgba(255,75,62,.3);--sum-h1:#2F292A;--sum-h2:#1B1819}
 .p3 .p3-l{background:var(--sum-bg);color:var(--sum-fg)}
-.p3 .p3-l>*:not(.haze){width:100%;max-width:70%}
+.p3 .p3-l>*:not(.haze):not(.grainient){width:100%;max-width:70%}
 .p3 .p3-l .haze{background:radial-gradient(45% 55% at 25% 25%,var(--sum-h1),transparent 72%),radial-gradient(50% 60% at 80% 80%,var(--sum-h2),transparent 72%)}
 .p3 .p3-l .ch-h,.p3 .p3-l .tools,.p3 .p3-l .brow.pending .bv{color:var(--sum-mute)}
 .p3 .p3-l .track{background:var(--sum-line)}
@@ -430,7 +442,7 @@ img{display:block}
 .p3 .p3-l .brow.pending .track{border-top-color:var(--sum-line)}
 .p3 .p3-l .skills li{border-top-color:var(--sum-line)}
 .p3 .p3-l .back,.p3 .p3-l .page-title{color:var(--sum-fg)}
-@media (max-width:899px){.p3 .p3-l>*:not(.haze){max-width:100%}}
+@media (max-width:899px){.p3 .p3-l>*:not(.haze):not(.grainient){max-width:100%}}
 /* the summary page grows taller when its text needs room, instead of cutting the bottom off */
 @media (min-width:900px){.p3{aspect-ratio:auto;min-height:calc(100vw * 9 / 16)}}
 /* soft rounded corners on every shown picture (not on the cover flower or the full-screen room doors) */
@@ -619,29 +631,293 @@ img{display:block}
 .hire .fld input,.hire .fld textarea{color:var(--mail-fg);border-bottom-color:var(--mail-line)}
 .hire .fld input::placeholder,.hire .fld textarea::placeholder{color:var(--mail-line)}
 .hire .fld input:focus,.hire .fld textarea:focus{border-bottom-color:var(--mail-fg)}
+.ed-role{font-family:var(--display);font-style:italic;font-size:clamp(1rem,1.6vw,1.4rem);color:var(--room-fg);text-align:center;padding-inline:16px}
+.ed-role-th{max-width:34em;font-size:.88rem;line-height:1.7;color:var(--room-mute);text-align:center;padding-inline:16px;margin-bottom:.6rem}
+/* ELASTIC REEL (White Daylight): photo slices that swell open on hover / tap, with a springy ease */
+.ed-reel{padding-inline:max(16px,6vw);padding-block:clamp(1rem,3vh,2rem) clamp(2rem,6vh,4rem)}
+.er-dock{display:flex;gap:6px;height:min(76svh,820px)}
+.er-slice{flex:1 1 0;min-width:0;transition:flex-grow .9s cubic-bezier(.34,1.56,.64,1),filter .6s ease;filter:saturate(.75) brightness(.96)}
+.er-slice.on{flex-grow:calc(var(--ar) * 14);filter:none}
+.er-slice .ed-img{width:100%;height:100%;border-radius:var(--img-r);overflow:hidden;cursor:pointer}
+.er-slice .ed-img img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.er-slice.on .ed-img{cursor:zoom-in}
+@media (max-width:899px){.er-dock{height:62svh;gap:4px}.er-slice.on{flex-grow:calc(var(--ar) * 10)}}
+@media (prefers-reduced-motion: reduce){.er-slice{transition:none}}
+/* PARALLAX CAROUSEL (Low Key): photos are a bit larger than their frames and drift as the row moves */
+.rl-px .rl-cell .ed-img{overflow:hidden}
+.rl-px .rl-cell .ed-img img{transform:scale(1.3);transition:transform .25s ease-out;will-change:transform}
+.rl-px .rl-cell:hover .ed-img img{transition:transform .25s ease-out}
+@media (prefers-reduced-motion: reduce){.rl-px .rl-cell .ed-img img{transform:none!important}}
+/* text pressure: letters swell smoothly; the old hover weight-flip is switched off */
+.name.pressure .nm-a span,.name.pressure .nm-b span{transition:none;transform-origin:50% 80%;cursor:default}
+.name.pressure{user-select:none;-webkit-user-select:none}
+.ph-l{display:inline-block;white-space:pre;transform-origin:50% 80%}
+.ed-mark{user-select:none;-webkit-user-select:none;cursor:default}
+.ph-w{display:inline-block;white-space:nowrap;user-select:none;-webkit-user-select:none}
+.page-title{cursor:default}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* accordion gallery (overview rows) */
+.ag-stack{display:grid;gap:12px;min-width:0}
+.ag{--ag-ms:320px;--ag-ov:#120d0e;display:flex;gap:10px;width:100%;height:clamp(300px,58vh,540px);perspective:1400px}
+.ag-p{position:relative;flex:1 1 0;min-width:0;overflow:hidden;border-radius:var(--img-r,7px);padding:0;transform-style:preserve-3d;background:#0a0708;box-shadow:0 10px 30px -18px rgba(0,0,0,.8);
+  transition:flex-grow .6s cubic-bezier(.215,.61,.355,1),transform .6s cubic-bezier(.215,.61,.355,1);will-change:flex-grow,transform;-webkit-tap-highlight-color:transparent}
+.ag-p:focus-visible{outline:none;box-shadow:0 0 0 2px var(--p1-accent),0 10px 30px -18px rgba(0,0,0,.8)}
+.ag-f{position:absolute;inset:0;overflow:hidden;border-radius:inherit}
+.ag-m{position:absolute;top:50%;left:50%;width:var(--ag-ms);height:100%;transform:translate(calc(-50% + var(--sx,0px)),-50%);filter:grayscale(1);transition:transform .6s cubic-bezier(.215,.61,.355,1),filter .6s}
+.ag-m img{width:100%;height:100%;object-fit:cover;display:block;user-select:none}
+.ag-o{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 45%,color-mix(in srgb,var(--ag-ov) 78%,transparent) 100%),color-mix(in srgb,var(--ag-ov) 35%,transparent);transition:background-color .6s,opacity .6s}
+.ag-p.on .ag-m{filter:none}
+.ag-p.on .ag-o{background:linear-gradient(180deg,transparent 45%,color-mix(in srgb,var(--ag-ov) 78%,transparent) 100%)}
+.ag-l{position:absolute;left:20px;right:20px;bottom:18px;display:flex;align-items:center;gap:12px;pointer-events:none;text-align:left;color:#FCEBD2}
+.ag-bar{flex:0 0 auto;width:3px;height:30px;border-radius:3px;background:var(--p1-accent);box-shadow:0 0 12px color-mix(in srgb,var(--p1-accent) 60%,transparent)}
+.ag-t{min-width:0;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.ag-t span{display:block;opacity:.72;letter-spacing:.08em;overflow:hidden;text-overflow:ellipsis}
+.ag-bar,.ag-t{opacity:0;transform:translateX(-14px);transition:opacity .36s,transform .36s}
+.ag-p.on .ag-bar,.ag-p.on .ag-t{opacity:1;transform:none;transition:opacity .6s cubic-bezier(.215,.61,.355,1),transform .6s cubic-bezier(.215,.61,.355,1)}
+.ag-p.on .ag-t{transition-delay:.06s}
+@media (max-width:520px){
+  .ag{flex-direction:column;perspective:none;height:auto}
+  .ag-p{flex:none!important;height:64px;transform:none!important;transition:height .6s cubic-bezier(.215,.61,.355,1)}
+  .ag-p.on{height:min(62vh,440px)}
+  .ag-m{width:100%;height:min(62vh,440px)}
+}
+@media (prefers-reduced-motion:reduce){.ag-p,.ag-m,.ag-bar,.ag-t{transition:none!important}}
+/* ShapeBlur on the red silhouette: a soft lens follows the pointer (drifts on its own when the pointer is away) and pushes the flower out of focus, with a little colour fringing */
+.pt-red{--lx:50%;--ly:50%;--lr:180px;--lin:54px}
+.pt-red .sb-s,.pt-red .sb-b{position:absolute;inset:0}
+.pt-red .sb-x{position:absolute;inset:0;background:var(--p1-accent);-webkit-mask:var(--sil) center/100% 100% no-repeat;mask:var(--sil) center/100% 100% no-repeat}
+.pt-red .sb-s{-webkit-mask:radial-gradient(circle at var(--lx) var(--ly),transparent var(--lin),#000 calc(var(--lr) * .78));mask:radial-gradient(circle at var(--lx) var(--ly),transparent var(--lin),#000 calc(var(--lr) * .78))}
+.pt-red .sb-b{filter:drop-shadow(5px 0 0 rgba(255,168,0,.42)) drop-shadow(-5px 0 0 rgba(196,0,96,.42)) blur(16px);-webkit-mask:radial-gradient(circle at var(--lx) var(--ly),#000 calc(var(--lr) * .78),transparent var(--lr));mask:radial-gradient(circle at var(--lx) var(--ly),#000 calc(var(--lr) * .78),transparent var(--lr))}
+@media (prefers-reduced-motion: reduce){.pt-red .sb-b{display:none}.pt-red .sb-s{-webkit-mask:none;mask:none}}
+/* cover flower: plain photo only — no fade, blur, red silhouette, lens or shadow (old effects kept in CSS above but switched off here) */
+.portrait,#portrait{animation:none!important;filter:none!important;opacity:1!important}
+/* ShapeBlur on the cover photo: a soft lens follows the pointer (drifts by itself when idle) and pushes the flower out of focus with slight colour fringing */
+.portrait{--lx:50%;--ly:50%;--lr:180px;--lin:54px}
+#portrait{-webkit-mask:radial-gradient(circle at var(--lx) var(--ly),transparent var(--lin),#000 calc(var(--lr) * .78));mask:radial-gradient(circle at var(--lx) var(--ly),transparent var(--lin),#000 calc(var(--lr) * .78))}
+.portrait .pt-blur{position:absolute;inset:0;width:100%;height:auto;pointer-events:none;animation:none;filter:drop-shadow(5px 0 0 rgba(255,168,0,.32)) drop-shadow(-5px 0 0 rgba(196,0,96,.32)) blur(16px);-webkit-mask:radial-gradient(circle at var(--lx) var(--ly),#000 calc(var(--lr) * .78),transparent var(--lr));mask:radial-gradient(circle at var(--lx) var(--ly),#000 calc(var(--lr) * .78),transparent var(--lr))}
+@media (prefers-reduced-motion: reduce){.portrait .pt-blur{display:none}#portrait{-webkit-mask:none;mask:none}}
+/* spin shutter (Poster Design overview) */
+.ss{position:relative;width:100%;height:clamp(460px,80vh,780px);overflow:hidden;touch-action:pan-y}
+.ss-t{position:absolute;left:0;top:0;padding:0;aspect-ratio:var(--ar);border-radius:var(--img-r,7px);overflow:hidden;box-shadow:0 18px 40px -22px rgba(0,0,0,.75);transform-origin:50% 50%;will-change:transform,filter;-webkit-tap-highlight-color:transparent}
+.ss-t img{width:100%;height:100%;object-fit:cover;display:block;user-select:none}
+.ss-t:focus-visible{outline:2px solid var(--p1-accent);outline-offset:3px}
+.ss-cap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(42%,300px);text-align:center;display:grid;gap:.5rem;pointer-events:none}
+.ss-n{font-size:.7rem;letter-spacing:.26em;color:var(--room-mute);font-variant-numeric:tabular-nums}
+.ss-tt{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;line-height:1.45}
+.ss-tt span{display:block;color:var(--room-mute);letter-spacing:.08em}
+.ss-hint{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--p1-accent)}
+@media (max-width:520px){.ss{height:min(118vw,520px)}.ss-cap{width:46%}.ss-tt{font-size:.66rem}.ss-hint{display:none}}
+/* elastic reel dock (Poster Design overview) */
+.erx{--erh:clamp(340px,70vh,700px);display:grid;gap:.9rem;min-width:0}
+.erx-dock{display:flex;gap:6px;height:var(--erh);min-width:0}
+.erx-s{position:relative;flex:1 1 0;min-width:0;padding:0;border-radius:var(--img-r,7px);overflow:hidden;filter:grayscale(.85) brightness(.9);box-shadow:0 14px 30px -20px rgba(0,0,0,.7);
+  transition:flex .95s cubic-bezier(.34,1.56,.64,1),filter .6s ease;-webkit-tap-highlight-color:transparent}
+.erx-s.on{flex:0 0 min(calc(var(--erh) * var(--ar)),68%);filter:none}
+.erx-s img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block;user-select:none}
+.erx-s.on img{object-fit:cover}
+.erx-s:hover:not(.on){filter:grayscale(.4) brightness(.97)}
+.erx-s.on{cursor:zoom-in}
+.erx-s:focus-visible{outline:2px solid var(--p1-accent);outline-offset:2px}
+.erx-cap{display:flex;gap:1rem;align-items:baseline;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+.erx-n{color:var(--p1-accent);letter-spacing:.22em;font-variant-numeric:tabular-nums}
+.erx-t span{color:var(--room-mute);letter-spacing:.08em;margin-left:.6rem}
+@media (max-width:520px){.erx{--erh:min(110vw,480px)}.erx-dock{gap:3px}.erx-s.on{flex-basis:min(calc(var(--erh) * var(--ar)),74%)}}
+@media (prefers-reduced-motion:reduce){.erx-s{transition:none}}
+/* Poster Design reel runs edge to edge of the screen; its title sits above */
+.grp.grp-wide{grid-template-columns:minmax(0,1fr)}
+.room-body:has(.grp-wide){margin-left:calc(-1 * var(--gl));margin-right:calc(-1 * var(--gr))}
+.room-body:has(.grp-wide) .scroll{padding-left:var(--gl);padding-right:var(--gr);overflow-x:hidden}
+.grp-wide .grp-h{position:static;display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1.2rem}
+.grp-wide .grp-n{margin-top:0}
+.grp-wide .grp-sets{display:block;min-width:0}
+.grp-wide .erx{grid-template-columns:minmax(0,1fr)}
+.grp-wide .erx-dock{margin-left:calc(-1 * var(--gl));margin-right:calc(-1 * var(--gr))}
+.grp-wide .erx-s{border-radius:0}
+.grp-wide .erx-dock{gap:4px}
+/* brand tiers inside Logo Design (Interior & Architecture Studios first, then other brands) */
+.tier-h{font-family:var(--display);font-style:italic;font-size:clamp(1.15rem,1.7vw,1.6rem);line-height:1.1;color:var(--p1-accent);margin-top:.6rem;padding-top:1rem;border-top:2px solid var(--p1-accent)}
+.tier-h:first-child{margin-top:0}
+.grp-set.is-brand{padding:1.2rem;border-radius:12px;background:color-mix(in srgb,var(--room-fg) 5%,transparent)}
+.set-note{max-width:62ch;margin:-.3rem 0 1rem;font-size:.86rem;line-height:1.75;color:var(--room-mute);text-align:justify}
+/* cover title: one plain sans (Inter, variable weight) for both lines, even weight per line; the pressure effect still swells each letter */
+.nm-a,.nm-b{font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-variation-settings:normal}
+.nm-a{letter-spacing:-.045em}
+.nm-b{letter-spacing:-.04em}
+/* polish pass */
+body{margin:0}
+/* accordion: closed panels show a cropped slice; the open panel shows the whole work over a blurred copy of itself */
+.ag-bg{position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;filter:blur(26px) brightness(.55) saturate(.9);opacity:0;transition:opacity .6s}
+.ag-m .ag-c,.ag-m .ag-k{position:absolute;inset:0;width:100%;height:100%;transition:opacity .45s ease}
+.ag-m .ag-c{object-fit:cover}
+.ag-m .ag-k{object-fit:contain;opacity:0}
+.ag-p.on .ag-bg{opacity:1}
+.ag-p.on .ag-m .ag-c{opacity:0}
+.ag-p.on .ag-m .ag-k{opacity:1}
+.ag-p.on .ag-m{width:100%;left:0;transform:translate(0,-50%)}
+.ag-p.on .ag-o{background:linear-gradient(180deg,transparent 70%,color-mix(in srgb,var(--ag-ov) 70%,transparent) 100%)}
+/* single work */
+.solo{display:grid;gap:.8rem;justify-items:start;width:min(100%,calc(min(62vh,600px) * var(--ar)));padding:0;text-align:left}
+.solo img{width:100%;aspect-ratio:var(--ar);object-fit:contain;border-radius:var(--img-r,7px);box-shadow:var(--shadow);transition:transform .8s ease}
+.solo:hover img{transform:translateY(-3px)}
+.solo-cap{display:flex;align-items:center;gap:12px}
+.solo-cap .ag-bar,.solo-cap .ag-t{opacity:1;transform:none}
+.solo-cap .ag-t{color:var(--room-fg);text-shadow:none}
+/* Works page: the hint sits under the title, inside the first door */
+@media (min-width:900px){.p2-top .page-title{flex-direction:column;align-items:flex-start;gap:.5rem}}
+.portrait.no-lens .pt-blur{display:none}
+.portrait.no-lens #portrait{-webkit-mask:none;mask:none}
+/* cover (page 1): Shree Devanagari 714, Regular, all capitals. It is a macOS system font, so it shows on Macs that have it;
+   other devices fall back to Times New Roman. The tagline keeps its own hand-written font. Thai has no glyphs in Shree, so it keeps the site font. */
+:root{--cover-font:'Shree Devanagari 714','Shree714','Times New Roman',Times,serif}
+.p1 .nm-a,.p1 .nm-b,.p1 .by-en,.p1 .by-en em,.p1 .by-cv,.p1 .by-role{font-family:var(--cover-font);font-weight:400;font-style:normal;text-transform:uppercase}
+.p1 .nm-a{letter-spacing:-.01em}
+.p1 .nm-b{letter-spacing:0}
+.p1 .by-en{letter-spacing:.04em}
+/* cover tagline: Winter Sunday (from the owner's own font library; free for personal use, ask scratchones_creative for a commercial licence) */
+@font-face{font-family:'Winter Sunday';src:url(data:font/woff;base64,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) format('woff');font-display:swap}
+.p1 .script{font-family:'Winter Sunday','Nothing You Could Do',cursive}
+/* Poster Design: masonry grid + shared-element zoom */
+.grp-masonry .msn{columns:1;column-gap:14px;margin-inline:calc(-1 * var(--gl) + 14px) calc(-1 * var(--gr) + 14px)}
+@media (min-width:640px){.grp-masonry .msn{columns:2}}
+@media (min-width:768px){.grp-masonry .msn{columns:3}}
+@media (min-width:1024px){.grp-masonry .msn{columns:4}}
+.msn-i{display:block;width:100%;margin:0 0 14px;padding:0;break-inside:avoid;border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;-webkit-tap-highlight-color:transparent}
+.msn-i img{display:block;width:100%;height:auto;object-fit:cover;border-radius:12px;transition:transform .45s cubic-bezier(.22,1.18,.36,1)}
+.msn-i::after{content:'';position:absolute;inset:0;border-radius:12px;background:rgba(0,0,0,.1);opacity:0;transition:opacity .2s;pointer-events:none}
+.msn-i:hover img{transform:scale(.98)}.msn-i:active img{transform:scale(.95)}
+.msn-i:hover::after,.msn-i:active::after{opacity:1}
+.msn-i:focus-visible{outline:2px solid var(--p1-accent);outline-offset:3px}
+.zm{position:fixed;inset:0;z-index:90}
+.zm-bg{position:absolute;inset:0;background:rgba(0,0,0,.8);-webkit-backdrop-filter:blur(40px);backdrop-filter:blur(40px);cursor:zoom-out}
+.zm-img{position:fixed;border-radius:12px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8);object-fit:contain;cursor:grab;touch-action:none;user-select:none;will-change:transform}
+.zm-img:active{cursor:grabbing}
+.zm-cap{position:fixed;left:50%;bottom:max(14px,2.2vh);transform:translateX(-50%);color:#F1E3CC;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;text-align:center;pointer-events:none;white-space:nowrap}
+.zm-cap span{color:rgba(241,227,204,.6);margin-left:.7rem;letter-spacing:.08em}
+.zm-x{position:fixed;top:24px;right:24px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:1.5rem;line-height:1;display:grid;place-items:center;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:background .2s}
+.zm-x:hover{background:rgba(255,255,255,.2)}
+.zm-x:focus-visible{outline:2px solid #fff;outline-offset:2px}
+/* Poster Design: curved row */
+.grp-curve .cvh{position:relative;overflow:hidden;container-type:size;height:clamp(420px,72vh,760px);margin-inline:calc(-1 * var(--gl)) calc(-1 * var(--gr))}
+.cvh-band{position:absolute;inset:0;opacity:0;transition:opacity .5s}
+.cvh-tile{position:absolute;padding:0;transform-style:preserve-3d;cursor:zoom-in;background:none;border:0}
+.cvh-sl{position:absolute;top:0;overflow:hidden;background:var(--room-bg2)}
+.cvh-sl.l{border-radius:8px 0 0 8px}.cvh-sl.r{border-radius:0 8px 8px 0}
+.cvh-sl img{position:absolute;top:0;max-width:none;object-fit:cover}
+.cvh-hint{position:absolute;left:0;right:0;bottom:clamp(10px,2.5vh,22px);text-align:center;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--room-mute);pointer-events:none}
+@media (hover:none){.cvh-hint{font-size:0}.cvh-hint::after{content:'Tap to view';font-size:.68rem}}
+@media (max-width:640px){.grp-curve .cvh{height:clamp(340px,112vw,500px)}}
+/* cover background: Grainient canvas behind the cover text; a plain CSS gradient in the same colours if WebGL is unavailable */
+.p1 .grainient{position:absolute;inset:0;z-index:-1;overflow:hidden;background:linear-gradient(35deg,var(--p1-bg) 30%,#F3C2A2 70%,var(--p1-accent))}
+.p1 .grainient canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.p1 .grainient.gr-off canvas{display:none}
+/* phones: with the flower gone the cover keeps a full first screen; tagline at the top, title and credit at the bottom */
+@media (max-width:899px){.p1 .p1-in{display:flex;flex-direction:column;min-height:88svh}.p1 .name{margin-top:auto;align-self:flex-start}}
+/* cover title with TextPressure: Roboto Flex, capitals, each line's letters spread across one shared width (flex) */
+.p1 .name.tp{width:min(100%,clamp(300px,50vw,820px))}
+.p1 .name.tp .nm-a,.p1 .name.tp .nm-b{font-family:'Roboto Flex',var(--cover-font);display:flex;justify-content:space-between;text-transform:uppercase;letter-spacing:0;line-height:1;white-space:nowrap}
+.p1 .name.tp .nm-a span,.p1 .name.tp .nm-b span{font-weight:100!important;transform:none!important;user-select:none}
+.p1 .name.tp .nm-b{margin-top:.04em}
+@media (max-width:899px){.p1 .name.tp{width:100%}}
+/* Grainient on pages 2 and 3 (same effect as the cover, in each page's colours) */
+.p2 .grainient,.p3 .grainient{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.p2 .grainient{background:var(--red)}
+.p3 .p3-l .grainient{background:var(--sum-bg)}
+.p3 .p3-r .grainient{background:var(--red)}
+.p2 .grainient canvas,.p3 .grainient canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.grainient.gr-off canvas{display:none}
+/* zones inside an interior brand */
+.ag-stack.zones{display:grid;gap:clamp(1.4rem,3vw,2.4rem)}
+.bz{display:grid;gap:.8rem}
+.bz-h{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;padding-left:.7rem;border-left:2px solid var(--p1-accent);line-height:1.3}
+.bz-h span{font-family:var(--display);font-style:italic;font-size:clamp(1rem,1.3vw,1.2rem);color:var(--room-fg)}
+.bz-h em{font-style:normal;font-size:.78rem;color:var(--room-mute)}
+.bz-h b{font-weight:400;font-size:.7rem;letter-spacing:.18em;color:var(--room-mute);font-variant-numeric:tabular-nums}
+/* Works doors: the same fixed film grain as the Grainient pages, laid over the red filter (it lifts with the filter on hover) */
+.rb-grain{position:absolute;inset:0;z-index:2;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.48' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px 180px;mix-blend-mode:overlay;opacity:1;transition:opacity 1.4s ease}
+.room-btn:hover .rb-grain,.room-btn:focus-visible .rb-grain,.room-btn:active .rb-grain{opacity:.25}
+/* photo stack (Garden Light, Room Flash) */
+.ed-stackmod{display:grid;grid-template-columns:minmax(0,23.6fr) minmax(0,76.4fr);gap:clamp(1.5rem,4vw,4rem);align-items:center}
+.pst{display:grid;justify-items:center;gap:1.4rem;padding-block:clamp(1rem,4vh,3rem)}
+.pst-box{position:relative;height:min(70svh,720px);aspect-ratio:var(--ar,.8);max-width:min(78vw,640px);outline:none;touch-action:pan-y}
+.pst-box:focus-visible .pst-card[data-top] .pst-face{outline:2px solid var(--p1-accent);outline-offset:4px}
+.pst-card{position:absolute;inset:0;transform-origin:90% 90%;transition:transform .55s cubic-bezier(.2,.9,.3,1.15),opacity .35s ease;will-change:transform;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.pst-card[data-top]{cursor:grab}.pst-card[data-top]:active{cursor:grabbing}
+.pst-face{position:absolute;inset:0;overflow:hidden;border-radius:var(--img-r,7px);box-shadow:0 14px 34px -10px rgba(0,0,0,.45),0 3px 8px -2px rgba(0,0,0,.18);transition:transform .3s ease}
+.pst-face img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.pst-shade{position:absolute;inset:0;background:#000;pointer-events:none;transition:opacity .35s ease}
+.pst-bar{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;justify-content:center;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+.pst-n{color:var(--room-mute);font-variant-numeric:tabular-nums}
+.pst-bar button{font:inherit;letter-spacing:inherit;text-transform:inherit;padding:.5rem 1rem;border:1px solid var(--room-line);border-radius:999px;color:var(--room-fg);transition:background .3s,color .3s}
+.pst-bar button:hover{background:var(--room-fg);color:var(--room-bg)}
+@media (max-width:899px){.ed-stackmod{grid-template-columns:1fr}.pst-box{height:auto;width:min(80vw,440px)}.pst-n{flex-basis:100%;text-align:center}}
+@media (prefers-reduced-motion:reduce){.pst-card,.pst-face{transition:none!important}}
+.ed-curve{padding:0 0 clamp(2rem,6vh,4rem)}
+.ed-curve .cvh{position:relative;overflow:hidden;container-type:size;height:clamp(420px,72vh,760px)}
+@media (max-width:640px){.ed-curve .cvh{height:clamp(340px,112vw,500px)}}
+/* scroll stack (White Daylight landscapes) */
+.ed-sstack{padding-block:clamp(1rem,3vh,2rem) 0;padding-inline:clamp(10px,2vw,32px)}
+.sst-slot{position:sticky}
+.sst-card{max-width:calc(80svh * 1.78);margin-inline:auto;position:relative;border-radius:var(--img-r,7px);overflow:hidden;transform-origin:50% 0;will-change:transform;box-shadow:0 -12px 40px -16px rgba(0,0,0,.35),0 24px 48px -24px rgba(0,0,0,.4)}
+.sst-card .ss-img{display:block;width:100%}
+.sst-card .ss-img img{display:block;width:100%;height:auto;max-height:82svh;object-fit:cover}
+.sst-shade{position:absolute;inset:0;background:#000;opacity:var(--sst-dim,0);pointer-events:none}
+/* ---- pre-launch fixes ---- */
+/* buttons: two kinds only. Primary = the red Hire / Send blocks. Secondary = a thin pill (room back, Hire, View, Next, Copy, Download) */
+.pill,.room-bar .back,.line-btn,.pst-bar button,.cv-dl{display:inline-flex;align-items:center;gap:.7em;min-height:44px;padding:.55rem 1.15rem;border:1px solid currentColor;border-radius:999px;font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;line-height:1;color:inherit;background:transparent;transition:background .35s,color .35s,border-color .35s}
+.pill:hover,.room-bar .back:hover,.line-btn:hover,.pst-bar button:hover,.cv-dl:hover{background:currentColor}
+.pill:hover>*,.room-bar .back:hover>*{color:inherit}
+.pill:hover,.room-bar .back:hover,.line-btn:hover,.pst-bar button:hover{color:var(--pill-on,var(--room-bg));background:var(--pill-bg,var(--room-fg));border-color:var(--pill-bg,var(--room-fg))}
+.room-bar .back::before{width:1.6em}
+.line-btn .ln{display:none}
+.p3-r .line-btn,.hire .line-btn{--pill-bg:#FCEBD2;--pill-on:#B2231A}
+.p1 .pill{--pill-bg:var(--p1-accent);--pill-on:var(--p1-bg);color:var(--p1-accent)}
+.room .seg{display:flex;align-items:center;gap:.8rem}
+.room .seg .go-hire{color:var(--room-fg)}
+/* page back links (pages 2 and 3) stay text links, with a 44px tap area */
+.page .back{padding-block:14px;margin-block:-14px}
+/* cover: one line on what the work is, and a Hire link */
+.by-what{display:block;max-width:36ch;margin-top:.9rem;font-size:.92rem;line-height:1.55;letter-spacing:.01em}
+.p1 .go-hire{margin-top:1.1rem}
+/* readable small text */
+.by-cv{opacity:1!important;font-size:.75rem}
+.p3 .p3-l .tools{color:var(--sum-fg);font-size:.78rem}
+/* clear keyboard focus: 2px ring, red on light surfaces, cream on red and dark ones */
+:focus-visible{outline:2px solid var(--p1-accent)!important;outline-offset:3px}
+.p2 :focus-visible,.p3-r :focus-visible,.hire :focus-visible,.room-btn:focus-visible{outline-color:#FCEBD2!important}
+/* image placeholders while loading: a soft tint the size of the image */
+.room img,.ed img,.book img{background-color:color-mix(in srgb,var(--room-fg) 7%,transparent)}
+/* form errors */
+.fld-err{margin:.35rem 0 0;font-size:.78rem;color:#FCEBD2;background:#7A140D;display:inline-block;padding:.2rem .55rem;border-radius:4px}
+#hire-form [aria-invalid]{outline:2px solid #FCEBD2;outline-offset:2px}
+/* fixes after first look */
+.p1 .go-hire{align-self:flex-start;justify-self:start;width:auto}
+.seg button.pill{border:1px solid currentColor;padding-bottom:.45rem}
+.room .seg{overflow:visible;height:auto}
+.room .seg .go-hire{min-height:38px;padding-block:.45rem}
+.fld-err{align-self:flex-start;width:auto}
 </style>
+</head>
+<body>
+
 
 <div class="grain" aria-hidden="true"></div>
 
 <!-- PAGE 1 — COVER -->
 <section class="page p1" id="p1" aria-label="Cover">
-  <div class="haze" aria-hidden="true"></div>
+  <!-- background: Grainient (WebGL gradient in the cover's own colours; see grainient() in the script) -->
+  <div class="grainient" aria-hidden="true"><canvas></canvas></div>
   <div class="p1-in">
     <p class="script">For you for all of us</p>
-    <figure class="portrait">
-      <!-- Cover image: the dried-flower photo (cover.webp, transparent cut-out). Change it via SITE.portrait.src in the script below; null draws a blank PLACEHOLDER instead. -->
-      <img id="portrait" alt="Dried flower, black and white"><span class="pt-red" aria-hidden="true"></span>
-    </figure>
     <!-- letter weights ramp from thin to heavy (built by rampWeight() in the script) -->
-    <h1 class="name" aria-label="Future For Us"><span class="nm-a" aria-hidden="true" data-ramp="400,900">Future</span><span class="nm-b" aria-hidden="true" data-ramp="100,700">For Us</span></h1>
+    <h1 class="name" aria-label="Future For Us"><span class="nm-a" aria-hidden="true" data-ramp="500,500" data-hi="900">Future</span><span class="nm-b" aria-hidden="true" data-ramp="300,300" data-hi="800">For Us</span></h1>
     <!-- owner credit: whose portfolio this is, signed under the group name -->
-    <p class="disc"><span class="by"><i class="by-rule" aria-hidden="true"></i><button class="by-btn" id="resume-open" type="button" aria-label="Open resume"><span class="by-en">by <em>Panudetch Konklin</em></span><span class="by-th">ภาณุเดช ก้อนกลิ่น</span><span class="by-cv">Resume ↗</span></button></span><span class="by-role">Graphic · Photography · Producer</span></p>
+    <p class="disc"><span class="by"><i class="by-rule" aria-hidden="true"></i><button class="by-btn" id="resume-open" type="button" aria-label="Open resume"><span class="by-en">by <em>Panudetch Konklin</em></span><span class="by-th">ภาณุเดช ก้อนกลิ่น</span><span class="by-cv">Resume ↗</span></button></span><span class="by-role">Graphic · Photography · Producer</span><span class="by-what">Design, photography and production, looked after from first idea to finished work.</span><button class="pill go-hire" type="button" data-go-hire>Hire me</button></p>
   </div>
 </section>
 
 <!-- PAGE 2 — WORKS (three doors to three rooms) -->
 <section class="page p2" id="p2" aria-label="Works">
-  <div class="haze" aria-hidden="true"></div>
+  <div class="grainient" aria-hidden="true"><canvas></canvas></div>
   <div class="p2-top">
     <h2 class="page-title">Works <small>Please choose a room</small></h2>
   </div>
@@ -651,7 +927,7 @@ img{display:block}
 <!-- PAGE 3 — SUMMARY + HIRE -->
 <section class="page p3" id="p3" aria-label="Summary and contact">
   <div class="p3-l">
-    <div class="haze" aria-hidden="true"></div>
+    <div class="grainient" aria-hidden="true"><canvas></canvas></div>
     <button class="back" type="button" data-go="p2">back</button>
     <h2 class="page-title">Summary <small>Overview</small></h2>
     <div class="p3-intro" id="p3-intro"></div>
@@ -665,7 +941,7 @@ img{display:block}
     </div>
   </div>
   <div class="p3-r">
-    <div class="haze" aria-hidden="true"></div>
+    <div class="grainient" aria-hidden="true"><canvas></canvas></div>
     <p class="eyebrow">Contact</p>
     <div class="hire-zone">
       <div class="hz" id="hz-a">
@@ -734,7 +1010,7 @@ const SITE = {
     /* cover = picture behind the room button (shown black & white under a red filter); leave it out for a plain button
        focus = [x, y] of the subject in the picture (0–1, left/top = 0); the site keeps that point in the middle of the button at any screen size */
     graphic:   { cover: 'works/g-hands-3.webp', focus: [0.5, 0.45], en: 'Graphic',     th: 'Visual Design',  desc: 'Posters · Logos & Brands · Presentations',   ask: 'Hiring for graphic design',  job: 'งานออกแบบกราฟิก',           subject: 'สอบถามการรับงานออกแบบกราฟิก' },
-    photo:     { cover: 'works/p-cover-1343.webp', focus: [0.5, 0.36], en: 'Photography', th: 'Image Making',    desc: 'Fashion · Food · Products',          ask: 'Hiring for photography',        job: 'งานถ่ายภาพ',                 subject: 'สอบถามการรับงานถ่ายภาพ' },
+    photo:     { cover: 'works/p-cover-1343.webp', focus: [0.5, 0.36], en: 'Photography', th: 'Producer & Art Direction',    desc: 'Fashion · Food · Products', role: 'ผมดูแลงานในฐานะโปรดิวเซอร์และอาร์ตไดเรกเตอร์ คิดคอนเซ็ปต์ จัดฉาก และควบคุมภาพรวมของกองถ่าย ส่วนการกดชัตเตอร์เป็นหน้าที่ของช่างภาพในทีมครับ', ask: 'Hiring for photo production', job: 'งานโปรดักชันและอาร์ตไดเรกชันสำหรับงานถ่ายภาพ', subject: 'สอบถามงานโปรดักชันและอาร์ตไดเรกชันงานถ่ายภาพ' },
     organizer: { cover: 'works/o-booth-portrait.webp', focus: [0.35, 0.4], en: 'Producer',   th: 'Shoots & Events',   desc: 'Events · Booths · Shoot Production', ask: 'Hiring for production',    job: 'งานออแกไนซ์และบริหารการผลิต', subject: 'สอบถามการรับงานออแกไนซ์' }
   },
 
@@ -743,8 +1019,17 @@ const SITE = {
        photo:   by mode; the Editorial rails run in smooth colour order; Post Social follows seq (Instagram order).
      group/mode = which set it belongs to · client = label under the title · place = label under a photo · year '' = not filled in yet.
      src:null draws a blank PLACEHOLDER for editing. */
+  /* brands inside a group that belong together: tier = the heading they sit under (shown first, in this order), note = short story of the logo */
+  setInfo: {
+    'Soil Source': { tier: 'Interior & Architecture Studios', en: 'Soil Source · Studio Design',
+      note: 'สตูดิโอออกแบบสถาปัตยกรรมและอินทีเรียที่อยากให้งานดูอบอุ่นและเป็นกันเอง ผมลดทอนรูปเมล็ดถั่ว ซึ่งเป็นพืชที่งอกจากดิน ให้เป็นสัญลักษณ์ และวางรูปบนกริดเรขาคณิตเพื่อให้ใช้ได้กับทุกสื่อ สองเมล็ดต่อกันเป็นตัว S ส่วนตัวอักษรใช้ Montserrat คู่กับ ทอศิลป์ แพรตะวัน และใช้สีโทนดิน (ส้ม น้ำตาลเข้ม เขียวป่า ครีม)' },
+    'Shape Space Studio': { tier: 'Interior & Architecture Studios', en: 'Shape Space Studio',
+      note: 'สตูดิโออินทีเรียที่เน้นรูปทรงและพื้นที่ โลโก้เป็นกรอบตัวอักษร Bebas Neue ที่มุมล่างหักเป็นขั้นบันได ให้อ่านได้ทั้งเป็นกล่องข้อความและเป็นมุมของแปลนห้อง มีแบบทึบและแบบเส้น ทั้งขาวและดำ เพื่อให้วางบนนามบัตร ป้าย และโปสเตอร์โครงการได้ชัดทุกพื้น' },
+    'TEMP.': { tier: 'Fashion Brand', en: 'TEMP.' },
+    'Future For Us': { tier: 'Personal Brand', en: 'Future For Us' }
+  },
   graphicGroups: [
-    { key: 'poster', en: 'Poster Design', th: 'Posters & Ads' },
+    { key: 'poster', en: 'Poster Design', th: 'Posters & Ads', curve: true }, /* curve: true = curved tilted row + zoom view in Overview (masonry: true = masonry grid, reel: true = Elastic Reel, spin: true = Spin Shutter ring) */
     { key: 'logo',   en: 'Logo Design',   th: 'Logos & how they are used' },
     { key: 'space',  en: 'Space Presentation', th: 'Architecture & interior presentations' },
     { key: 'other',  en: 'Other Design',  th: 'Layouts · Visual experiments · Illustration' }
@@ -755,26 +1040,24 @@ const SITE = {
     { title: 'In Forest at BusBar', year: '2023', group: 'poster', client: 'Poster Design', tools: '', ratio: 0.8, tone: 158, src: 'works/g-forest.webp', lab: [65, 3, 13], busy: 50 },
     { title: 'Slowhand', year: '2025', group: 'poster', client: 'Poster Design', tools: '', ratio: 0.71, tone: 72, src: 'works/g-slowhand.webp', lab: [30, 5, -13], busy: 27 },
     { title: 'Photo Booth', year: '2022', group: 'poster', client: 'Poster Design', tools: '', ratio: 0.71, tone: 27, src: 'works/g-photobooth.webp', set: 'Photo Booth', lab: [11, 6, 7], busy: 35 },
-    { title: 'Happy New Year 2026', year: '2026', group: 'poster', client: 'Poster Design', tools: '', ratio: 1.5, tone: 39, src: 'works/g-newyear2026.webp', lab: [15, 2, 3], busy: 16 },
     { title: 'Future For Us', year: '2026', group: 'logo', client: 'Logo Design', tools: '', ratio: 0.58, tone: 118, src: 'works/g-future-for-us.webp', lab: [50, -16, 26], busy: 45, set: 'Future For Us' },
     { title: 'Shape Space Studio', year: '2025', group: 'logo', client: 'Logo Design', tools: '', ratio: 1.76, tone: 101, src: 'works/g-shape-space-board.webp', lab: [45, 25, 32], busy: 60, set: 'Shape Space Studio' },
     { title: 'Shape Space Studio Mark', year: '2025', group: 'logo', client: 'Logo Design', tools: '', ratio: 0.85, tone: 27, src: 'works/g-shape-space.webp', lab: [11, 0, 0], busy: 11, set: 'Shape Space Studio' },
-    { title: 'Graden Craft Resort and Spa', year: '2026', group: 'logo', client: 'Logo Design', tools: '', ratio: 1.41, tone: 46, src: 'works/g-resort-spa.webp', lab: [20, -17, 19], busy: 22, set: 'Graden Craft Resort & Spa' },
     { title: 'TEMP.', year: '2025', group: 'logo', client: 'Logo Design', tools: '', ratio: 1.0, tone: 5, src: 'works/g-temp.webp', lab: [2, 0, 0], busy: 7, set: 'TEMP.' },
     { title: 'Soil Source Symbol', year: '2025', group: 'logo', client: 'Logo Design', tools: '', ratio: 1.0, tone: 75, src: 'works/g-ssf.webp', lab: [29, 1, 3], busy: 14, set: 'Soil Source' },
-    { title: 'Hands', year: '2026', group: 'other', client: 'Illustration', tools: '', ratio: 0.71, tone: 59, src: 'works/g-hands.webp', lab: [23, 0, 0], busy: 19, set: 'Hands' },
-    { title: 'Resonance', year: '2025', group: 'other', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 170, src: 'works/g-resonance.webp', lab: [69, -1, -24], busy: 48, set: 'Star Form' },
-    { title: 'Star Form I', year: '2025', group: 'other', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 66, src: 'works/g-star-1.webp', lab: [26, -1, 0], busy: 34, set: 'Star Form' },
-    { title: 'Star Form II', year: '2025', group: 'other', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 62, src: 'works/g-star-2.webp', lab: [24, 0, 0], busy: 36, set: 'Star Form' },
-    { title: 'Star Form III', year: '2025', group: 'other', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 50, src: 'works/g-star-3.webp', lab: [20, 4, -4], busy: 31, set: 'Star Form' },
-    { title: 'Star Form IV', year: '2025', group: 'other', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 150, src: 'works/g-star-4.webp', lab: [61, 0, -1], busy: 54, set: 'Star Form' },
-    { title: 'TEMP. Feed', year: '2025', group: 'other', client: 'Layout Design', tools: '', ratio: 0.14, tone: 186, src: 'works/g-temp-feed.webp', lab: [75, 1, 3], busy: 57, set: 'TEMP.' },
+    { title: 'Hands', year: '2026', group: 'logo', client: 'Illustration', tools: '', ratio: 0.71, tone: 59, src: 'works/g-hands.webp', lab: [23, 0, 0], busy: 19, set: 'Future For Us' },
+    { title: 'Resonance', year: '2025', group: 'logo', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 170, src: 'works/g-resonance.webp', lab: [69, -1, -24], busy: 48, set: 'Future For Us' },
+    { title: 'Star Form I', year: '2025', group: 'logo', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 66, src: 'works/g-star-1.webp', lab: [26, -1, 0], busy: 34, set: 'Future For Us' },
+    { title: 'Star Form II', year: '2025', group: 'logo', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 62, src: 'works/g-star-2.webp', lab: [24, 0, 0], busy: 36, set: 'Future For Us' },
+    { title: 'Star Form III', year: '2025', group: 'logo', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 50, src: 'works/g-star-3.webp', lab: [20, 4, -4], busy: 31, set: 'Future For Us' },
+    { title: 'Star Form IV', year: '2025', group: 'logo', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 150, src: 'works/g-star-4.webp', lab: [61, 0, -1], busy: 54, set: 'Future For Us' },
+    { title: 'TEMP. Feed', year: '2025', group: 'logo', client: 'Layout Design', tools: '', ratio: 0.14, tone: 186, src: 'works/g-temp-feed.webp', lab: [75, 1, 3], busy: 57, set: 'TEMP.' },
     { title: 'Bus Bar Love and Roll', year: '2023', group: 'poster', client: 'Poster Design', tools: '', ratio: 0.71, tone: 114, src: 'works/g-busbar-love-roll.webp', lab: [48, 14, 8], busy: 59 },
     { title: 'Happy New Year 2026 II', year: '2026', group: 'poster', client: 'Poster Design', tools: '', ratio: 0.67, tone: 133, src: 'works/g-newyear2026-2.webp', lab: [55, 6, 16], busy: 28 },
     { title: 'Soil Source', year: '2025', group: 'logo', client: 'Logo Design', tools: '', ratio: 0.34, tone: 98, src: 'works/g-soil-source.webp', lab: [41, 2, 17], busy: 63, set: 'Soil Source' },
-    { title: 'Effect Collage', year: '2025', group: 'other', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 138, src: 'works/g-effect-collage.webp', lab: [58, 12, -15], busy: 46, set: 'Star Form' },
-    { title: 'Hands II', year: '2026', group: 'other', client: 'Illustration', tools: '', ratio: 0.71, tone: 81, src: 'works/g-hands-2.webp', lab: [32, 0, 0], busy: 29, set: 'Hands' },
-    { title: 'Hands III', year: '2026', group: 'other', client: 'Illustration', tools: '', ratio: 0.71, tone: 43, src: 'works/g-hands-3.webp', lab: [17, 0, 0], busy: 31, set: 'Hands' },
+    { title: 'Effect Collage', year: '2025', group: 'logo', client: 'Visual Experiment', tools: '', ratio: 0.71, tone: 138, src: 'works/g-effect-collage.webp', lab: [58, 12, -15], busy: 46, set: 'Future For Us' },
+    { title: 'Hands II', year: '2026', group: 'logo', client: 'Illustration', tools: '', ratio: 0.71, tone: 81, src: 'works/g-hands-2.webp', lab: [32, 0, 0], busy: 29, set: 'Future For Us' },
+    { title: 'Hands III', year: '2026', group: 'logo', client: 'Illustration', tools: '', ratio: 0.71, tone: 43, src: 'works/g-hands-3.webp', lab: [17, 0, 0], busy: 31, set: 'Future For Us' },
     /* added from Downloads (year not known yet) */
     { title: 'Photo Booth I', year: '', group: 'poster', client: 'Poster Design', tools: '', ratio: 0.71, tone: 44, src: 'works/g-photobooth-1.webp', lab: [18, 13, 15], busy: 36, set: 'Photo Booth' },
     { title: 'Photo Booth II', year: '', group: 'poster', client: 'Poster Design', tools: '', ratio: 0.71, tone: 39, src: 'works/g-photobooth-2.webp', lab: [16, 11, 12], busy: 36, set: 'Photo Booth' },
@@ -787,46 +1070,49 @@ const SITE = {
     { title: 'Soil Source · Business Card', year: '', group: 'logo', client: 'Logo Application', tools: '', ratio: 1.0, tone: 93, src: 'works/g-soil-cards.webp', lab: [38, -6, 8], busy: 24, set: 'Soil Source' },
     { title: 'Soil Source · Billboard', year: '', group: 'logo', client: 'Logo Application', tools: '', ratio: 0.72, tone: 99, src: 'works/g-soil-billboard.webp', lab: [42, -1, 7], busy: 45, set: 'Soil Source' },
     { title: 'Shape Space · Business Card', year: '', group: 'logo', client: 'Logo Application', tools: '', ratio: 1.5, tone: 179, src: 'works/g-ss-card.webp', lab: [73, 2, 1], busy: 36, set: 'Shape Space Studio' },
+    { title: 'Soil Source · Colour System', year: '2025', group: 'logo', client: 'Logo Design', tools: '', ratio: 2.22, tone: 150, src: 'works/g-soil-colours.webp', lab: [70, 4, 12], busy: 30, set: 'Soil Source' },
+    { title: 'Shape Space · Logo Versions', year: '2025', group: 'logo', client: 'Logo Design', tools: '', ratio: 2.0, tone: 110, src: 'works/g-ss-logos.webp', lab: [45, 1, 4], busy: 25, set: 'Shape Space Studio' },
+    { title: 'Shape Space · Project Poster', year: '', group: 'logo', client: 'Logo Application', tools: '', ratio: 0.666, tone: 110, src: 'works/g-ss-pinnacle.webp', lab: [45, 5, 10], busy: 70, set: 'Shape Space Studio' },
     { title: 'Shape Space · Signage', year: '', group: 'logo', client: 'Logo Application', tools: '', ratio: 0.62, tone: 113, src: 'works/g-ss-signage.webp', lab: [47, 2, 1], busy: 41, set: 'Shape Space Studio' },
-    { title: 'Soil Source · Courtyard Arcade', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 131, src: 'works/g-soil-courtyard.webp', lab: [55, -2, 9], busy: 50, set: 'Soil Source' },
-    { title: 'Soil Source · Brick Arcade', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 123, src: 'works/g-soil-arcade.webp', lab: [51, 2, 12], busy: 57, set: 'Soil Source' },
-    { title: 'Soil Source · Spa', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 97, src: 'works/g-soil-spa.webp', lab: [40, 5, 13], busy: 46, set: 'Soil Source' },
-    { title: 'Soil Source · Spa Room', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 99, src: 'works/g-soil-spa-2.webp', lab: [41, 4, 12], busy: 44, set: 'Soil Source' },
-    { title: 'Soil Source · Gym', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 80, src: 'works/g-soil-gym.webp', lab: [33, 0, 8], busy: 57, set: 'Soil Source' },
-    { title: 'Soil Source · Design Rooted in Soil', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.0, tone: 108, src: 'works/g-soil-post.webp', lab: [45, 4, 7], busy: 35, set: 'Soil Source' },
-    { title: 'Soil Source · Timber Facade', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.0, tone: 55, src: 'works/g-soil-facade.webp', lab: [23, 10, 11], busy: 34, set: 'Soil Source' },
-    { title: 'Soil Source · Timber Facade II', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.0, tone: 42, src: 'works/g-soil-facade-2.webp', lab: [17, 10, 12], busy: 38, set: 'Soil Source' },
+    { title: 'Soil Source · Courtyard Arcade', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 131, src: 'works/g-soil-courtyard.webp', lab: [55, -2, 9], busy: 50, set: 'Soil Source' },
+    { title: 'Soil Source · Brick Arcade', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 123, src: 'works/g-soil-arcade.webp', lab: [51, 2, 12], busy: 57, set: 'Soil Source' },
+    { title: 'Soil Source · Spa', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 97, src: 'works/g-soil-spa.webp', lab: [40, 5, 13], busy: 46, set: 'Soil Source' },
+    { title: 'Soil Source · Spa Room', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 99, src: 'works/g-soil-spa-2.webp', lab: [41, 4, 12], busy: 44, set: 'Soil Source' },
+    { title: 'Soil Source · Gym', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 80, src: 'works/g-soil-gym.webp', lab: [33, 0, 8], busy: 57, set: 'Soil Source' },
+    { title: 'Soil Source · Design Rooted in Soil', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.0, tone: 108, src: 'works/g-soil-post.webp', lab: [45, 4, 7], busy: 35, set: 'Soil Source' },
+    { title: 'Soil Source · Timber Facade', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.0, tone: 55, src: 'works/g-soil-facade.webp', lab: [23, 10, 11], busy: 34, set: 'Soil Source' },
+    { title: 'Soil Source · Timber Facade II', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.0, tone: 42, src: 'works/g-soil-facade-2.webp', lab: [17, 10, 12], busy: 38, set: 'Soil Source' },
     /* added from Desktop/sayyess (year not known yet: fill in year: '20xx') */
     { title: 'Marshall Major', year: '', group: 'poster', client: 'Product Ad', tools: '', ratio: 0.8, tone: 140, src: 'works/g-marshall.webp', lab: [56, 5, 5], busy: 48 },
     { title: 'The Darkest Romance', year: '', group: 'poster', client: 'Poster Design', tools: '', ratio: 0.71, tone: 208, src: 'works/g-youth.webp', lab: [83, 0, 0], busy: 32 },
     { title: 'Purple Rain Tribute', year: '', group: 'poster', client: 'Poster Design', tools: '', ratio: 0.71, tone: 82, src: 'works/g-purple-rain.webp', lab: [34, 28, -14], busy: 36 },
-    { title: 'Soil Source · Design Concept', year: '', group: 'space', client: 'Concept Presentation', tools: '', ratio: 1.5, tone: 89, src: 'works/g-soil-concept.webp', lab: [39, 14, 33], busy: 31, set: 'Soil Source' },
-    { title: 'Soil Source · Sketch Render I', year: '', group: 'space', client: 'Concept Presentation', tools: '', ratio: 1.0, tone: 111, src: 'works/g-soil-sketch-1.webp', lab: [47, 12, 29], busy: 60, set: 'Soil Source' },
-    { title: 'Soil Source · Sketch Render II', year: '', group: 'space', client: 'Concept Presentation', tools: '', ratio: 1.0, tone: 139, src: 'works/g-soil-sketch-2.webp', lab: [58, 11, 32], busy: 53, set: 'Soil Source' },
-    { title: 'Soil Source · Sketch Render III', year: '', group: 'space', client: 'Concept Presentation', tools: '', ratio: 1.0, tone: 129, src: 'works/g-soil-sketch-3.webp', lab: [54, 12, 30], busy: 55, set: 'Soil Source' },
-    { title: 'Soil Source · Entrance', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 174, src: 'works/g-soil-p11.webp', lab: [70, -1, 0], busy: 41, set: 'Soil Source' },
-    { title: 'Soil Source · Courtyard', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 89, src: 'works/g-soil-p15.webp', lab: [38, 6, 14], busy: 55, set: 'Soil Source' },
-    { title: 'Soil Source · Café Terrace', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 105, src: 'works/g-soil-p16.webp', lab: [43, 3, 10], busy: 64, set: 'Soil Source' },
-    { title: 'Soil Source · Deck', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 135, src: 'works/g-soil-p19.webp', lab: [56, 7, 20], busy: 62, set: 'Soil Source' },
-    { title: 'Soil Source · Elevation', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 212, src: 'works/g-soil-p21.webp', lab: [84, 1, 1], busy: 40, set: 'Soil Source' },
-    { title: 'Soil Source · Plan', year: '', group: 'space', client: 'Presentation Board', tools: '', ratio: 0.71, tone: 210, src: 'works/g-soil-plan.webp', lab: [84, -1, 2], busy: 41, set: 'Soil Source' },
-    { title: 'Shape Space · Living Room', year: '', group: 'space', client: 'Interior Presentation', tools: '', ratio: 1.78, tone: 91, src: 'works/g-shape-living.webp', lab: [38, 2, 5], busy: 40, set: 'Shape Space Studio' },
-    { title: 'Shape Space · Kitchen', year: '', group: 'space', client: 'Interior Presentation', tools: '', ratio: 1.45, tone: 99, src: 'works/g-shape-kitchen.webp', lab: [41, 3, 7], busy: 33, set: 'Shape Space Studio' },
-    { title: 'TEMP. Lookbook Deck I', year: '', group: 'other', client: 'Presentation Layout', tools: '', ratio: 1.78, tone: 135, src: 'works/g-temp-slide-3.webp', lab: [57, -3, 12], busy: 47, set: 'TEMP.' },
-    { title: 'TEMP. Lookbook Deck II', year: '', group: 'other', client: 'Presentation Layout', tools: '', ratio: 1.78, tone: 187, src: 'works/g-temp-slide-4.webp', lab: [75, -1, 6], busy: 40, set: 'TEMP.' },
-    { title: 'TEMP. Lookbook Deck III', year: '', group: 'other', client: 'Presentation Layout', tools: '', ratio: 1.78, tone: 227, src: 'works/g-temp-slide-5.webp', lab: [90, 1, 0], busy: 31, set: 'TEMP.' },
-    { title: 'TEMP. Lookbook Deck IV', year: '', group: 'other', client: 'Presentation Layout', tools: '', ratio: 1.78, tone: 221, src: 'works/g-temp-slide-6.webp', lab: [88, 4, 5], busy: 36, set: 'TEMP.' }
+    { title: 'Soil Source · Design Concept', year: '', group: 'logo', client: 'Concept Presentation', tools: '', ratio: 1.5, tone: 89, src: 'works/g-soil-concept.webp', lab: [39, 14, 33], busy: 31, set: 'Soil Source' },
+    { title: 'Soil Source · Sketch Render I', year: '', group: 'logo', client: 'Concept Presentation', tools: '', ratio: 1.0, tone: 111, src: 'works/g-soil-sketch-1.webp', lab: [47, 12, 29], busy: 60, set: 'Soil Source' },
+    { title: 'Soil Source · Sketch Render II', year: '', group: 'logo', client: 'Concept Presentation', tools: '', ratio: 1.0, tone: 139, src: 'works/g-soil-sketch-2.webp', lab: [58, 11, 32], busy: 53, set: 'Soil Source' },
+    { title: 'Soil Source · Sketch Render III', year: '', group: 'logo', client: 'Concept Presentation', tools: '', ratio: 1.0, tone: 129, src: 'works/g-soil-sketch-3.webp', lab: [54, 12, 30], busy: 55, set: 'Soil Source' },
+    { title: 'Soil Source · Entrance', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 174, src: 'works/g-soil-p11.webp', lab: [70, -1, 0], busy: 41, set: 'Soil Source' },
+    { title: 'Soil Source · Courtyard', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 89, src: 'works/g-soil-p15.webp', lab: [38, 6, 14], busy: 55, set: 'Soil Source' },
+    { title: 'Soil Source · Café Terrace', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 105, src: 'works/g-soil-p16.webp', lab: [43, 3, 10], busy: 64, set: 'Soil Source' },
+    { title: 'Soil Source · Deck', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 135, src: 'works/g-soil-p19.webp', lab: [56, 7, 20], busy: 62, set: 'Soil Source' },
+    { title: 'Soil Source · Elevation', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 1.41, tone: 212, src: 'works/g-soil-p21.webp', lab: [84, 1, 1], busy: 40, set: 'Soil Source' },
+    { title: 'Soil Source · Plan', year: '', group: 'logo', client: 'Presentation Board', tools: '', ratio: 0.71, tone: 210, src: 'works/g-soil-plan.webp', lab: [84, -1, 2], busy: 41, set: 'Soil Source' },
+    { title: 'Shape Space · Living Room', year: '', group: 'logo', client: 'Interior Presentation', tools: '', ratio: 1.78, tone: 91, src: 'works/g-shape-living.webp', lab: [38, 2, 5], busy: 40, set: 'Shape Space Studio' },
+    { title: 'Shape Space · Bedroom', year: '', group: 'logo', client: 'Interior Presentation', tools: '', ratio: 1.78, tone: 120, src: 'works/g-shape-bedroom.webp', lab: [55, 2, 6], busy: 45, set: 'Shape Space Studio' },
+    { title: 'Shape Space · Kitchen', year: '', group: 'logo', client: 'Interior Presentation', tools: '', ratio: 1.45, tone: 99, src: 'works/g-shape-kitchen.webp', lab: [41, 3, 7], busy: 33, set: 'Shape Space Studio' },
+    { title: 'TEMP. Lookbook Deck I', year: '', group: 'logo', client: 'Presentation Layout', tools: '', ratio: 1.78, tone: 135, src: 'works/g-temp-slide-3.webp', lab: [57, -3, 12], busy: 47, set: 'TEMP.' },
+    { title: 'TEMP. Lookbook Deck II', year: '', group: 'logo', client: 'Presentation Layout', tools: '', ratio: 1.78, tone: 187, src: 'works/g-temp-slide-4.webp', lab: [75, -1, 6], busy: 40, set: 'TEMP.' },
+    { title: 'TEMP. Lookbook Deck III', year: '', group: 'logo', client: 'Presentation Layout', tools: '', ratio: 1.78, tone: 227, src: 'works/g-temp-slide-5.webp', lab: [90, 1, 0], busy: 31, set: 'TEMP.' },
+    { title: 'TEMP. Lookbook Deck IV', year: '', group: 'logo', client: 'Presentation Layout', tools: '', ratio: 1.78, tone: 221, src: 'works/g-temp-slide-6.webp', lab: [88, 4, 5], busy: 36, set: 'TEMP.' }
   ],
   photoModes: [
-    { key: 'daylight', en: 'White Daylight', th: 'Bright · White studio light',   desc: 'ลุคบุ๊ก Angel Bra Bra ในฉากขาว ผมตั้งใจให้แสงนุ่มและสะอาด สีพาสเทลของเสื้อผ้าจะได้เด่นที่สุด' },
-    { key: 'edge',     en: 'Studio Edge',    th: 'White · Street look',          desc: 'ลุคสตรีทของ Angel ฉากขาวเรียบ ปล่อยให้ท่าทางกับเสื้อผ้าเป็นตัวเล่าเรื่อง' },
-    { key: 'garden',   en: 'Garden Light',   th: 'Natural · Daylight',     desc: 'ออกนอกสตูดิโอไปสวน ม้านั่ง และหน้าคาเฟ่ ใช้แดดอ่อนตอนบ่าย โทนเขียวกับครีม' },
-    { key: 'indoor',   en: 'Room Flash',     th: 'Indoor · Flash & red sofa',   desc: 'ในห้องนอนและบนโซฟาแดง ยิงแฟลชตรงให้ได้อารมณ์แบบหน้านิตยสาร' },
-    { key: 'lowkey',   en: 'Low Key',        th: 'Dark · Single light',            desc: 'ของหวานบนพื้นมืด แสงส่องจุดเดียว แล้ววางตัวอักษรซ้อนกับภาพ' },
-    { key: 'dining',   en: 'Dining Table',   th: 'Food · Real restaurant light',          desc: 'จานอาหารในร้านจริง ใช้แสงในร้านกับโต๊ะไม้และโซฟาสีเขียวเข้มเป็นฉาก ให้สีของอาหารเด่นออกมา', rail: true },
-    { key: 'wood',     en: 'Wood & Glow',    th: 'Wooden furniture · Warm light',        desc: 'ตู้ไวน์ไม้แกะสลัก ถ่ายในโทนมืด ให้แสงไฟในตู้ขับลายไม้และขวดออกมา' },
-    { key: 'tungsten', en: 'Warm Tungsten',  th: 'Warm · Tungsten light',         desc: 'ภาพคอนเซ็ปต์ในบ้านไม้ เล่าเรื่องครอบครัวและวัฒนธรรมไทยด้วยแสงไฟเหลือง โทนส้มอิ่ม' },
-    { key: 'social',   en: 'Post Social',    th: 'Social posts · Instagram',      desc: 'ชุดโพสต์ Instagram เรียงตามลำดับโพสต์จริง ซ้ายไปขวา บนลงล่าง ภาพต่อกันเป็นผืนเดียว', grid: true }
+    { key: 'daylight', sstack: true, en: 'White Daylight', th: 'Bright · White studio light',   desc: 'ลุคบุ๊ก Angel Bra Bra ในฉากขาว ผมวางคอนเซ็ปต์ให้แสงนุ่มและฉากสะอาด เพื่อให้สีพาสเทลของเสื้อผ้าเด่นที่สุด', reel: true },
+    { key: 'edge',     en: 'Studio Edge',    th: 'White · Street look',          desc: 'ลุคสตรีทของ Angel ผมเลือกฉากขาวเรียบ แล้วกำกับท่าทางให้คนดูโฟกัสที่เสื้อผ้า', reel: true },
+    { key: 'garden',   stack: true, en: 'Garden Light',   th: 'Natural · Daylight',     desc: 'ผมพาทีมออกนอกสตูดิโอไปที่สวน ม้านั่ง และหน้าคาเฟ่ เลือกช่วงแดดอ่อนตอนบ่าย ให้ได้โทนเขียวกับครีม' },
+    { key: 'indoor',   stack: true, en: 'Room Flash',     th: 'Indoor · Flash & red sofa',   desc: 'ผมจัดฉากในห้องนอนและบนโซฟาแดง แล้ววางแสงแฟลชตรงให้ได้อารมณ์แบบหน้านิตยสาร' },
+    { key: 'lowkey',   en: 'Low Key',        th: 'Dark · Single light',            desc: 'ของหวานบนพื้นมืด ผมวางแสงส่องจุดเดียว แล้วออกแบบตัวอักษรให้ซ้อนกับภาพ', parallax: true },
+    { key: 'dining',   en: 'Dining Table',   th: 'Food · Real restaurant light',          desc: 'จานอาหารในร้านจริง ผมใช้โต๊ะไม้และโซฟาสีเขียวเข้มของร้านเป็นฉาก ให้สีของอาหารเด่นออกมา', rail: true, parallax: true },
+    { key: 'tungsten', en: 'Warm Tungsten',  th: 'Warm · Tungsten light',         desc: 'ภาพคอนเซ็ปต์ในบ้านไม้ ผมคิดเรื่องและจัดฉากครอบครัวกับวัฒนธรรมไทย ใช้แสงไฟเหลืองให้ได้โทนส้มอิ่ม' },
+    { key: 'social',   en: 'Post Social',    th: 'Social posts · Instagram',      desc: 'ชุดโพสต์ Instagram ที่ผมวางเลย์เอาต์ให้ภาพต่อกันเป็นผืนเดียว เรียงตามลำดับโพสต์จริง ซ้ายไปขวา บนลงล่าง', grid: true }
   ],
   photo: [
     { title: 'Angel Bra Bra', mode: 'daylight', place: 'Look Book · Studio', ratio: 0.8, tone: 192, src: 'works/p-lookbook-portrait.webp', lab: [76, 6, 3] },
@@ -845,8 +1131,8 @@ const SITE = {
     { title: 'Family Table III', mode: 'tungsten', place: 'Concept Shoot', ratio: 1.5, tone: 79, src: 'works/p-family-3.webp', lab: [34, 16, 24] },
     { title: 'Still Life', mode: 'tungsten', place: 'Concept Shoot', ratio: 0.67, tone: 66, src: 'works/p-still-life.webp', lab: [28, 8, 18] },
     { title: 'Khon Master', mode: 'tungsten', place: 'Concept Shoot', ratio: 0.67, tone: 49, src: 'works/p-khon.webp', lab: [21, 16, 12] },
-    { title: 'Cheat Cake', mode: 'lowkey', place: 'Food · Low Key', ratio: 0.67, tone: 93, src: 'works/p-cheatcake-red.webp', lab: [39, 5, 10] },
-    { title: 'Cheat Cake II', mode: 'lowkey', place: 'Food · Low Key', ratio: 0.67, tone: 48, src: 'works/p-cheatcake-dark.webp', lab: [19, -1, 2] },
+    { title: 'Cheat Cake', at: 3, mode: 'lowkey', place: 'Food · Low Key', ratio: 0.67, tone: 93, src: 'works/p-cheatcake-red.webp', lab: [39, 5, 10] },
+    { title: 'Cheat Cake II', at: 99, mode: 'lowkey', place: 'Food · Low Key', ratio: 0.67, tone: 48, src: 'works/p-cheatcake-dark.webp', lab: [19, -1, 2] },
     { title: 'Cheat Cake III', mode: 'lowkey', place: 'Food · Low Key', ratio: 0.67, tone: 87, src: 'works/p-cheatcake-blue.webp', lab: [36, -2, 0] },
     { title: 'Angel Bra Bra Beauty I', mode: 'daylight', place: 'Look Book · Studio', ratio: 0.8, tone: 197, src: 'works/p-beauty-1.webp', lab: [79, 5, 7] },
     { title: 'Angel Bra Bra Beauty II', mode: 'daylight', place: 'Look Book · Studio', ratio: 0.8, tone: 202, src: 'works/p-beauty-2.webp', lab: [81, 6, 8] },
@@ -880,19 +1166,12 @@ const SITE = {
     { title: 'Red Sofa TEMP.', mode: 'social', seq: 17, place: 'Post Social', ratio: 0.8, tone: 123, src: 'works/p-sofa-2.webp', lab: [52, 18, 19] },
     { title: 'Red Sofa Portrait', mode: 'social', seq: 18, place: 'Post Social', ratio: 0.8, tone: 77, src: 'works/p-sofa-3.webp', lab: [33, 17, 17] },
     { title: 'Cheat Cake Basque', mode: 'lowkey', place: 'Food · Low Key', ratio: 0.67, tone: 80, src: 'works/p-basque-1.webp', lab: [34, 10, 22] },
-    { title: 'Basque Slice', mode: 'lowkey', place: 'Food · Low Key', ratio: 0.67, tone: 77, src: 'works/p-basque-2.webp', lab: [34, 16, 24] },
     { title: 'Basque Table', mode: 'lowkey', place: 'Food · Low Key', ratio: 0.67, tone: 65, src: 'works/p-basque-3.webp', lab: [28, 8, 18] },
     { title: 'Cheat Cake Red', mode: 'lowkey', place: 'Food · Low Key', ratio: 1.5, tone: 54, src: 'works/p-cheatcake-wide.webp', lab: [24, 15, 23] },
     { title: 'Two Plates', mode: 'dining', place: 'Food · Restaurant', ratio: 1.5, tone: 126, src: 'works/p-dining-1.webp', lab: [52, 2, 17] },
     { title: 'Booth Table', mode: 'dining', place: 'Food · Restaurant', ratio: 1.5, tone: 97, src: 'works/p-dining-2.webp', lab: [40, 2, 16] },
     { title: 'Basil Stir-fry', mode: 'dining', place: 'Food · Restaurant', ratio: 1.5, tone: 68, src: 'works/p-dining-3.webp', lab: [28, 4, 15] },
     { title: 'Braised Plate', mode: 'dining', place: 'Food · Restaurant', ratio: 1.5, tone: 106, src: 'works/p-dining-4.webp', lab: [44, 7, 22] },
-    { title: 'Carved Wine Cabinet I', mode: 'wood', place: 'Furniture · Product', ratio: 0.67, tone: 59, src: 'works/p-cabinet-1.webp', lab: [24, 10, 14] },
-    { title: 'Carved Wine Cabinet II', mode: 'wood', place: 'Furniture · Product', ratio: 0.67, tone: 63, src: 'works/p-cabinet-2.webp', lab: [26, 15, 19] },
-    { title: 'Carved Wine Cabinet III', mode: 'wood', place: 'Furniture · Product', ratio: 0.67, tone: 41, src: 'works/p-cabinet-3.webp', lab: [17, 10, 12] },
-    { title: 'Carved Wine Cabinet IV', mode: 'wood', place: 'Furniture · Product', ratio: 0.67, tone: 43, src: 'works/p-cabinet-4.webp', lab: [18, 11, 12] },
-    { title: 'Carved Wine Cabinet V', mode: 'wood', place: 'Furniture · Product', ratio: 0.67, tone: 45, src: 'works/p-cabinet-5.webp', lab: [19, 12, 14] },
-    { title: 'Carved Wine Cabinet VI', mode: 'wood', place: 'Furniture · Product', ratio: 1.5, tone: 63, src: 'works/p-cabinet-6.webp', lab: [26, 10, 17] },
     { title: 'Khon Master II', mode: 'tungsten', place: 'Concept Shoot', ratio: 0.67, tone: 47, src: 'works/p-khon-2.webp', lab: [20, 9, 9] },
     { title: 'Khon Master III', mode: 'tungsten', place: 'Concept Shoot', ratio: 0.67, tone: 43, src: 'works/p-khon-3.webp', lab: [18, 8, 8] },
     /* POST SOCIAL: Instagram posts, shown in file-name order (seq) */
@@ -913,9 +1192,9 @@ const SITE = {
        Replace the text, set src to a photo in works/, and delete "example: true". */
     /* REAL CASE — fill in date / where / scale when known. thumb = picture on the card · gallery = extra pictures and clips (['img'|'video', file]) */
     { name: 'Family Table · Concept Shoot', role: 'Producer', date: '', where: 'On set · Old wooden shop', about: 'Thai family concept shoot', scale: '',
-      brief: 'ถ่ายภาพครอบครัวไทยกินข้าวร่วมโต๊ะในร้านไม้เก่า ให้ทุกคนในบ้านอยู่ในเฟรมเดียวและเล่าเรื่องได้ในภาพเดียว',
+      brief: 'ถ่ายภาพครอบครัวไทยกินข้าวร่วมโต๊ะในร้านไม้เก่า ให้ทุกคนในบ้านอยู่ในเฟรมเดียวกัน',
       did: 'ผมวาดสตอรีบอร์ดวางองค์ประกอบก่อน ทั้งตำแหน่งคน สายตาของแต่ละคน และจานอาหารบนโต๊ะ แล้วดูแลกองถ่ายหน้างาน ประสานทีมกล้อง ไฟ และมอนิเตอร์ ให้ภาพออกมาตามบอร์ด',
-      result: 'ได้ภาพชุด Family Table ออกมาตามที่วางบอร์ดไว้ สามารถชมภาพจริงได้ในห้อง Photography หมวด Warm Tungsten ครับ',
+      result: 'ภาพชุด Family Table ออกมาตามบอร์ดที่วางไว้ ดูภาพจริงได้ในห้อง Photography หมวด Warm Tungsten ครับ',
       src: 'works/p-family-3.webp', thumb: 'works/o-prod-onset.webp',
       gallery: [['img', 'works/p-family-3.webp'], ['img', 'works/o-prod-storyboard.webp'], ['img', 'works/o-prod-onset.webp'], ['video', 'works/o-prod-clip-1.mp4'], ['video', 'works/o-prod-clip-2.mp4'], ['video', 'works/o-prod-clip-3.mp4'], ['video', 'works/o-prod-clip-4.mp4']] },
     { example: true, name: 'Pop-up Exhibition',  role: 'Production Manager', date: '2026', where: 'กรุงเทพฯ',  about: 'นิทรรศการศิลปะแบบป๊อปอัป',     scale: 'ผู้เข้าร่วมประมาณ 300 คน', brief: 'ติดตั้งงานศิลปะ 40 ชิ้นให้เสร็จใน 2 วัน ในพื้นที่ที่ไม่เคยใช้จัดงานมาก่อน', did: 'วางผังพื้นที่ คุมการติดตั้ง และประสานช่างกับศิลปินหน้างาน', result: 'เปิดงานตรงเวลา ไม่มีงานชิ้นไหนเสียหาย', src: null },
@@ -931,16 +1210,16 @@ const SITE = {
   /* note that rises over the Organizer room each time it opens (set to null to turn it off) */
   organizerNotice: {
     title: 'Sorry',
-    text: ['ไฟล์งานออแกไนซ์ส่วนใหญ่ของผมหายไปจากอุบัติเหตุ ทำให้ผลงานในส่วนนี้มีให้ดูไม่มาก',
-           'หากสนใจหรืออยากสอบถามความสามารถด้านนี้ ติดต่อผมได้โดยตรงเลยครับ เชื่อว่าถ้าเราได้คุยกัน ท่านจะวางใจในฝีมือของผมมากขึ้น'],
+    text: ['ไฟล์งานออแกไนซ์ส่วนใหญ่ของผมหายไปจากอุบัติเหตุ ผลงานส่วนนี้จึงมีให้ดูไม่มากครับ',
+           'ถ้าสนใจหรืออยากสอบถามงานด้านนี้ ติดต่อผมโดยตรงได้เลยครับ ผมยินดีเล่ารายละเอียดของแต่ละงานให้ฟัง'],
     contact: 'Contact me directly', dismiss: 'See the work', home: 'Back to Works'
   },
   stats: { totalYears: 6 },
   /* intro = short paragraphs under the Summary title (what I have done → what that gives a client → what I hope to do next) */
   intro: [
-    'สวัสดีครับ ผมภาณุเดช ก้อนกลิ่น มีประสบการณ์ในสายงานกราฟิก ภาพถ่าย และออแกไนซ์มาพอสมควรครับ เริ่มจากพื้นฐานศิลปะที่ช่างศิลป ลาดกระบัง แล้วได้เรียนรู้ต่อจากงานจริงอีกหลายงาน ทั้งออกแบบ ถ่ายภาพ ไปจนถึงดูแลกองถ่ายและหน้างาน',
-    'งานเหล่านี้สอนให้ผมมองงานให้ครบ ตั้งแต่ไอเดียแรกจนถึงวันที่งานไปถึงคนดู ผมจึงช่วยดูแลงานได้ต่อเนื่อง ทั้งคิดภาพ ออกแบบ ถ่าย และประสานทีมให้งานออกมาตามที่ตั้งใจไว้ ลูกค้าไม่ต้องเล่าโจทย์ซ้ำกับหลายคน และได้งานที่ไปในทิศทางเดียวกันทั้งชุด',
-    'ตอนนี้ผมอยากทำงานด้านวางแผนและประสานงานให้มากขึ้น หากมีงานที่ผมพอช่วยได้ ยินดีรับฟังรายละเอียดก่อนเสมอครับ'
+    'สวัสดีครับ ผมภาณุเดช ก้อนกลิ่น มีประสบการณ์ในสายงานกราฟิก ภาพถ่าย และงานโปรดักชันมาพอสมควรครับ',
+    'งานส่วนใหญ่ของผมคือดูแลโปรเจกต์ตั้งแต่ต้นจนจบ ผมเป็นคนกลางระหว่างลูกค้ากับทีมงาน มีทั้งทีมออกแบบและทีมโปรดักชัน แล้วคอยประสานให้ทุกฝ่ายไปทางเดียวกัน',
+    'ลูกค้าเล่าสิ่งที่อยากได้ให้ผมฟังครั้งเดียวก็พอ ผมจะหาทีมที่เหมาะกับงานและดูแลจนงานเสร็จตามที่ตั้งใจไว้ ถ้ามีโปรเจกต์ที่ผมพอช่วยได้ ยินดีรับฟังรายละเอียดก่อนเสมอครับ'
   ],
   skills: ['Seeing the whole picture, from idea to set', 'Handling on-site problems quickly', 'Clear communication with team and clients'],
   tools: ['Ai', 'Ps', 'Lr', 'Id', 'Pr', 'Figma', 'Procreate']
@@ -1047,6 +1326,12 @@ function smoothChain(arr) {
 orderWorks(SITE.photo, SITE.photoModes, 'mode');
 
 /* cover name: each letter one step heavier than the last; hovering flips the ramp */
+/* hand-writing effect for the cover tagline: one span per letter, revealed one after another */
+function writeOn(node) {
+  const t = node.textContent; node.setAttribute('aria-label', t);
+  node.innerHTML = [...t].map((c, i) => `<span class="wr" aria-hidden="true" style="--i:${i}">${esc(c)}</span>`).join('');
+}
+$$('.script').forEach(writeOn);
 function rampWeight(node) {
   const [w1, w2] = node.dataset.ramp.split(',').map(Number), t = node.textContent, n = Math.max(1, t.length - 1);
   node.textContent = '';
@@ -1057,13 +1342,129 @@ function rampWeight(node) {
   });
 }
 $$('[data-ramp]').forEach(rampWeight);
+/* ShapeBlur lens on the cover's red flower (lensSize .3, softness .7, idle drift) */
+(function shapeBlur() {
+  const box = $('.portrait'); if (!box) return;
+  /* touch screens and reduced motion: plain photo, no lens (a still blur there reads as a smudge) */
+  if (!matchMedia('(hover: hover) and (pointer: fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) { box.classList.add('no-lens'); return; }
+  let tx = .5, ty = .5, x = .5, y = .5, seen = false, on = true, last = 0, t = 0;
+  addEventListener('pointermove', e => { const r = box.getBoundingClientRect(); if (!r.width) return;
+    tx = (e.clientX - r.left) / r.width; ty = (e.clientY - r.top) / r.height; seen = e.clientX >= r.left - 80 && e.clientX <= r.right + 80 && e.clientY >= r.top - 80 && e.clientY <= r.bottom + 80; });
+  document.documentElement.addEventListener('pointerleave', () => { seen = false; });
+  new IntersectionObserver(([en]) => { on = en.isIntersecting; if (on) requestAnimationFrame(tick); }).observe(box);
+  function tick(now) {
+    if (!on) return;
+    const dt = Math.min(64, last ? now - last : 16); last = now; t += dt / 1000;
+    if (!seen) { tx = .5 + .26 * Math.sin(t * .5) + .08 * Math.sin(t * 1.3); ty = .5 + .22 * Math.cos(t * .37) + .07 * Math.sin(t * .9 + 1); }
+    const k = 1 - Math.exp(-dt / 250); x += (tx - x) * k; y += (ty - y) * k;
+    const r = box.getBoundingClientRect(), R = Math.min(r.width, r.height) * .3;
+    box.style.setProperty('--lx', (x * 100).toFixed(2) + '%'); box.style.setProperty('--ly', (y * 100).toFixed(2) + '%');
+    box.style.setProperty('--lr', R.toFixed(0) + 'px'); box.style.setProperty('--lin', (R * .3).toFixed(0) + 'px');
+    requestAnimationFrame(tick);
+  }
+})();
+/* simple text pressure for a single heading (Bodoni weights lo–hi): letters swell near the pointer, a slow idle wave, click ripple */
+function pressHeading(h, lo = 400, hi = 900) {
+  if (!h || h.dataset.pressed) return; h.dataset.pressed = 1;
+  /* script font (Pinyon) has no weight axis → thicken with a stroke instead */
+  const ink = getComputedStyle(h).fontFamily.includes('Pinyon') ? 'stroke' : 'wght';
+  const nodes = [...h.childNodes].filter(n => n.nodeType === 3 && n.textContent.trim());
+  if (!nodes.length) return;
+  nodes.forEach(n => { const f = document.createElement('span'); f.className = 'ph-w'; f.setAttribute('aria-hidden', 'true');
+    f.innerHTML = [...n.textContent].map(c => `<span class="ph-l">${esc(c)}</span>`).join('');
+    const lab = document.createElement('span'); lab.className = 'sr-only'; lab.textContent = n.textContent;
+    n.replaceWith(lab, f); });
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const L = $$('.ph-l', h).map(sp => ({ sp, cur: 0 }));
+  let px = null, py = null, inside = false, rip = [], t0 = performance.now();
+  h.addEventListener('pointermove', e => { px = e.clientX; py = e.clientY; inside = true; });
+  h.addEventListener('pointerleave', () => { inside = false; });
+  h.addEventListener('pointerdown', e => { rip.push({ x: e.clientX, y: e.clientY, t: performance.now() }); if (rip.length > 6) rip.shift(); });
+  const tick = now => {
+    if (!h.isConnected) return;
+    const w = $('.ph-w', h).getBoundingClientRect(), clock = (now - t0) / 1000;
+    if (w.width && w.bottom > 0 && w.top < innerHeight) {
+      const reach = Math.max(110, w.width * .5), band = Math.max(w.width * .14, 32);
+      L.forEach(o => {
+        const q = o.sp.getBoundingClientRect(), cx = q.left + q.width / 2, cy = q.top + q.height / 2; let p;
+        if (inside && px !== null) { p = Math.max(0, 1 - Math.hypot(cx - px, cy - py) / reach); p *= p; }
+        else p = 0; /* pointer away: rest, no idle wave */
+        rip.forEach(rp => { const a = (now - rp.t) / 1000; if (a >= 1.3) return; const off = (Math.hypot(cx - rp.x, cy - rp.y) - a * w.width * 1.25) / band;
+          if (off > -1 && off < 1) { const sw = (1 - off * off) ** 2 * (1 - a / 1.3) ** 2; p = 1 - (1 - p) * (1 - sw); } });
+        o.cur += (p - o.cur) * .12;
+        if (ink === 'wght') { const v = Math.round(lo + (hi - lo) * o.cur); o.sp.style.fontVariationSettings = `'wght' ${v}, 'opsz' 96`; o.sp.style.fontWeight = v; }
+        else o.sp.style.webkitTextStroke = `${(o.cur * .045).toFixed(3)}em currentColor`;
+        o.sp.style.transform = `scaleX(${(1 + o.cur * .1).toFixed(3)})`;
+      });
+    }
+    rip = rip.filter(rp => (now - rp.t) / 1000 < 1.3);
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+/* every page / room heading gets the pressure effect, including rooms built later */
+const pressAll = () => $$('.page-title, .ed-mark').forEach(h => pressHeading(h));
+pressAll(); new MutationObserver(pressAll).observe(document.body, { childList: true, subtree: true });
+
+/* TEXT PRESSURE on the cover title (idea from React Bits' TextPressure, rewritten here without React):
+   each letter swells (heavier + slightly wider) as the pointer comes near; when the pointer is away a slow wave rolls across;
+   a click sends a ripple outward. Weights stay inside each line's own ramp range. */
+(function textPressure() {
+  /* TextPressure (vanilla port of React Bits), on the cover title. Font: Roboto Flex (variable width, weight, optical size).
+     Letters swell in width and weight near the pointer (radius .5 of the title width, smoothing .5),
+     an idle wave rolls across while the pointer is away, and a click sends a ripple through the letters. */
+  const title = $('.name'); if (!title) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  title.classList.add('pressure', 'tp');
+  const spans = $$('[data-ramp] span', title);
+  /* click ripple: 30% slower than the original (life 1.3s -> 1.69s, travel speed x0.77), wider band, eased letters */
+  const RIPPLE_LIFE = 1.69, MAX_RIPPLES = 6, WAVE_PERIOD = 3.2, O = { radius: .5, smoothing: .5, idleSpeed: 1 };
+  /* resting weight raised 20% of the range (wght 280 instead of 100); pressure still climbs to 1000 */
+  const REST = .2;
+  const set = (sp, pr) => { sp.style.fontVariationSettings = `'wght' ${Math.floor(100 + 900 * (REST + (1 - REST) * pr))}, 'wdth' ${Math.floor(5 + 200 * pr)}, 'ital' ${pr.toFixed(2)}, 'opsz' 144`; };
+  spans.forEach(sp => set(sp, 0));
+  if (reduce) return;
+  const cursor = { x: 0, y: 0, seen: false }, mouse = { x: 0, y: 0 }; let ripples = [], clock = 0, last = 0, engage = 0, on = false;
+  addEventListener('pointermove', e => { cursor.x = e.clientX; cursor.y = e.clientY; cursor.seen = true; });
+  document.documentElement.addEventListener('pointerleave', () => { cursor.seen = false; });
+  title.addEventListener('pointerdown', e => { ripples.push({ x: e.clientX, y: e.clientY, start: performance.now() }); if (ripples.length > MAX_RIPPLES) ripples.shift(); });
+  { const r = title.getBoundingClientRect(); mouse.x = cursor.x = r.left + r.width / 2; mouse.y = cursor.y = r.top + r.height / 2; }
+  const ripple = (pt, now, span) => { const band = Math.max(span * .2, 44); let total = 0;
+    for (const rp of ripples) { const age = (now - rp.start) / 1000; if (age <= 0 || age >= RIPPLE_LIFE) continue;
+      const off = (Math.hypot(pt.x - rp.x, pt.y - rp.y) - age * span * .96) / band; if (off <= -1 || off >= 1) continue;
+      const fade = 1 - age / RIPPLE_LIFE, sw = (1 - off * off) ** 2 * fade * fade * Math.min(1, age / .18); total = 1 - (1 - total) * (1 - sw); }
+    return total; };
+  const tick = now => {
+    if (!on) return;
+    const el2 = last ? Math.min(now - last, 64) : 1000 / 60; last = now;
+    const lag = 1000 * O.smoothing * O.smoothing, follow = lag > 1 ? 1 - Math.exp(-el2 / lag) : 1;
+    mouse.x += (cursor.x - mouse.x) * follow; mouse.y += (cursor.y - mouse.y) * follow;
+    const box = title.getBoundingClientRect();
+    const present = cursor.seen && cursor.x >= box.left && cursor.x <= box.right && cursor.y >= box.top && cursor.y <= box.bottom ? 1 : 0;
+    engage += (present - engage) * (1 - Math.exp(-el2 / 320)); if (Math.abs(present - engage) < .002) engage = present;
+    const idling = engage < 1; if (idling) clock += el2 / 1000 * O.idleSpeed;
+    while (ripples.length && now - ripples[0].start > RIPPLE_LIFE * 1000) ripples.shift();
+    const maxD = Math.max(box.width * O.radius, 1), spread = Math.max(O.radius * 2, .2);
+    spans.forEach(sp => {
+      const q = sp.getBoundingClientRect(), c = { x: q.x + q.width / 2, y: q.y + q.height / 2 };
+      let pr = Math.min(1, Math.max(0, 1 - Math.hypot(mouse.x - c.x, mouse.y - c.y) / maxD));
+      if (idling) pr *= engage; /* pointer away: letters settle back to rest, no idle wave */
+      if (ripples.length) pr = 1 - (1 - pr) * (1 - ripple(c, now, box.width));
+      /* each letter eases toward its target so the swell rolls smoothly */
+      sp._p = (sp._p ?? pr) + (pr - (sp._p ?? pr)) * (1 - Math.exp(-el2 / 90)); set(sp, sp._p);
+    });
+    requestAnimationFrame(tick);
+  };
+  /* run only while the cover is on screen */
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { if (!on) { on = true; last = 0; requestAnimationFrame(tick); } } else on = false; })).observe(title);
+})();
 
 
 /* ---------------- cover + page 2 + page 3 content ---------------- */
-$('#portrait').src = SITE.portrait.src || ph(['#6A6264', '#1F1B1C', '#FCEBD2'], 1200, 1500, 'portrait');
+/* cover flower removed on request (cover.webp kept in works for later) */
 $('#rooms').innerHTML = Object.keys(SITE.rooms).map(k => {
   const r = SITE.rooms[k], n = SITE[k].filter(x => !x.example && !x.pending).length;
-  return `<button class="room-btn${r.cover ? ' has-cover' : ''}" type="button" data-room="${k}">${r.cover ? `<span class="rb-cover" aria-hidden="true"><img alt="" src="${esc(r.cover)}" data-fx="${(r.focus || [.5, .5])[0]}" data-fy="${(r.focus || [.5, .5])[1]}"></span>` : ''}
+  return `<button class="room-btn${r.cover ? ' has-cover' : ''}" type="button" data-room="${k}">${r.cover ? `<span class="rb-cover" aria-hidden="true"><img alt="" src="${esc(r.cover)}" data-fx="${(r.focus || [.5, .5])[0]}" data-fy="${(r.focus || [.5, .5])[1]}"><i class="rb-grain"></i></span>` : ''}
     <span><span class="rb-en">${esc(r.en)}</span><span class="rb-th">${esc(r.th)}</span></span>
     <span class="rb-mid">${esc(r.desc)}</span>
     <span class="rb-bot"><span class="rb-n">${n ? n + (n === 1 ? ' work' : ' works') : 'coming soon'}</span><span class="line-btn">Enter room<i class="ln"></i></span></span>
@@ -1164,8 +1565,8 @@ function makeStage(items, start, mode, onChange) {
 
 /* ---------------- room views ---------------- */
 const VIEWLABEL = { full: 'Full view', overview: 'Overview', book: 'Editorial' };
-const ROOMVIEWS = { graphic: ['full', 'overview'], photo: ['book', 'overview'], organizer: ['overview'] };
-const roomState = { graphic: { view: 'full', idx: 0 }, photo: { view: 'book' }, organizer: { view: 'overview', sel: 0 } };
+const ROOMVIEWS = { graphic: ['overview'], photo: ['book'], organizer: ['overview'] };
+const roomState = { graphic: { view: 'overview', idx: 0 }, photo: { view: 'book' }, organizer: { view: 'overview', sel: 0 } };
 const roomEls = {};
 
 /* Ordered layout: works sit in their group, narrow -> wide, light -> dark, all at one shared height (same scale). */
@@ -1178,21 +1579,382 @@ function groupedRows(items, groups, key, onOpen, capOf) {
     const runs = [];
     list.forEach(x => { const n = x[0].set || ''; const r = runs[runs.length - 1]; if (r && r.n === n) r.items.push(x); else runs.push({ n, items: [x] }); });
     const named = runs.some(r => r.n);
-    const sec = el('section', 'grp', `<header class="grp-h"><h4>${esc(g.en)}</h4><p>${esc(g.th)}</p><span class="grp-n">${pad(list.length)}</span></header><div class="grp-sets">${runs.map(r => `<div class="grp-set">${named ? `<p class="set-h">${esc(r.n || 'Others')}<span>${pad(r.items.length)}</span></p>` : ''}<div class="grp-row"></div></div>`).join('')}</div>`);
+    /* brands with a tier (SITE.setInfo) come first under their own heading; inside them the logo itself comes before its applications */
+    const info = n => (SITE.setInfo || {})[n], tiers = runs.some(r => info(r.n));
+    if (tiers) {
+      const keys = Object.keys(SITE.setInfo);
+      runs.sort((a, b) => (info(a.n) ? keys.indexOf(a.n) : 99) - (info(b.n) ? keys.indexOf(b.n) : 99));
+      /* inside an interior brand, works are split into zones (see ZONES) */
+    }
+    let lastTier = null;
+    const setHtml = r => { const f = info(r.n), t = tiers ? (f ? f.tier : 'Other Brands') : null;
+      const head = t && t !== lastTier ? `<p class="tier-h">${esc(t)}</p>` : ''; lastTier = t;
+      return `${head}<div class="grp-set${f ? ' is-brand' : ''}">${named ? `<p class="set-h">${esc(f?.en || r.n || 'Others')}<span>${pad(r.items.length)}</span></p>` : ''}${f?.note ? `<p class="set-note">${esc(f.note)}</p>` : ''}<div class="grp-row"></div></div>`; };
+    const sec = el('section', 'grp', `<header class="grp-h"><h4>${esc(g.en)}</h4><p>${esc(g.th)}</p><span class="grp-n">${pad(list.length)}</span></header><div class="grp-sets">${runs.map(setHtml).join('')}</div>`);
+    if (g.spin) { $('.grp-sets', sec).replaceChildren(spinShutter(list, onOpen, capOf)); sc.append(sec); return; }
+    if (g.curve) { sec.classList.add('grp-wide', 'grp-curve'); $('.grp-sets', sec).replaceChildren(curvedRow(list, capOf)); sc.append(sec); return; }
+    if (g.masonry) { sec.classList.add('grp-wide', 'grp-masonry'); $('.grp-sets', sec).replaceChildren(masonryGallery(list, capOf)); sc.append(sec); return; }
+    if (g.reel) { sec.classList.add('grp-wide'); $('.grp-sets', sec).replaceChildren(elasticDock(list, onOpen, capOf)); sc.append(sec); return; }
     const rows = $$('.grp-row', sec);
-    runs.forEach((r, k) => r.items.forEach(([it, i]) => {
-      const row = rows[k];
-      const b = el('button', 'gtile', `<img alt="" loading="lazy" decoding="async" src="${imgOf(it, i, it.title)}"><span class="gcap">${capOf(it)}</span>`);
-      b.type = 'button'; b.setAttribute('aria-label', 'Open ' + it.title);
-      b.style.setProperty('--ar', it.ratio || 0.8);
-      b.addEventListener('click', e => onOpen(i, e.currentTarget));
-      row.append(b);
-    }));
+    /* each row = accordion gallery(ies): hover / tap opens a panel, click the open panel to view the work; long rows split into chunks of up to 7 */
+    const fill = (box, items) => { if (items.length === 1) { box.append(soloWork(items[0], onOpen, capOf)); return; }
+      const n = Math.ceil(items.length / 7), per = Math.ceil(items.length / n);
+      for (let c = 0; c < n; c++) box.append(accordionRow(items.slice(c * per, (c + 1) * per), onOpen, capOf)); };
+    runs.forEach((r, k) => { const row = rows[k]; row.className = 'ag-stack';
+      if (info(r.n)) { /* brand zones: logo, applications, concept, architecture & interior, drawings */
+        row.classList.add('zones');
+        ZONES.forEach(z => { const items = r.items.filter(([it]) => zoneOf(it) === z.key); if (!items.length) return;
+          const zone = el('div', 'bz', `<p class="bz-h"><span>${esc(z.en)}</span><em>${esc(z.th)}</em><b>${pad(items.length)}</b></p>`);
+          const box = el('div', 'ag-stack'); fill(box, items); zone.append(box); row.append(zone); });
+        return; }
+      const n = Math.ceil(r.items.length / 7), per = Math.ceil(r.items.length / n);
+      if (r.items.length === 1) { row.append(soloWork(r.items[0], onOpen, capOf)); return; }
+      for (let c = 0; c < n; c++) row.append(accordionRow(r.items.slice(c * per, (c + 1) * per), onOpen, capOf)); });
     sc.append(sec);
   });
   dragScroll(sc);
   $$('.grp-row', sc).forEach(hScroll);
   return sc;
+}
+/* Curved row (vanilla port of TiltedGridHero): posters stream right to left round the inside of a cylinder.
+   The centre faces you flat, the ends bend toward you and fade out. Each tile is cut into SLICES vertical strips,
+   each turned its own few degrees round the cylinder's axis; one rotateY animation carries the tile along the arc.
+   A tile takes its next poster each time it wraps, out of sight. Hover pauses the row; click a poster to view it. */
+function curvedRow(list, capOf, over = {}) {
+  const SLICES = 16, CAMERA = 1.6, MAX_W = 55;
+  const P = { speed: 4, tileHeight: 46, aspect: .72, gap: 6, axis: 50, curve: 80, fade: 12, ...over };
+  const bend = Math.min(85, Math.max(5, P.curve)) * Math.PI / 180;
+  const arcR = b => (CAMERA - 1 + Math.cos(b)) / (2 * CAMERA * Math.sin(b));
+  const id = 'cv' + Math.random().toString(36).slice(2, 8), orbit = id + 'o', tcls = id + 't';
+  const hero = el('div', 'cvh', `<style></style><div class="cvh-band" aria-hidden="true"></div><p class="cvh-hint">Hover to pause · click to view</p>`);
+  const band = $('.cvh-band', hero), style = $('style', hero);
+  const r = 100 * arcR(bend), radius = `${+r.toFixed(3)}cqw`;
+  const u = n => `calc(${+n.toFixed(4)} * min(${P.tileHeight}cqh, ${+(MAX_W / P.aspect).toFixed(4)}cqw))`;
+  const turn = deg => `translateZ(${radius}) rotateY(${+deg.toFixed(4)}deg) translateZ(-${radius})`;
+  const mask = `linear-gradient(90deg,transparent,#000 ${P.fade}%,#000 ${100 - P.fade}%,transparent)`;
+  Object.assign(band.style, { perspective: `${+(r * CAMERA).toFixed(3)}cqw`, perspectiveOrigin: `50% ${P.axis}%`, maskImage: mask, webkitMaskImage: mask });
+  list.forEach(([it, i]) => { new Image().src = imgOf(it, i, it.title); });
+  let lay = null;
+  function measure(width, height) {
+    const h = Math.min(P.tileHeight / 100 * height, MAX_W / 100 * width / P.aspect), rad = width * arcR(bend);
+    if (!(h > 0) || !(rad > 0)) return null;
+    const deg = x => x * 180 / Math.PI, unit = deg(h / rad), pitch = (P.aspect + P.gap / 100) * unit, limit = deg(bend) + P.aspect * unit / 2;
+    const columns = Math.min(60, Math.max(2, Math.ceil(2 * limit / pitch))), rd = x => +x.toFixed(4), sweep = rd(columns * pitch / 2);
+    return { columns, sweep, unit: rd(unit), limit: rd(Math.min(sweep, limit)) };
+  }
+  function build(L) {
+    const { columns, sweep, unit, limit } = L, hide = +(((sweep - limit) / (2 * sweep || 1)) * 100).toFixed(4), dur = columns * P.speed, share = P.aspect / SLICES;
+    style.textContent = `@keyframes ${orbit}{from{transform:${turn(-sweep)}}to{transform:${turn(sweep)}}0%,${hide}%,${100 - hide}%,100%{visibility:hidden}${hide + .001}%,${100 - hide - .001}%{visibility:visible}}` +
+      `.${tcls}{animation:${orbit} ${dur}s linear infinite}.cvh:hover .${tcls},.cvh.zoomed .${tcls}{animation-play-state:paused}@media(prefers-reduced-motion:reduce){.${tcls}{animation-play-state:paused}}`;
+    band.innerHTML = '';
+    for (let t = 0; t < columns; t++) {
+      const first = columns - 1 - t, tile = document.createElement('button');
+      tile.type = 'button'; tile.className = 'cvh-tile ' + tcls; tile.tabIndex = -1;
+      Object.assign(tile.style, { left: `calc(50% - ${u(P.aspect / 2)})`, top: `calc(${P.axis}% - ${u(.5)})`, width: u(P.aspect), height: u(1), animationDelay: `${-t * P.speed}s` });
+      for (let k = 0; k < SLICES; k++) {
+        const sl = document.createElement('div'); sl.className = 'cvh-sl' + (k === 0 ? ' l' : '') + (k === SLICES - 1 ? ' r' : '');
+        Object.assign(sl.style, { left: u((P.aspect - share) / 2), width: k === SLICES - 1 ? u(share) : `calc(${u(share)} + 1px)`, height: u(1), transform: turn((P.aspect / 2 - (k + .5) * share) * unit) });
+        const im = document.createElement('img'); im.alt = ''; im.draggable = false; Object.assign(im.style, { left: u(-k * share), width: u(P.aspect), height: u(1) });
+        sl.append(im); tile.append(sl);
+      }
+      const show = n => { const [it, i] = list[n % list.length]; tile._n = n % list.length; tile.querySelectorAll('img').forEach(im => { im.src = imgOf(it, i, it.title); }); };
+      show(first);
+      tile.addEventListener('animationiteration', e => show(Math.round(e.elapsedTime / dur) * columns + first));
+      tile.addEventListener('click', () => {
+        const [it, i] = list[tile._n];
+        zoomOpen(tile, it, capOf, { src: imgOf(it, i, it.title), ratio: it.ratio || P.aspect, rect: () => tile.getBoundingClientRect(),
+          onOpen: () => hero.classList.add('zoomed'), onClose: () => hero.classList.remove('zoomed') });
+      });
+      band.append(tile);
+    }
+    band.style.opacity = 1;
+  }
+  new ResizeObserver(([e]) => { const { width, height } = e.contentRect; const n = measure(width, height);
+    if (n && !(lay && lay.columns === n.columns && lay.sweep === n.sweep && lay.unit === n.unit)) { lay = n; build(n); } }).observe(hero);
+  /* keyboard / screen-reader access: a plain list of the posters, visually hidden */
+  const sr = el('ul', 'sr-only'); list.forEach(([it, i]) => { const li = el('li', '', `<button type="button">View ${esc(it.title)}</button>`); $('button', li).addEventListener('click', e => zoomOpen(e.currentTarget, it, capOf, { src: imgOf(it, i, it.title), ratio: it.ratio || .72, rect: () => hero.getBoundingClientRect() })); sr.append(li); });
+  hero.append(sr);
+  return hero;
+}
+/* Shared-element gallery: a masonry grid (columns 1-4 by screen width); a click lifts the poster out of the grid and grows it
+   to fill the screen over a frosted backdrop. Close with the X, a click, Esc, or by dragging the poster up or down. */
+function masonryGallery(list, capOf) {
+  const grid = el('div', 'msn');
+  list.forEach(([it, i]) => {
+    const b = el('button', 'msn-i', `<img alt="${esc(it.title)}" loading="lazy" decoding="async" src="${imgOf(it, i, it.title)}" style="aspect-ratio:${it.ratio || .75}">`);
+    b.type = 'button'; b.setAttribute('aria-label', 'View ' + it.title);
+    b.addEventListener('click', () => zoomOpen(b, it, capOf));
+    grid.append(b);
+  });
+  return grid;
+}
+const SPRING = 'cubic-bezier(.22,1.18,.36,1)'; /* quick spring-like settle (stiff, slightly under-damped) */
+function zoomOpen(thumb, it, capOf, opt = {}) {
+  const img = $('img', thumb), box = () => (opt.rect ? opt.rect() : img.getBoundingClientRect()), from = box(), reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ov = el('div', 'zm', `<div class="zm-bg"></div><img class="zm-img" alt="${esc(it.title)}" src="${opt.src || img.currentSrc || img.src}" draggable="false"><p class="zm-cap">${capOf(it)}</p><button class="zm-x" type="button" aria-label="Close">&times;</button>`);
+  ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', it.title);
+  document.body.append(ov);
+  const big = $('.zm-img', ov), bg = $('.zm-bg', ov), cap = $('.zm-cap', ov), x = $('.zm-x', ov);
+  const scroller = thumb.closest('.scroll'); if (scroller) scroller.style.overflow = 'hidden';
+  /* final box: whole poster inside 95vw x 90vh */
+  const ar = opt.ratio || from.width / from.height, mw = innerWidth * .95, mh = innerHeight * .9;
+  const w = Math.min(mw, mh * ar), h = w / ar, to = { left: (innerWidth - w) / 2, top: (innerHeight - h) / 2, width: w, height: h };
+  Object.assign(big.style, { left: to.left + 'px', top: to.top + 'px', width: w + 'px', height: h + 'px' });
+  const inv = `translate(${from.left - to.left}px,${from.top - to.top}px) scale(${from.width / w},${from.height / h})`;
+  opt.onOpen && opt.onOpen();
+  thumb.style.visibility = 'hidden';
+  const d = reduce ? 0 : 520;
+  big.animate([{ transform: inv, borderRadius: '12px' }, { transform: 'none', borderRadius: '12px' }], { duration: d, easing: SPRING });
+  bg.animate([{ opacity: 0 }, { opacity: 1 }], { duration: reduce ? 0 : 300, fill: 'forwards' });
+  [cap, x].forEach(n => n.animate([{ opacity: 0, transform: 'translateY(-12px)' }, { opacity: 1, transform: 'none' }], { duration: 220, delay: reduce ? 0 : 100, fill: 'both' }));
+  x.focus({ preventScroll: true });
+  let closing = false, dy = 0, sy = null, moved = false, t0 = 0;
+  function close() {
+    if (closing) return; closing = true;
+    const now = box(), cur = big.getBoundingClientRect();
+    const back = `translate(${now.left - cur.left + dy}px,${now.top - cur.top + dy}px) scale(${now.width / cur.width},${now.height / cur.height})`;
+    big.style.transform = `translateY(${dy}px)`;
+    const a = big.animate([{ transform: `translateY(${dy}px)` }, { transform: back }], { duration: reduce ? 0 : 420, easing: SPRING, fill: 'forwards' });
+    bg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: reduce ? 0 : 280, fill: 'forwards' });
+    [cap, x].forEach(n => n.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 120, fill: 'forwards' }));
+    a.onfinish = () => { thumb.style.visibility = ''; opt.onClose && opt.onClose(); ov.remove(); if (scroller) scroller.style.overflow = ''; thumb.focus({ preventScroll: true }); };
+    removeEventListener('keydown', key, true);
+  }
+  /* capture phase on window, so Esc closes only the zoom and not the room behind it */
+  const key = e => { if (e.key === 'Escape') { e.stopPropagation(); e.preventDefault(); close(); } };
+  addEventListener('keydown', key, true);
+  x.addEventListener('click', e => { e.stopPropagation(); close(); });
+  bg.addEventListener('click', close);
+  /* drag up / down to dismiss: far enough (100px) or fast enough */
+  big.addEventListener('pointerdown', e => { sy = e.clientY; moved = false; t0 = performance.now(); big.setPointerCapture(e.pointerId); big.style.transition = 'none'; });
+  big.addEventListener('pointermove', e => { if (sy === null) return; dy = (e.clientY - sy) * .8; if (Math.abs(dy) > 4) moved = true; big.style.transform = `translateY(${dy}px)`; bg.style.opacity = Math.max(.25, 1 - Math.abs(dy) / 500); });
+  big.addEventListener('pointerup', e => {
+    if (sy === null) return; const v = Math.abs(dy) / Math.max(1, performance.now() - t0) * 1000; sy = null;
+    if (!moved) { close(); return; }
+    if (Math.abs(dy) > 100 || v > 300) { close(); return; }
+    big.animate([{ transform: `translateY(${dy}px)` }, { transform: 'none' }], { duration: 380, easing: SPRING }); big.style.transform = ''; bg.style.opacity = ''; dy = 0;
+  });
+}
+/* Elastic Reel: a dock of thin slices; hover (or tap) a slice and it swells open, with a springy overshoot, into the whole work; click the open one to view it */
+function elasticDock(list, onOpen, capOf) {
+  const wrap = el('div', 'erx'), dock = el('div', 'erx-dock'), cap = el('p', 'erx-cap', '');
+  let active = 0;
+  const sl = list.map(([it, i], k) => {
+    const b = el('button', 'erx-s', `<img alt="" decoding="async" draggable="false" src="${imgOf(it, i, it.title)}">`);
+    b.type = 'button'; b.setAttribute('aria-label', 'Open ' + it.title); b.style.setProperty('--ar', it.ratio || .75);
+    b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') set(k); });
+    b.addEventListener('pointerdown', () => { b._was = active === k; });
+    b.addEventListener('focus', () => set(k));
+    b.addEventListener('click', e => { const was = b._was ?? active === k; b._was = null; if (!was) { set(k); return; } onOpen(i, e.currentTarget); });
+    b.addEventListener('keydown', e => { const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (d) { e.preventDefault(); sl[(k + d + list.length) % list.length].focus(); } });
+    dock.append(b); return b;
+  });
+  function set(k) { active = k; sl.forEach((b, j) => b.classList.toggle('on', j === k));
+    cap.innerHTML = `<span class="erx-n">${pad(k + 1)} / ${pad(list.length)}</span><span class="erx-t">${capOf(list[k][0])}</span>`; }
+  set(0); wrap.append(dock, cap); return wrap;
+}
+/* ScrollStack (vanilla port of React Bits ScrollStack) inside the room's own scroll box: sticky cards at stackPosition 15%,
+   itemDistance 100, itemStackDistance 24, itemScale .05, baseScale .8, dimAmount .2, holdDistance 200 */
+function scrollStack(cardsHtml) {
+  const O = { dist: 100, step: 24, pos: .05, scale: .05, base: .8, dim: .2, hold: 200 };
+  const sec = el('section', 'ed-mod ed-sstack'), inner = el('div', 'sst-in'), n = cardsHtml.length;
+  cardsHtml.forEach((h, i) => {
+    if (i) { const gap = O.dist - (n - i) * O.step; const sp = el('div', 'sst-gap'); sp.style.height = Math.max(0, gap) + 'px'; sp.style.marginTop = Math.min(0, gap) + 'px'; inner.append(sp); }
+    const slot = el('div', 'sst-slot', `<div class="sst-card">${h}<span class="sst-shade"></span></div>`);
+    slot.style.top = `calc(5% + ${i * O.step}px)`; slot.style.marginBottom = (n - 1 - i) * O.step + 'px'; slot.style.zIndex = i + 1;
+    inner.append(slot);
+  });
+  const end = el('div', 'sst-end'); end.style.height = O.hold + 'px'; inner.append(end); sec.append(inner);
+  let box = null, raf = 0;
+  const update = () => { raf = 0; if (!box) return;
+    const slots = $$('.sst-slot', inner), vt = box.getBoundingClientRect().top, vh = box.clientHeight, top = O.pos * vh;
+    const H = slots.map(s => s.offsetHeight), T = slots.map(s => s.getBoundingClientRect().top), depth = slots.map(() => 0);
+    for (let j = 1; j < slots.length; j++) { const pinB = vt + top + (j - 1) * O.step, start = pinB + H[j - 1], span = Math.max(1, start - pinB - O.step);
+      const cover = Math.min(1, Math.max(0, (start - T[j]) / span)); for (let i = 0; i < j; i++) depth[i] += cover; }
+    slots.forEach((s, i) => { const c = s.firstElementChild, d = depth[i];
+      c.style.transform = d < .0005 ? '' : `scale(${Math.max(O.base, 1 - d * O.scale).toFixed(4)})`;
+      c.style.setProperty('--sst-dim', (1 - Math.pow(1 - O.dim, d)).toFixed(3)); });
+  };
+  const go = () => { if (!raf) raf = requestAnimationFrame(update); };
+  requestAnimationFrame(() => { box = sec.closest('.book') || document.scrollingElement; (box === document.scrollingElement ? window : box).addEventListener('scroll', go, { passive: true }); addEventListener('resize', go); go(); });
+  return sec;
+}
+/* Stack (vanilla port of React Bits Stack, layout 'fan', sendToBackOnClick): photos piled on top of each other; the ones behind
+   tilt out from the bottom-right corner, a little smaller and darker. Drag the top photo past 90px (or flick it) and it flies off and
+   tucks in at the back; a click does the same. 'View' opens the top photo full screen. */
+function photoStack(list) {
+  const VIS = 4, SPREAD = .5, DEPTH = .5, TH = 90, FLICK = 650, TILT = 30;
+  const wrap = el('div', 'pst'), box = el('div', 'pst-box'), bar = el('div', 'pst-bar', `<span class="pst-n"></span><button type="button" class="pst-view">View</button><button type="button" class="pst-next" aria-label="Next photo">Next →</button>`);
+  box.tabIndex = 0; box.setAttribute('role', 'group'); box.setAttribute('aria-label', 'Photo stack');
+  const ar = list.reduce((a, [it]) => a + (it.ratio || .8), 0) / list.length; box.style.setProperty('--ar', Math.min(1.2, Math.max(.66, ar)).toFixed(3));
+  const cards = list.map(([it, i], k) => { const c = el('div', 'pst-card', `<div class="pst-face"><img alt="${esc(it.title)}" draggable="false" loading="lazy" src="${imgOf(it, i, it.title)}"><i class="pst-shade"></i></div>`); c._i = i; c._t = it.title; box.append(c); return c; });
+  let order = cards.map((_, k) => k), busy = false;
+  const place = (c, pos, instant) => {
+    const shown = Math.min(pos, VIS - 1), rot = shown * SPREAD * 8, sc = 1 - shown * DEPTH * .12;
+    c.style.transition = instant ? 'none' : '';
+    c.style.transform = `rotate(${rot}deg) scale(${sc})`;
+    c.style.zIndex = cards.length - pos; c.style.opacity = pos < VIS ? 1 : 0;
+    $('.pst-shade', c).style.opacity = Math.min(.6, shown * DEPTH * .14);
+    c.toggleAttribute('data-top', pos === 0); c.setAttribute('aria-hidden', pos === 0 ? 'false' : 'true');
+  };
+  const layout = instant => { order.forEach((k, pos) => place(cards[k], pos, instant)); const t = cards[order[0]]; $('.pst-n', bar).textContent = `${pad(order[0] + 1)} / ${pad(cards.length)} · ${t._t}`; };
+  layout(true);
+  const toBack = (dx = 1, dy = -.3) => {
+    if (busy || cards.length < 2) return; busy = true;
+    const k = order[0], c = cards[k], L = Math.hypot(dx, dy) || 1, r = box.getBoundingClientRect(), far = Math.max(r.width, r.height) * 1.15 + 40;
+    c.style.transition = 'transform .42s cubic-bezier(.2,.7,.2,1)'; c.style.zIndex = cards.length + 1;
+    c.style.transform = `translate(${dx / L * far}px,${dy / L * far}px) rotate(${dx / L * 14}deg)`;
+    order = [...order.slice(1), k];
+    order.slice(0, -1).forEach((kk, pos) => place(cards[kk], pos));
+    setTimeout(() => { place(c, order.length - 1); setTimeout(() => { busy = false; }, 120); layout(); }, 380);
+  };
+  /* drag the top card */
+  let d = null;
+  box.addEventListener('pointerdown', e => { const c = cards[order[0]]; if (busy || e.button !== 0 || !c.contains(e.target)) return;
+    const q = c.getBoundingClientRect(); d = { c, x: e.clientX, y: e.clientY, t: performance.now(), moved: false, samples: [[e.clientX, e.clientY, performance.now()]], gx: (e.clientX - q.left) / q.width, gy: (e.clientY - q.top) / q.height };
+    c.setPointerCapture(e.pointerId); c.style.transition = 'none'; $('.pst-face', c).style.transformOrigin = `${d.gx * 100}% ${d.gy * 100}%`; $('.pst-face', c).style.transform = 'scale(1.035)'; });
+  box.addEventListener('pointermove', e => { if (!d) return; const dx = e.clientX - d.x, dy = e.clientY - d.y; if (!d.moved && Math.hypot(dx, dy) < 6) return; d.moved = true;
+    d.samples.push([e.clientX, e.clientY, performance.now()]); if (d.samples.length > 8) d.samples.shift();
+    d.c.style.transform = `translate(${dx}px,${dy}px)`;
+    $('.pst-face', d.c).style.transform = `perspective(800px) rotateY(${Math.max(-1, Math.min(1, dx / 260)) * TILT}deg) rotateX(${Math.max(-1, Math.min(1, -dy / 260)) * TILT}deg) rotate(${Math.max(-1, Math.min(1, dx / 260)) * 6}deg) scale(1.035)`; });
+  const up = e => { if (!d) return; const dd = d; d = null; const face = $('.pst-face', dd.c); face.style.transition = 'transform .45s cubic-bezier(.2,.9,.3,1.2)'; face.style.transform = '';
+    const dx = e.clientX - dd.x, dy = e.clientY - dd.y, s = dd.samples, a = s[0], b = s[s.length - 1], dt = Math.max((b[2] - a[2]) / 1000, .008), vx = (b[0] - a[0]) / dt, vy = (b[1] - a[1]) / dt;
+    if (!dd.moved) { toBack(); return; }
+    if (Math.hypot(dx, dy) > TH || (Math.hypot(vx, vy) > FLICK && Math.hypot(dx, dy) > 16)) toBack(dx || 1, dy);
+    else { dd.c.style.transition = 'transform .5s cubic-bezier(.2,.9,.3,1.25)'; place(dd.c, 0); } };
+  box.addEventListener('pointerup', up); box.addEventListener('pointercancel', up);
+  box.addEventListener('keydown', e => { if (['ArrowRight', 'ArrowDown', 'Enter', ' '].includes(e.key)) { e.preventDefault(); toBack(); } });
+  $('.pst-next', bar).addEventListener('click', () => toBack());
+  $('.pst-view', bar).addEventListener('click', e => openLightbox(cards[order[0]]._i, e.currentTarget));
+  /* fan in once when the stack first comes into view */
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    cards.forEach(c => { c.style.transition = 'none'; c.style.transform = 'scale(.9)'; c.style.opacity = 0; });
+    new IntersectionObserver((es, o) => es.forEach(en => { if (!en.isIntersecting) return; o.disconnect();
+      order.forEach((k, pos) => setTimeout(() => place(cards[k], pos), pos * 60)); }), { threshold: .3 }).observe(box);
+  }
+  wrap.append(box, bar); return wrap;
+}
+/* Spin Shutter: works sit on a ring that spins open when it comes into view; the work nearest the pointer's angle pulls into focus (bigger, sharp, full colour), the rest soften. Click / tap the focused work to open it. */
+function spinShutter(list, onOpen, capOf) {
+  const ss = el('div', 'ss'), cap = el('div', 'ss-cap', '');
+  const n = list.length, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const tiles = list.map(([it, i], k) => {
+    const b = el('button', 'ss-t', `<img alt="" loading="lazy" decoding="async" draggable="false" src="${imgOf(it, i, it.title)}">`);
+    b.type = 'button'; b.setAttribute('aria-label', 'Open ' + it.title);
+    const ar = Math.min(1.4, Math.max(.6, it.ratio || .75)); b.style.setProperty('--ar', ar);
+    b.addEventListener('pointerdown', () => { b._was = focus === k; });
+    b.addEventListener('click', e => { const was = b._was ?? focus === k; b._was = null; hold = performance.now() + 5000; if (!was) { aim = k; follow = false; return; } onOpen(i, e.currentTarget); });
+    b.addEventListener('focus', () => { aim = k; follow = false; });
+    ss.append(b); return { b, it, k };
+  });
+  ss.append(cap);
+  let open = reduce ? 1 : 0, opened = reduce, spin = 0, aim = 0, follow = false, px = 0, py = 0, focus = -1, last = 0, live = false, f = new Array(n).fill(0);
+  ss.addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; px = e.clientX; py = e.clientY; follow = true; });
+  ss.addEventListener('pointerleave', () => { follow = false; });
+  new IntersectionObserver(([en]) => { live = en.isIntersecting; if (live) { if (!opened) { opened = true; t0 = performance.now(); } requestAnimationFrame(tick); } }, { threshold: 0 }).observe(ss);
+  let t0 = 0, hold = 0;
+  const ease = x => 1 - Math.pow(1 - x, 3);
+  function tick(now) {
+    if (!live || !ss.isConnected) return;
+    const dt = Math.min(64, last ? now - last : 16); last = now;
+    const r = ss.getBoundingClientRect(), cx = r.width / 2, cy = r.height / 2;
+    /* tile size: the works just touch around the ring, so more works = smaller tiles */
+    const M = Math.min(r.width, r.height) / 2, kk = 2 * Math.PI / n * .92;
+    const tile = Math.max(48, Math.min(180, kk * M / (1 + .8 * kk)));
+    const R = M - tile * .8;
+    if (!reduce) open = Math.min(1, (now - t0) / 1400);
+    const o = ease(open), step = 2 * Math.PI / n;
+    /* the ring keeps turning slowly unless someone is pointing at it */
+    if (!follow && !reduce && now > hold) spin += dt / 1000 * .12;
+    const base = spin + (1 - o) * Math.PI * 1.2;
+    let target;
+    if (follow) target = Math.atan2(py - r.top - cy, px - r.left - cx);
+    else target = base + aim * step - Math.PI / 2;
+    let best = 0, bw = -1;
+    tiles.forEach(({ b }, k) => {
+      const a = base + k * step - Math.PI / 2;
+      let d = Math.atan2(Math.sin(a - target), Math.cos(a - target));
+      const want = Math.exp(-Math.pow(d / (step * .75), 2));
+      f[k] += (want - f[k]) * (1 - Math.exp(-dt / 140));
+      const w = f[k] * o, rr = R * o;
+      const x = cx + Math.cos(a) * rr * (1 + .08 * w), y = cy + Math.sin(a) * rr * (1 + .08 * w);
+      b.style.width = tile + 'px';
+      b.style.transform = `translate(${(x - tile / 2).toFixed(1)}px, ${(y - tile / b.style.getPropertyValue('--ar') / 2).toFixed(1)}px) rotate(${((1 - o) * -90 + (1 - w) * (a * 180 / Math.PI + 90) * .08).toFixed(2)}deg) scale(${(1 + 1.1 * w).toFixed(3)})`;
+      b.style.filter = `grayscale(${(1 - w).toFixed(2)}) blur(${((1 - w) * 2.2).toFixed(2)}px) brightness(${(.78 + .22 * w).toFixed(2)})`;
+      b.style.zIndex = Math.round(w * 100) + 1;
+      if (want > bw) { bw = want; best = k; }
+    });
+    if (best !== focus) { focus = best; const { it } = tiles[best]; cap.innerHTML = `<span class="ss-n">${pad(best + 1)} / ${pad(n)}</span><span class="ss-tt">${capOf(it)}</span><span class="ss-hint">Click to view</span>`;
+      tiles.forEach(({ b }, k) => b.classList.toggle('on', k === best)); }
+    cap.style.opacity = o;
+    requestAnimationFrame(tick);
+  }
+  return ss;
+}
+/* zones for the interior brands in Logo Design: which part of the brand each work belongs to */
+const ZONES = [
+  { key: 'logo', en: 'Logo & Identity', th: 'โลโก้ สี และเวอร์ชันต่างๆ' },
+  { key: 'apply', en: 'Brand Applications', th: 'โลโก้บนป้าย นามบัตร และสื่อจริง' },
+  { key: 'concept', en: 'Concept & Sketches', th: 'แนวคิดและภาพสเก็ตช์' },
+  { key: 'space', en: 'Architecture & Interior', th: 'ภาพโครงสร้างและภาพภายใน' },
+  { key: 'draw', en: 'Plans & Elevations', th: 'แปลนและรูปด้าน' },
+  { key: 'layout', en: 'Lookbook & Layouts', th: 'ลุคบุ๊กและเลย์เอาต์ที่ใช้โลโก้' },
+  { key: 'art', en: 'Artwork & Illustration', th: 'งานภาพประกอบของแบรนด์' },
+  { key: 'exp', en: 'Visual Experiments', th: 'งานทดลองภาพ ชุด Star Form' }
+];
+function zoneOf(it) {
+  if (it.client === 'Logo Design') return 'logo';
+  if (it.client === 'Logo Application') return 'apply';
+  if (it.client === 'Concept Presentation') return 'concept';
+  if (/Layout/.test(it.client)) return 'layout';
+  if (it.client === 'Illustration') return 'art';
+  if (/Visual Experiment/.test(it.client)) return 'exp';
+  if (/· (Plan|Elevation)$/.test(it.title)) return 'draw';
+  return 'space';
+}
+/* a set with a single work: the piece shown whole at its own proportion, caption underneath */
+function soloWork([it, i], onOpen, capOf) {
+  const b = el('button', 'solo', `<img alt="" loading="lazy" decoding="async" src="${imgOf(it, i, it.title)}"><span class="solo-cap"><i class="ag-bar"></i><span class="ag-t">${capOf(it)}</span></span>`);
+  b.type = 'button'; b.setAttribute('aria-label', 'Open ' + it.title); b.style.setProperty('--ar', it.ratio || .8);
+  b.addEventListener('click', e => onOpen(i, e.currentTarget));
+  return b;
+}
+/* AccordionGallery (vanilla port of React Bits): panels grow on hover/focus, collapsed ones dim, desaturate and tilt in 3D */
+function accordionRow(list, onOpen, capOf) {
+  const ag = el('div', 'ag'); ag.setAttribute('role', 'list');
+  const R = .52, n = list.length, grow = n > 1 ? R * (n - 1) / (1 - R) : 1;
+  let active = Math.min(n - 1, Math.floor((n - 1) / 2));
+  const panels = list.map(([it, i], k) => {
+    const src = imgOf(it, i, it.title);
+    const b = el('button', 'ag-p', `<span class="ag-f"><img class="ag-bg" alt="" loading="lazy" decoding="async" draggable="false" src="${src}"><span class="ag-m"><img class="ag-c" alt="" loading="lazy" decoding="async" draggable="false" src="${src}"><img class="ag-k" alt="" loading="lazy" decoding="async" draggable="false" src="${src}"></span><span class="ag-o"></span></span><span class="ag-l"><i class="ag-bar"></i><span class="ag-t">${capOf(it)}</span></span>`);
+    b.type = 'button'; b.setAttribute('role', 'listitem'); b.setAttribute('aria-label', 'Open ' + it.title);
+    b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') set(k); });
+    b.addEventListener('focus', () => set(k));
+    /* a tap on a closed panel only opens the panel; a tap on the open one opens the work */
+    let wasOn = null;
+    b.addEventListener('pointerdown', () => { wasOn = k === active; });
+    b.addEventListener('click', e => { const ok = wasOn === null ? k === active : wasOn; wasOn = null; if (!ok) { set(k); return; } onOpen(i, e.currentTarget); });
+    b.addEventListener('keydown', e => { const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key]; if (d) { e.preventDefault(); panels[(k + d + n) % n].focus(); } });
+    ag.append(b); return b;
+  });
+  function set(a) {
+    active = a; const vert = matchMedia('(max-width:520px)').matches;
+    /* the open panel takes the work's own proportion (height x ratio), kept between 30% and 78% of the row, so the whole piece shows */
+    const W = ag.clientWidth - 10 * (n - 1), H = ag.clientHeight || 1, ar = list[a][0].ratio || .8;
+    const f = Math.min(.78, Math.max(.3, (H * ar) / Math.max(W, 1))), g = n > 1 ? f * (n - 1) / (1 - f) : 1;
+    ag.style.setProperty('--ag-ms', Math.max(140, W * f) + 'px');
+    panels.forEach((p, k) => {
+      const on = k === a, rot = on ? 0 : (k < a ? 8 : -8), drift = Math.max(-1.5, Math.min(1.5, a - k));
+      p.classList.toggle('on', on); p.toggleAttribute('aria-current', on);
+      p.style.flexGrow = on ? g : 1;
+      p.style.transform = vert ? '' : `rotateY(${rot}deg)`;
+      p.firstChild.firstChild.style.setProperty('--sx', on || vert ? '0px' : `${(drift * .5 * size * .06).toFixed(1)}px`);
+    });
+  }
+  let size = 320;
+  const measure = () => { const w = ag.clientWidth; if (!w) return; size = Math.max(140, (w - 10 * (n - 1)) * R); set(active); };
+  new ResizeObserver(measure).observe(ag); set(active);
+  return ag;
 }
 /* one horizontal row that slides left / right: mouse drag, swipe, or the vertical wheel while the row still has room */
 function hScroll(tr) {
@@ -1216,7 +1978,7 @@ const VIEWS = {
     },
     overview(body, S) {
       body.append(groupedRows(SITE.graphic, SITE.graphicGroups, 'group',
-        i => { S.idx = i; S.view = 'full'; renderRoom('graphic'); },
+        (i, b) => { S.idx = i; openLightbox(i, b, 'graphic'); },
         it => `${esc(it.title)}<span>${[it.client, it.year].filter(Boolean).map(esc).join(' · ')}</span>`));
     }
   },
@@ -1231,8 +1993,9 @@ const VIEWS = {
       const gridKeys = SITE.photoModes.filter(m => m.grid).map(m => m.key);
       const plain = all.filter(([it]) => !gridKeys.includes(it.mode));
       const first = plain[0], last = plain[plain.length - 1];
-      ed.append(el('section', 'ed-mod ed-cover', `<h4 class="ed-mark">Photography</h4><p class="ed-sub">${esc(SITE.photoModes.map(m => m.en).join(' · '))}</p>${img(first[0], first[1], 'ed-hero')}`));
+      ed.append(el('section', 'ed-mod ed-cover', `<h4 class="ed-mark">Photography</h4><p class="ed-role">Produced &amp; art-directed · Concept · Set design</p><p class="ed-role-th">${esc(SITE.rooms.photo.role || '')}</p><p class="ed-sub">${esc(SITE.photoModes.map(m => m.en).join(' · '))}</p>${img(first[0], first[1], 'ed-hero')}`));
       $('.ed-hero', ed).style.setProperty('--ar', first[0].ratio || .8);
+      pressHeading($('.ed-mark', ed));
       SITE.photoModes.forEach((m, mi) => {
         let list = all.filter(([it]) => it.mode === m.key);
         if (!m.grid) list = list.filter(([, i]) => i !== first[1] && i !== last[1]);
@@ -1243,6 +2006,21 @@ const VIEWS = {
           return;
         }
         if (!list.length) return;
+        if (m.curve) {
+          /* curved row, same as Poster Design: the set streams round a cylinder; click a photo to view it */
+          ed.append(el('section', 'ed-mod ed-note ed-note-top', `<div class="ed-head"><p class="ed-n">${pad(mi + 1)} / ${pad(SITE.photoModes.length)}</p><h4>${esc(m.en)}</h4><p class="ed-th">${esc(m.th)}</p><p class="ed-d">${esc(m.desc)}</p></div>`));
+          /* portraits go in the curved row; long landscapes stay full-bleed below it, as before */
+          const tallC = list.filter(([it]) => (it.ratio || .8) < 1.15), wideC = list.filter(([it]) => (it.ratio || .8) >= 1.15);
+          if (tallC.length) { const sec = el('section', 'ed-mod ed-curve'); sec.append(curvedRow(tallC, it => `${esc(it.title)}<span>${esc(it.place || '')}</span>`, { tileHeight: 62 })); ed.append(sec); }
+          /* landscapes: a scroll stack; each photo pins near the top while the next slides up over it, and the buried ones shrink and dim */
+          if (wideC.length) ed.append(scrollStack(wideC.map(([it, i]) => img(it, i, 'ss-img'))));
+          return;
+        }
+        if (m.stack) {
+          /* stack: the whole set as one pile of photos; drag / flick / click the top photo to send it to the back */
+          const sec = el('section', 'ed-mod ed-stackmod', `<div class="ed-head"><p class="ed-n">${pad(mi + 1)} / ${pad(SITE.photoModes.length)}</p><h4>${esc(m.en)}</h4><p class="ed-th">${esc(m.th)}</p><p class="ed-d">${esc(m.desc)}</p></div>`);
+          sec.append(photoStack(list)); ed.append(sec); return;
+        }
         /* rail: true = every frame (landscapes too) goes in the sliding rail instead of full-bleed */
         const tall = m.rail ? list : list.filter(([it]) => (it.ratio || .8) < 1.15), wide = m.rail ? [] : list.filter(([it]) => (it.ratio || .8) >= 1.15);
         const head = `<div class="ed-head"><p class="ed-n">${pad(mi + 1)} / ${pad(SITE.photoModes.length)}</p><h4>${esc(m.en)}</h4><p class="ed-th">${esc(m.th)}</p><p class="ed-d">${esc(m.desc)}</p></div>`;
@@ -1267,17 +2045,39 @@ const VIEWS = {
         /* rail: the rest of the set as big frames in one row that slides sideways (drag, swipe, wheel or the arrows), in smooth colour order */
         if (rest.length) {
           const row = chain(rest);
-          ed.append(el('section', 'ed-mod ed-rail', `<div class="rl-track">${row.map(([it, i]) => `<div class="rl-cell" style="--ar:${it.ratio || .8}">${img(it, i)}</div>`).join('')}<div class="rl-end" aria-hidden="true"></div></div>`));
+          /* at: n = pin a photo to the n-th place in its row (1 = first, a big number = last) */
+          { const pins = row.filter(([it]) => it.at).sort((a, b) => a[0].at - b[0].at); pins.forEach(x => row.splice(row.indexOf(x), 1)); pins.forEach(x => row.splice(Math.min(row.length, x[0].at - 1), 0, x)); }
+          if (m.reel) {
+            /* elastic reel: a dock of thin photo slices; the one under the pointer (or tapped) swells open into the full picture */
+            ed.append(el('section', 'ed-mod ed-reel', `<div class="er-dock">${row.map(([it, i], k) => `<div class="er-slice${k ? '' : ' on'}" style="--ar:${it.ratio || .8}">${img(it, i)}</div>`).join('')}</div>`));
+          } else
+          ed.append(el('section', 'ed-mod ed-rail' + (m.parallax ? ' rl-px' : ''), `<div class="rl-track">${row.map(([it, i]) => `<div class="rl-cell" style="--ar:${it.ratio || .8}">${img(it, i)}</div>`).join('')}<div class="rl-end" aria-hidden="true"></div></div>`));
         }
         /* landscapes run full-bleed with the title laid over */
-        wide.forEach(([it, i]) => ed.append(el('section', 'ed-mod ed-bleed' + ((it.tone ?? 128) > 150 ? ' on-light' : ''), `${img(it, i)}<p class="ed-over">${esc(it.title)}</p>`)));
+        /* sstack: true = landscapes as a scroll stack instead of full-bleed */
+        if (m.sstack && wide.length) ed.append(scrollStack(wide.map(([it, i]) => img(it, i, 'ss-img'))));
+        else wide.forEach(([it, i]) => ed.append(el('section', 'ed-mod ed-bleed' + ((it.tone ?? 128) > 150 ? ' on-light' : ''), img(it, i) /* title overlay removed on request */)));
       });
       /* ending: original 'Thank for watching' eye close-up from Desktop/sayyess port_temp-10 (works/p-end-eyes.webp) — swap the src to change it; tap opens the full portrait */
       const endI = SITE.photo.findIndex(it => it.src === 'works/p-sofa-3.webp'), endIt = endI >= 0 ? [SITE.photo[endI], endI] : last;
-      ed.append(el('section', 'ed-mod ed-bleed ed-end', `<button class="ed-img" type="button" data-i="${endIt[1]}" aria-label="Expand ${esc(endIt[0].title)}"><img loading="lazy" alt="Thank for watching — eye close-up" src="works/p-end-eyes.webp"></button>`));
-      $$('.ed-img', ed).forEach(b => b.addEventListener('click', e => openLightbox(+b.dataset.i, e.currentTarget)));
+      ed.append(el('section', 'ed-mod ed-bleed ed-end', `<button class="ed-img" type="button" data-i="${endIt[1]}" aria-label="Expand ${esc(endIt[0].title)}"><img loading="lazy" alt="Thanks for watching: eye close-up" src="works/p-end-eyes.webp"></button>`));
+      $$('.ed-img', ed).forEach(b => b.addEventListener('click', e => {
+        const sl = b.closest('.er-slice');
+        /* in the reel, the first tap opens the slice; a tap on the open slice shows the photo full screen */
+        if (sl && !sl.classList.contains('on')) { $$('.er-slice', sl.parentElement).forEach(x => x.classList.toggle('on', x === sl)); return; }
+        openLightbox(+b.dataset.i, e.currentTarget);
+      }));
+      $$('.er-slice', ed).forEach(sl => sl.addEventListener('pointerenter', e => { if (e.pointerType !== 'mouse') return; $$('.er-slice', sl.parentElement).forEach(x => x.classList.toggle('on', x === sl)); }));
       $$('.ed-rail', ed).forEach(sec => {
         const tr = $('.rl-track', sec), bar = $('.rl-prog i', sec);
+        /* parallax carousel: while the row is dragged / scrolled, each photo slides inside its frame a little slower than the frame */
+        if (sec.classList.contains('rl-px')) {
+          const cells = $$('.rl-cell', tr); let pf = 0;
+          const px = () => { pf = 0; const r = tr.getBoundingClientRect(), mid = r.left + r.width / 2;
+            cells.forEach(c => { const q = c.getBoundingClientRect(), d = (q.left + q.width / 2 - mid) / r.width; const im = $('img', c); if (im) im.style.transform = `translateX(${(-d * 22).toFixed(2)}%) scale(1.3)`; }); };
+          tr.addEventListener('scroll', () => { if (!pf) pf = requestAnimationFrame(px); }, { passive: true });
+          window.addEventListener('resize', px); requestAnimationFrame(() => requestAnimationFrame(px)); new IntersectionObserver(es => es.forEach(e => e.isIntersecting && px())).observe(tr);
+        }
         const upd = () => { if (!bar) return; const m = tr.scrollWidth - tr.clientWidth; bar.style.transform = `scaleX(${m > 0 ? Math.max(.04, tr.scrollLeft / m) : 1})`; };
         tr.addEventListener('scroll', upd, { passive: true }); upd();
         const cellW = () => ($('.rl-cell', tr)?.offsetWidth || 400) + 12;
@@ -1338,7 +2138,7 @@ const VIEWS = {
       const d = el('div', 'detail', `<div class="d-img"><img alt="${esc(it.name)}" src="${imgOf(it, S.sel, it.name)}"></div>
         <div class="d-txt"><button class="back" type="button" data-all>all jobs</button>
           <h4>${esc(it.name)}</h4><p class="d-role">${[it.role, it.date].filter(Boolean).map(esc).join(' · ')}</p>
-          ${it.example ? '<p class="ex-note">Example — real case coming soon</p>' : ''}
+          ${it.example ? '<p class="ex-note">Example: real case coming soon</p>' : ''}
           <dl class="facts case">
             <div><dt>Brief</dt><dd>${esc(it.brief)}</dd></div>
             <div><dt>What I did</dt><dd>${esc(it.did)}</dd></div>
@@ -1378,7 +2178,7 @@ function buildRoom(key) {
   const cfg = SITE.rooms[key], views = ROOMVIEWS[key];
   const r = el('div', 'room', `<div class="room-bar"><button class="back" type="button" data-close>back</button>
     <h3 class="room-title">${esc(cfg.en)}<span>${esc(cfg.th)}</span></h3>
-    <div class="seg">${views.length > 1 ? views.map(v => `<button type="button" data-view="${v}">${VIEWLABEL[v]}</button>`).join('') : ''}</div></div>
+    <div class="seg">${views.length > 1 ? views.map(v => `<button type="button" data-view="${v}">${VIEWLABEL[v]}</button>`).join('') : ''}<button class="pill go-hire" type="button" data-go-hire>Hire</button></div></div>
     <div class="room-body"></div>`);
   r.hidden = true; r.setAttribute('role', 'dialog'); r.setAttribute('aria-modal', 'true'); r.setAttribute('aria-label', cfg.en);
   $('[data-close]', r).addEventListener('click', hideLayer);
@@ -1425,16 +2225,20 @@ window.addEventListener('resize', centreCovers);
 
 /* photo expand */
 let lightbox = null;
-function openLightbox(i, opener) {
+/* one big-image viewer on top of a room: kind 'photo' or 'graphic' (Graphic has no Full view tab any more, so works open here) */
+function openLightbox(i, opener, kind = 'photo') {
   if (!lightbox) {
-    lightbox = el('div', 'room', `<div class="room-bar"><button class="back" type="button" data-close>back</button><h3 class="room-title">Photography<span>${esc(SITE.rooms.photo.th)}</span></h3></div><div class="room-body"></div>`);
+    lightbox = el('div', 'room', `<div class="room-bar"><button class="back" type="button" data-close>back</button><h3 class="room-title"></h3></div><div class="room-body"></div>`);
     lightbox.id = 'lightbox'; lightbox.hidden = true; lightbox.style.zIndex = 65;
     lightbox.setAttribute('role', 'dialog'); lightbox.setAttribute('aria-modal', 'true'); lightbox.setAttribute('aria-label', 'Photograph');
     $('[data-close]', lightbox).addEventListener('click', hideLayer);
     document.body.append(lightbox);
   }
+  const cfg = kind === 'graphic' ? SITE.rooms.graphic : SITE.rooms.photo;
+  $('.room-title', lightbox).innerHTML = `${esc(kind === 'graphic' ? 'Graphic' : 'Photography')}<span>${esc(cfg.th)}</span>`;
+  lightbox.setAttribute('aria-label', kind === 'graphic' ? 'Graphic work' : 'Photograph');
   const body = $('.room-body', lightbox); body.innerHTML = '';
-  const st = makeStage(SITE.photo, i, 'photo');
+  const st = makeStage(kind === 'graphic' ? SITE.graphic : SITE.photo, i, kind);
   body.append(st.el);
   showLayer(lightbox, opener);
   activeStage = st;
@@ -1453,7 +2257,7 @@ function composeMail() {
   const detail = $('#f-detail').value.trim() || '[รายละเอียดงานเบื้องต้น]';
   const when = $('#f-when').value.trim() || '[ช่วงเวลาที่ต้องการ]';
   const who = org ? `${name} จาก${org}` : name;
-  const body = `เรียน ${SITE.contact.owner}\n\nสวัสดีครับ/ค่ะ ${who} ขอสอบถามว่าสะดวกรับ${c.job}หรือไม่ โดยมีรายละเอียดเบื้องต้นดังนี้\n\nรายละเอียดงาน: ${detail}\nช่วงเวลาที่ต้องการ: ${when}\n\nหากสะดวก รบกวนช่วยแจ้งคิวงาน ขอบเขตงาน และค่าบริการเบื้องต้นกลับมาทางอีเมลนี้ด้วยครับ/ค่ะ\n\nขอบคุณครับ/ค่ะ\n${name}`;
+  const body = `เรียน ${SITE.contact.owner}\n\nสวัสดีครับ ${who} ขอสอบถามว่าสะดวกรับ${c.job}หรือไม่ โดยมีรายละเอียดเบื้องต้นดังนี้\n\nรายละเอียดงาน: ${detail}\nช่วงเวลาที่ต้องการ: ${when}\n\nหากสะดวก รบกวนช่วยแจ้งคิวงาน ขอบเขตงาน และค่าบริการเบื้องต้นกลับมาทางอีเมลนี้ด้วยครับ\n\nขอบคุณครับ\n${name}`;
   return { subject: c.subject, body };
 }
 function refreshHire() {
@@ -1480,6 +2284,21 @@ $$('.blk', $('#blks')).forEach(b => b.addEventListener('click', () => {
 }));
 $$('#hire-form input, #hire-form textarea').forEach(i => i.addEventListener('input', refreshHire));
 $('#hire-form').addEventListener('submit', e => e.preventDefault());
+/* required fields: name and project details. Send stays a real mailto link, but an empty form shows the error under the field instead */
+const REQ = [['#f-name', 'Please add your name'], ['#f-detail', 'Please describe the work in a line or two']];
+REQ.forEach(([sel, msg]) => { const f = $(sel); f.required = true; f.setAttribute('aria-required', 'true');
+  const er = document.createElement('p'); er.className = 'fld-err'; er.id = f.id + '-err'; er.textContent = msg; er.hidden = true; f.after(er); f.setAttribute('aria-describedby', er.id);
+  f.addEventListener('input', () => { if (f.value.trim()) { er.hidden = true; f.removeAttribute('aria-invalid'); } }); });
+$('#hire-mail').addEventListener('click', e => {
+  const bad = REQ.filter(([sel]) => !$(sel).value.trim());
+  REQ.forEach(([sel]) => { const f = $(sel), er = $('#' + f.id + '-err'), miss = !f.value.trim(); er.hidden = !miss; f.toggleAttribute('aria-invalid', miss); });
+  if (bad.length) { e.preventDefault(); $(bad[0][0]).focus(); $('#hire-status').textContent = 'A couple of details are missing'; return; }
+  $('#hire-status').textContent = 'Opening your mail app. If nothing opens, use Copy message and paste it into an email to ' + SITE.contact.email;
+});
+/* "Hire" buttons on the cover and in every room: close any open layer, go to the Hire panel and show the three request types */
+function goHire() { const open = $$('.room, .hire').some(x => !x.hidden); if (open) hideLayer();
+  setTimeout(() => { $('#p3').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); swapZone(true); const f = $('.blk', $('#blks')); if (f) setTimeout(() => f.focus({ preventScroll: true }), 600); }, open ? 450 : 0); }
+document.addEventListener('click', e => { const b = e.target.closest('[data-go-hire]'); if (b) { e.preventDefault(); goHire(); } });
 $('#hire-back').addEventListener('click', hideLayer);
 
 function copyText(text, node, okMsg) {
@@ -1487,7 +2306,7 @@ function copyText(text, node, okMsg) {
   const fallback = () => {
     const r = document.createRange(); r.selectNodeContents(node);
     const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-    st.textContent = 'Text selected — please copy it manually';
+    st.textContent = 'Text selected, please copy it manually';
   };
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(() => { st.textContent = okMsg; }).catch(fallback);
@@ -1495,6 +2314,571 @@ function copyText(text, node, okMsg) {
 }
 $('#hire-copy').addEventListener('click', () => { const m = composeMail(); copyText('หัวข้อ: ' + m.subject + '\n\n' + m.body, $('#hire-preview'), 'Message copied'); });
 $('#hire-copy-addr').addEventListener('click', () => copyText(SITE.contact.email, $('#hire-addr'), 'Email copied'));
+/* ---------------- cover background: Grainient (vanilla port of React Bits) ----------------
+   A WebGL gradient that drifts in slow waves with film grain; the cursor drags the colours like paint and a click
+   swirls them. Colours come from the cover's own tones (cream page -> peach -> red accent) and switch with the theme. */
+function mountGrainient(container, paletteNow, over = {}) {
+  if (!container) return;
+  const canvas = $('canvas', container);
+const MAX_COLORS = 8;
+  const MAX_STIRS = 24;
+  const MAX_TWIRLS = 4;
+  const STIR_LIFE = 1.3;
+  const STIR_STEP = 0.06;
+  const TWIRL_LIFE = 2.6;
+  const INTRO_SECONDS = 1.6;
+  const TYPES = { linear: 0, radial: 1 };
+  const LIFT = 0.2;
+  
+  const VERTEX = `#version 300 es
+  out vec2 vUv;
+  void main() {
+    vec2 p = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2));
+    vUv = p;
+    gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0);
+  }`;
+  
+  const FIELD = `#version 300 es
+  precision highp float;
+  precision highp int;
+  uniform float uAspect;
+  uniform float uTime;
+  uniform vec3 uRamp[8];
+  uniform int uCount;
+  uniform int uType;
+  uniform vec2 uDir;
+  uniform float uExtent;
+  uniform float uBands;
+  uniform float uSoftness;
+  uniform float uFlow;
+  uniform float uScale;
+  uniform float uSilk;
+  uniform vec4 uStir[24];
+  uniform float uStirWeight[24];
+  uniform vec4 uTwirl[4];
+  uniform vec2 uSeed;
+  uniform float uContrast;
+  uniform float uSaturation;
+  uniform float uSettle;
+  uniform float uReveal;
+  in vec2 vUv;
+  out vec4 outColor;
+  
+  vec2 hash2(vec2 p) {
+    vec3 q = fract(vec3(p.xyx) * vec3(0.1031, 0.103, 0.0973));
+    q += dot(q, q.yzx + 33.33);
+    return fract((q.xx + q.yz) * q.zy) * 2.0 - 1.0;
+  }
+  
+  float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    vec2 u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+    float a = dot(hash2(i), f);
+    float b = dot(hash2(i + vec2(1.0, 0.0)), f - vec2(1.0, 0.0));
+    float c = dot(hash2(i + vec2(0.0, 1.0)), f - vec2(0.0, 1.0));
+    float d = dot(hash2(i + vec2(1.0, 1.0)), f - vec2(1.0, 1.0));
+    return 0.5 + 0.5 * mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+  }
+  
+  vec2 drift(vec2 p, float t) {
+    vec2 w1 = vec2(
+      noise(p * 0.85 + vec2(t * 0.11, t * 0.07)),
+      noise(p * 0.85 + vec2(4.1, 1.7) - vec2(t * 0.08, t * 0.12))
+    );
+    vec2 w2 = vec2(
+      noise(p * 1.55 + w1 * 1.8 + vec2(1.3, 7.1) + t * 0.05),
+      noise(p * 1.55 + w1 * 1.8 + vec2(6.4, 2.2) - t * 0.06)
+    );
+    return (w1 - 0.5) * 1.1 + (w2 - 0.5) * 0.55;
+  }
+  
+  vec2 warp(vec2 p) {
+    vec2 q = p / uScale;
+    if (uType == 1) {
+      float turn = uTime * 0.35;
+      q = mat2(cos(turn), sin(turn), -sin(turn), cos(turn)) * q;
+    } else {
+      q += vec2(-uDir.y, uDir.x) * uTime * 0.45;
+    }
+    return p + drift(q + uSeed, uTime) * uFlow * uScale * uSettle;
+  }
+  
+  float coord(vec2 p) {
+    vec2 w = warp(p);
+    return uType == 1 ? 1.0 - length(w) * 1.1 : dot(w, uDir) / uExtent + 0.5;
+  }
+  
+  vec3 labToRgb(vec3 lab) {
+    float l = lab.x + 0.3963377774 * lab.y + 0.2158037573 * lab.z;
+    float m = lab.x - 0.1055613458 * lab.y - 0.0638541728 * lab.z;
+    float s = lab.x - 0.0894841775 * lab.y - 1.2914855480 * lab.z;
+    l = l * l * l;
+    m = m * m * m;
+    s = s * s * s;
+    return vec3(
+      4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+      -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+      -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s
+    );
+  }
+  
+  vec3 encode(vec3 c) {
+    c = clamp(c, 0.0, 1.0);
+    return mix(c * 12.92, 1.055 * pow(c, vec3(1.0 / 2.4)) - 0.055, step(0.0031308, c));
+  }
+  
+  void main() {
+    vec2 p = (vUv - 0.5) * vec2(uAspect, 1.0);
+    for (int i = 0; i < 24; i++) {
+      float w = uStirWeight[i];
+      if (w <= 0.0) continue;
+      vec2 d = p - uStir[i].xy;
+      p -= uStir[i].zw * w * exp(-dot(d, d) / 0.045);
+    }
+    for (int i = 0; i < 4; i++) {
+      float angle = uTwirl[i].z;
+      if (angle == 0.0) continue;
+      vec2 d = p - uTwirl[i].xy;
+      float a = angle * exp(-dot(d, d) / (uTwirl[i].w * uTwirl[i].w));
+      float c = cos(a);
+      float s = sin(a);
+      p = uTwirl[i].xy + mat2(c, -s, s, c) * d;
+    }
+    float raw = coord(p);
+    float s = raw;
+    if (uBands > 1.0) {
+      s *= uBands;
+      float cycle = floor(s);
+      s = fract(s);
+      if (mod(cycle, 2.0) > 0.5) s = 1.0 - s;
+    }
+    s = clamp(s, 0.0, 1.0);
+    float scaled = s * float(uCount - 1);
+    int index = int(min(floor(scaled), float(uCount - 2)));
+    float f = scaled - float(index);
+    float edge = max(uSoftness * 0.5, fwidth(scaled) * 0.75);
+    float shaped = smoothstep(0.5 - edge, 0.5 + edge, f);
+    vec3 from = uRamp[0];
+    vec3 to = uRamp[1];
+    for (int i = 0; i < 7; i++) {
+      if (i == index) {
+        from = uRamp[i];
+        to = uRamp[i + 1];
+      }
+    }
+    vec3 lab = mix(from, to, shaped);
+    if (uSilk > 0.0) {
+      vec2 grad = vec2(coord(p + vec2(0.004, 0.0)) - raw, coord(p + vec2(0.0, 0.004)) - raw) / 0.004;
+      vec2 slope = grad * sin(3.14159265 * clamp(raw, 0.0, 1.0) * uBands) * uSilk * 4.0;
+      vec3 normal = normalize(vec3(-slope, 1.0));
+      vec3 light = normalize(vec3(-uDir.y, uDir.x, 1.2));
+      float diffuse = dot(normal, light) - light.z;
+      lab = uRamp[0] + (lab - uRamp[0]) * (1.0 + (diffuse * 0.35 + max(diffuse, 0.0) * diffuse * 0.6) * uSilk);
+    }
+    lab = mix(uRamp[0], lab, smoothstep(0.0, 1.0, uReveal * 1.5 - length(vUv - 0.5) * 0.6));
+    lab.x = (lab.x - 0.55) * uContrast + 0.55;
+    lab.yz *= uSaturation;
+    outColor = vec4(encode(labToRgb(lab)), 1.0);
+  }`;
+  
+  const COMPOSITE = `#version 300 es
+  precision highp float;
+  uniform sampler2D uField;
+  uniform float uGrain;
+  uniform float uGrainSize;
+  uniform float uFrame;
+  in vec2 vUv;
+  out vec4 outColor;
+  
+  float hash(vec2 p) {
+    vec3 q = fract(vec3(p.xyx) * 0.1031);
+    q += dot(q, q.yzx + 33.33);
+    return fract((q.x + q.y) * q.z);
+  }
+  
+  float clump(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    vec2 u = f * f * (3.0 - 2.0 * f);
+    return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
+  }
+  
+  void main() {
+    vec3 color = texture(uField, vUv).rgb;
+    vec2 pixel = gl_FragCoord.xy + uFrame * vec2(17.0, 59.0);
+    float fine = hash(pixel) + hash(pixel + 7.13) - 1.0;
+    float coarse = (clump(pixel / max(uGrainSize, 1.0)) - 0.5) * 2.0;
+    float grain = mix(fine, coarse, clamp(uGrainSize - 1.0, 0.0, 1.0) * 0.8);
+    float luma = dot(color, vec3(0.2126, 0.7152, 0.0722));
+    color += grain * uGrain * (0.45 + 2.2 * luma * (1.0 - luma));
+    outColor = vec4(clamp(color, 0.0, 1.0), 1.0);
+  }`;
+  
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  
+  const toLinear = value => (value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+  
+  const toLab = ([r, g, b]) => {
+    const lr = toLinear(r);
+    const lg = toLinear(g);
+    const lb = toLinear(b);
+    const l = Math.cbrt(0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb);
+    const m = Math.cbrt(0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb);
+    const s = Math.cbrt(0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb);
+    return [
+      0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s,
+      1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s,
+      0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s
+    ];
+  };
+  
+  const compile = (gl, type, source) => {
+    const shader = gl.createShader(type);
+    if (!shader) return null;
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (gl.getShaderParameter(shader, gl.COMPILE_STATUS)) return shader;
+    gl.deleteShader(shader);
+    return null;
+  };
+  
+  const link = (gl, fragmentSource) => {
+    const vertex = compile(gl, gl.VERTEX_SHADER, VERTEX);
+    const fragment = compile(gl, gl.FRAGMENT_SHADER, fragmentSource);
+    const program = gl.createProgram();
+    if (!vertex || !fragment || !program) return null;
+    gl.attachShader(program, vertex);
+    gl.attachShader(program, fragment);
+    gl.linkProgram(program);
+    gl.deleteShader(vertex);
+    gl.deleteShader(fragment);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      gl.deleteProgram(program);
+      return null;
+    }
+    const uniforms = {};
+    const count = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
+    for (let i = 0; i < count; i++) {
+      const info = gl.getActiveUniform(program, i);
+      if (!info) continue;
+      const name = info.name.replace(/\[0\]$/, '');
+      uniforms[name] = gl.getUniformLocation(program, name);
+    }
+    return { program, uniforms };
+  };
+  
+  
+  const S = { colors: paletteNow(), type: 0, angle: 55, bands: 1, speed: 1, flow: 0.7, scale: 1, softness: 1, silk: 0.35,
+    grainAmount: 0.045, grainSize: 1.2, grainAnimated: false, contrast: 1, saturation: 1, variation: 0,
+    interactive: true, stir: 1, clickSwirl: true, intro: true, lightMode: false, dpr: undefined, ...over };
+  /* grain is fixed (not re-rolled every frame) and a little lighter, so the surface does not shimmer */
+    const gl = canvas?.getContext('webgl2', {
+        alpha: false,
+        antialias: false,
+        depth: false,
+        stencil: false
+      });
+      if (!gl) { container.classList.add('gr-off'); return; }
+  
+      const field = link(gl, FIELD);
+      const composite = link(gl, COMPOSITE);
+      if (!field || !composite) { container.classList.add('gr-off'); return; }
+      const fu = field.uniforms;
+      const cu = composite.uniforms;
+      const vao = gl.createVertexArray();
+      const target = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, target);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      const buffer = gl.createFramebuffer();
+      const fieldSize = { width: 0, height: 0 };
+  
+      const probe = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+      const colorCache = new Map();
+      const parse = value => {
+        const key = String(value);
+        const cached = colorCache.get(key);
+        if (cached) return cached;
+        let rgb = [0, 0, 0];
+        if (probe) {
+          probe.clearRect(0, 0, 1, 1);
+          probe.fillStyle = '#000000';
+          probe.fillStyle = key;
+          probe.fillRect(0, 0, 1, 1);
+          const [r, g, b] = probe.getImageData(0, 0, 1, 1).data;
+          rgb = [r / 255, g / 255, b / 255];
+        }
+        colorCache.set(key, rgb);
+        return rgb;
+      };
+  
+      const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+      const view = { width: 1, height: 1, ratio: 1 };
+      const ramp = new Float32Array(MAX_COLORS * 3);
+      const stirs = new Float32Array(MAX_STIRS * 4);
+      const stirWeights = new Float32Array(MAX_STIRS);
+      const twirls = new Float32Array(MAX_TWIRLS * 4);
+      const trail = [];
+      const spins = [];
+      const pointer = { x: 0.5, y: 0.5, sx: 0.5, sy: 0.5, vx: 0, inside: false, fresh: true };
+      let paletteKey = '';
+      let time = 0;
+      let introClock = S.intro && !reduce ? 0 : 1;
+      let frameSeed = 0;
+      let grainClock = 0;
+      let raf = 0;
+      let last = 0;
+      let visible = true;
+  
+      const syncPalette = () => {
+        const s = S;
+        const key = `${s.colors.join(',')}|${s.lightMode}`;
+        if (key === paletteKey) return;
+        paletteKey = key;
+        const labs = s.colors.map(color => toLab(parse(color)));
+        if (!s.lightMode) {
+          labs.forEach((lab, i) => ramp.set(lab, i * 3));
+        } else {
+          const blank = labs.map(([L]) => Math.abs(L - labs[0][0]) < 0.1);
+          const tints = labs.filter((_, i) => !blank[i]).reverse();
+          labs.forEach((_, i) => {
+            const [L, a, b] = blank[i] ? [1, 0, 0] : tints.shift();
+            ramp.set([L + (1 - L) * LIFT, a * (1 - LIFT), b * (1 - LIFT)], i * 3);
+          });
+        }
+      };
+  
+      const draw = () => {
+        const s = S;
+        const aspect = view.width / view.height;
+        syncPalette();
+        gl.bindVertexArray(vao);
+        gl.disable(gl.BLEND);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, buffer);
+        gl.viewport(0, 0, fieldSize.width, fieldSize.height);
+        gl.useProgram(field.program);
+        gl.uniform1f(fu.uAspect, aspect);
+        gl.uniform1f(fu.uTime, time);
+        gl.uniform3fv(fu.uRamp, ramp);
+        gl.uniform1i(fu.uCount, s.colors.length);
+        const radians = (s.angle * Math.PI) / 180;
+        gl.uniform1i(fu.uType, s.type);
+        gl.uniform2f(fu.uDir, Math.sin(radians), Math.cos(radians));
+        gl.uniform1f(fu.uExtent, aspect * Math.abs(Math.sin(radians)) + Math.abs(Math.cos(radians)));
+        gl.uniform1f(fu.uBands, s.bands);
+        gl.uniform1f(fu.uSoftness, s.softness);
+        gl.uniform1f(fu.uFlow, s.flow);
+        gl.uniform1f(fu.uScale, s.scale);
+        gl.uniform1f(fu.uSilk, s.silk);
+        gl.uniform4fv(fu.uStir, stirs);
+        gl.uniform1fv(fu.uStirWeight, stirWeights);
+        gl.uniform4fv(fu.uTwirl, twirls);
+        gl.uniform2f(fu.uSeed, s.variation * 3.17, s.variation * 1.91);
+        gl.uniform1f(fu.uContrast, s.contrast);
+        gl.uniform1f(fu.uSaturation, s.saturation);
+        gl.uniform1f(fu.uSettle, introClock * introClock * (3 - 2 * introClock));
+        gl.uniform1f(fu.uReveal, introClock);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.useProgram(composite.program);
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, target);
+        gl.uniform1i(cu.uField, 0);
+        gl.uniform1f(cu.uGrain, s.grainAmount);
+        gl.uniform1f(cu.uGrainSize, s.grainSize * view.ratio);
+        gl.uniform1f(cu.uFrame, frameSeed);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      };
+  
+      const resize = () => {
+        const s = S;
+        view.width = Math.max(1, container.clientWidth);
+        view.height = Math.max(1, container.clientHeight);
+        view.ratio = Math.min(s.dpr || window.devicePixelRatio || 1, 2);
+        canvas.width = Math.max(1, Math.round(view.width * view.ratio));
+        canvas.height = Math.max(1, Math.round(view.height * view.ratio));
+        const width = Math.max(1, Math.round(canvas.width / 2));
+        const height = Math.max(1, Math.round(canvas.height / 2));
+        if (width !== fieldSize.width || height !== fieldSize.height) {
+          fieldSize.width = width;
+          fieldSize.height = height;
+          gl.bindTexture(gl.TEXTURE_2D, target);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+          gl.bindFramebuffer(gl.FRAMEBUFFER, buffer);
+          gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, target, 0);
+          gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        }
+        draw();
+        wake();
+      };
+  
+      const updateTouches = (dt, aspect) => {
+        const s = S;
+        const follow = 1 - Math.exp(-dt / 0.06);
+        const px = pointer.sx;
+        const py = pointer.sy;
+        pointer.sx += (pointer.x - pointer.sx) * follow;
+        pointer.sy += (pointer.y - pointer.sy) * follow;
+        const vx = ((pointer.sx - px) / dt) * aspect;
+        const vy = (pointer.sy - py) / dt;
+        pointer.vx = vx;
+        const head = trail[0];
+        trail.forEach(sample => {
+          if (sample.done) sample.age += dt;
+        });
+        if (s.interactive && pointer.inside && Math.hypot(vx, vy) > 0.02 && !reduce) {
+          if (!head || head.done) {
+            trail.unshift({ x: 0, y: 0, vx: 0, vy: 0, age: 0, grow: 0, done: false });
+            if (trail.length > MAX_STIRS) trail.pop();
+          }
+          const live = trail[0];
+          live.x = (pointer.sx - 0.5) * aspect;
+          live.y = pointer.sy - 0.5;
+          live.vx = vx;
+          live.vy = vy;
+          live.grow = Math.min(1, live.grow + dt / STIR_STEP);
+          live.done = live.grow >= 1;
+        } else if (head) {
+          head.done = true;
+        }
+        while (trail.length && trail[trail.length - 1].age > STIR_LIFE) trail.pop();
+        for (let i = 0; i < MAX_STIRS; i++) {
+          const sample = trail[i];
+          if (!sample) {
+            stirWeights[i] = 0;
+            continue;
+          }
+          const fade = 1 - sample.age / STIR_LIFE;
+          const cap = Math.min(1, 2.2 / Math.max(Math.hypot(sample.vx, sample.vy), 0.001));
+          stirs.set([sample.x, sample.y, sample.vx * cap, sample.vy * cap], i * 4);
+          stirWeights[i] = fade * fade * sample.grow * s.stir * 0.05;
+        }
+        spins.forEach(spin => {
+          spin.age += dt;
+        });
+        while (spins.length && spins[spins.length - 1].age > TWIRL_LIFE) spins.pop();
+        for (let i = 0; i < MAX_TWIRLS; i++) {
+          const spin = spins[i];
+          if (!spin) {
+            twirls[i * 4 + 2] = 0;
+            continue;
+          }
+          const k = spin.age / TWIRL_LIFE;
+          const envelope = Math.min(1, spin.age / 0.18) * (1 - k) * (1 - k);
+          twirls.set([spin.x, spin.y, spin.direction * 2.4 * envelope, 0.16 + 0.1 * Math.min(1, spin.age / 0.5)], i * 4);
+        }
+      };
+  
+      const frame = now => {
+        raf = 0;
+        if (!visible || document.hidden) return;
+        const s = S;
+        const dt = last ? clamp((now - last) / 1000, 0.001, 0.05) : 1 / 60;
+        last = now;
+        if (!reduce && pointer.inside) time += dt * s.speed * 0.16; /* waves drift only while the pointer is over the cover */
+        if (introClock < 1) introClock = Math.min(1, introClock + dt / INTRO_SECONDS);
+        grainClock += dt;
+        if (s.grainAnimated && !reduce && pointer.inside && grainClock > 1 / 24) {
+          grainClock = 0;
+          frameSeed = (frameSeed + 1) % 97;
+        }
+        updateTouches(dt, view.width / view.height);
+        draw();
+        const busy =
+          (!reduce && pointer.inside && (s.speed > 0 || s.grainAnimated)) || introClock < 1 || trail.length > 0 || spins.length > 0;
+        if (busy) raf = requestAnimationFrame(frame);
+        else last = 0;
+      };
+  
+      function wake() {
+        if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame);
+      }
+  
+      const locate = event => {
+        const rect = container.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / Math.max(1, rect.width);
+        const y = 1 - (event.clientY - rect.top) / Math.max(1, rect.height);
+        pointer.inside = x >= 0 && x <= 1 && y >= 0 && y <= 1;
+        pointer.x = x;
+        pointer.y = y;
+        if (pointer.fresh || !pointer.inside) {
+          pointer.sx = x;
+          pointer.sy = y;
+          pointer.fresh = false;
+        }
+      };
+  
+      const onPointerMove = event => {
+        locate(event);
+        if (pointer.inside || trail.length) wake();
+      };
+  
+      const onPointerDown = event => {
+        locate(event);
+        const s = S;
+        if (!pointer.inside || !s.clickSwirl || reduce) return;
+        spins.unshift({
+          x: (pointer.x - 0.5) * (view.width / view.height),
+          y: pointer.y - 0.5,
+          age: 0,
+          direction: pointer.vx < 0 ? 1 : -1
+        });
+        if (spins.length > MAX_TWIRLS) spins.pop();
+        wake();
+      };
+  
+      const onPointerLeave = () => {
+        pointer.inside = false;
+      };
+  
+      const onVisibility = () => {
+        last = 0;
+        wake();
+      };
+  
+      const resizeObserver = new ResizeObserver(resize);
+      resizeObserver.observe(container);
+      const intersection = new IntersectionObserver(entries => {
+        visible = entries.some(entry => entry.isIntersecting);
+        if (visible) {
+          last = 0;
+          wake();
+        }
+      });
+      intersection.observe(container);
+      window.addEventListener('pointermove', onPointerMove, { passive: true });
+      window.addEventListener('pointerdown', onPointerDown, { passive: true });
+      document.documentElement.addEventListener('pointerleave', onPointerLeave);
+      document.addEventListener('visibilitychange', onVisibility);
+      resize();
+      container._grWake = () => { paletteKey = ''; wake(); };
+  
+  
+  const retheme = () => { S.colors = paletteNow(); container._grWake && container._grWake(); };
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', retheme);
+  new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+}
+/* one Grainient per page, each in that page's own colours (first colour = the page colour, so edges melt in) */
+{
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const dark = () => { const t = document.documentElement.dataset.theme; return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; };
+  /* cover: cream page -> peach -> the cover red; text sits on the light side */
+  mountGrainient($('#p1 .grainient'), () => dark()
+    ? [css('--p1-bg') || '#231F20', '#2E1B19', '#5E1712', '#B82A1D', css('--p1-accent') || '#FF4B3E']
+    : [css('--p1-bg') || '#FCEBD2', '#F9DFC2', '#F3C2A2', '#EC7F5E', css('--p1-accent') || '#E3221A']);
+  /* works: the red page, deeper and lighter reds around it */
+  mountGrainient($('#p2 .grainient'), () => ['#B2231A', '#9C1D15', '#C42B1F', '#D9402D', '#E8604A'], { angle: 140, flow: .6, variation: 2 });
+  /* summary: the summary panel colour with its two haze tones */
+  mountGrainient($('#p3 .p3-l .grainient'), () => [css('--sum-bg') || '#FCEBD2', css('--sum-h2') || '#FFF2DE', css('--sum-h1') || '#F6DBB4', dark() ? '#3A2422' : '#F1C9A6'], { angle: 30, flow: .55, variation: 4, silk: .25 });
+  /* hire: the red panel */
+  mountGrainient($('#p3 .p3-r .grainient'), () => ['#B2231A', '#A11E16', '#C42B1F', '#D13427', '#E0533C'], { angle: 210, flow: .6, variation: 6 });
+}
 </script>
 
-</body></html>
+
+</body>
+</html>
