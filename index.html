@@ -822,8 +822,7 @@ body{margin:0}
 .p1 .name.tp .nm-b{margin-top:.04em}
 /* GradientText (React Bits, rebuilt in vanilla JS), variant "flow": soft blobs of the cover reds fill the title.
    Still at rest; the colours drift and lean toward the pointer only while it is over the title. */
-.p1 .name.gt{-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 .12em rgba(227,34,26,.22))}
-.p1 .name.gt .nm-a,.p1 .name.gt .nm-b{color:transparent;-webkit-text-fill-color:transparent}
+.p1 .name.gt .nm-a span,.p1 .name.gt .nm-b span{-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;background-repeat:no-repeat}
 @media (max-width:899px){.p1 .name.tp{width:100%}}
 /* Grainient on pages 2 and 3 (same effect as the cover, in each page's colours) */
 .p2 .grainient,.p3 .grainient{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
@@ -3068,7 +3067,7 @@ const MAX_COLORS = 8;
 }
 
 /* GradientText on the cover title (React Bits GradientText, variant "flow", rewritten without React) */
-{
+(() => {
   const h = document.querySelector('.p1 .name');
   if (h) {
     const COLORS = ['#E3221A', '#FF5A3C', '#B3160E', '#FF8A6B'];   // the cover reds; edit to change the mix
@@ -3083,7 +3082,15 @@ const MAX_COLORS = 8;
         if (i === 1) { x += (st.px * 100 - x) * st.pull; y += (st.py * 100 - y) * st.pull; }
         return `radial-gradient(circle at ${x.toFixed(1)}% ${y.toFixed(1)}%, ${c} 0%, transparent ${rad}%)`;
       });
-      h.style.backgroundImage = blobs.join(',') + `, linear-gradient(${COLORS[0]}, ${COLORS[0]})`;
+      // each letter carries its own slice of one shared gradient (Safari cannot clip a parent's background to child letters)
+      const img = blobs.join(',') + `, linear-gradient(${COLORS[0]}, ${COLORS[0]})`, box = h.getBoundingClientRect();
+      const size = `${box.width.toFixed(1)}px ${box.height.toFixed(1)}px`;
+      h.querySelectorAll('.nm-a span, .nm-b span').forEach(sp => {
+        const r = sp.getBoundingClientRect();
+        sp.style.backgroundImage = img; sp.style.backgroundSize = new Array(COLORS.length + 1).fill(size).join(',');
+        const pos = `${(box.left - r.left).toFixed(1)}px ${(box.top - r.top).toFixed(1)}px`;
+        sp.style.backgroundPosition = new Array(COLORS.length + 1).fill(pos).join(',');
+      });
     };
     const frame = now => {
       const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
@@ -3094,14 +3101,17 @@ const MAX_COLORS = 8;
       if (!raf) last = 0;
     };
     const wake = () => { if (!raf) raf = requestAnimationFrame(frame); };
+    if (!CSS.supports('-webkit-background-clip', 'text') && !CSS.supports('background-clip', 'text')) return;
     h.classList.add('gt'); paint();
+    addEventListener('resize', paint); if (document.fonts) document.fonts.ready.then(paint);
+    setTimeout(paint, 600); setTimeout(paint, 2000);
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
       h.addEventListener('pointerenter', () => { st.inside = true; wake(); });
       h.addEventListener('pointermove', e => { const r = h.getBoundingClientRect(); st.px = (e.clientX - r.left) / r.width; st.py = (e.clientY - r.top) / r.height; });
       h.addEventListener('pointerleave', () => { st.inside = false; wake(); });
     }
   }
-}
+})();
 </script>
 
 
