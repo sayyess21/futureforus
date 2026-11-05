@@ -942,6 +942,9 @@ body{margin:0}
 .cvr.lit .cvp-kon .sg,.cvr.lit .cvp-pan span{opacity:1;text-shadow:0 0 .06em rgba(255,40,30,.9),0 0 .22em rgba(245,0,0,.55),0 0 .6em rgba(245,0,0,.3)}
 .cvp-exp,.cvp-skill{font-family:'cv-caslon',serif}
 .cvp-txt{font-family:'cv-torsilp',sans-serif;text-align:center;line-height:1.1;letter-spacing:.025em;transform:translateX(-50%)}
+/* Luminous Type (React Bits Pro, rebuilt in vanilla JS): text is lit by a soft spotlight.
+   At rest the light covers the whole block (fully readable); under the pointer the rest dims and the light drifts after the pointer. */
+.cvp-txt{--lx:50%;--ly:50%;--lr:4000px;--dim:rgba(245,0,0,.13);background:radial-gradient(circle var(--lr) at var(--lx) var(--ly),#ff2a1f 0,var(--cv-red) 30%,var(--dim) 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent}
 .cvp-qr{position:absolute;display:block;color:var(--cv-red)}
 .cvp-qr svg{width:100%;height:100%;display:block}
 .cvp-icons{list-style:none;margin:0;padding:0}
@@ -1416,7 +1419,34 @@ function buildResume() {
           { duration: 1100 + Math.random() * 900, delay: start + Math.random() * 900, fill: 'backwards' });
       });
     };
-    const mo = new MutationObserver(() => { if (L.classList.contains('on')) { L.classList.add('lit'); signal(700); mo.disconnect(); } });
+    // Experience text: Luminous Type. A soft light drifts toward the pointer; away from it the text dims.
+    // It sweeps across once the first time the page opens, then opens up so everything is readable.
+    const lum = (() => {
+      const t = $('.cvp-txt', card);
+      const cur = { x: 0, y: 0, r: 0 }, tgt = { x: 0, y: 0, r: 0 };
+      let raf = 0, sweep = null, inside = false;
+      const full = () => Math.hypot(t.offsetWidth, t.offsetHeight) * 1.4, spot = () => t.offsetHeight * .5;
+      const rest = () => { tgt.x = t.offsetWidth / 2; tgt.y = t.offsetHeight / 2; tgt.r = full(); };
+      const paint = () => { t.style.setProperty('--lx', cur.x.toFixed(1) + 'px'); t.style.setProperty('--ly', cur.y.toFixed(1) + 'px'); t.style.setProperty('--lr', cur.r.toFixed(1) + 'px'); };
+      const frame = now => {
+        if (sweep) {
+          const q = (now - sweep.t0) / sweep.dur;
+          if (q < 0) { tgt.x = -spot(); tgt.y = t.offsetHeight * .3; tgt.r = spot(); }
+          else if (q < 1) { tgt.x = q * t.offsetWidth; tgt.y = t.offsetHeight * (.5 + .28 * Math.sin(q * Math.PI * 2)); tgt.r = spot(); }
+          else { sweep = null; if (!inside) rest(); }
+        }
+        const k = .055;
+        let moving = !!sweep || inside;
+        ['x', 'y', 'r'].forEach(a => { const d = tgt[a] - cur[a]; if (Math.abs(d) > .5) { cur[a] += d * k; moving = true; } else cur[a] = tgt[a]; });
+        paint(); raf = moving ? requestAnimationFrame(frame) : 0;
+      };
+      const wake = () => { if (!raf) raf = requestAnimationFrame(frame); };
+      t.addEventListener('pointerenter', () => { inside = true; if (cur.r === 0) { rest(); Object.assign(cur, tgt); } tgt.r = spot(); wake(); });
+      t.addEventListener('pointermove', e => { const r = t.getBoundingClientRect(); tgt.x = e.clientX - r.left; tgt.y = e.clientY - r.top; wake(); });
+      t.addEventListener('pointerleave', () => { inside = false; if (!sweep) rest(); wake(); });
+      return { intro(delay) { rest(); Object.assign(cur, tgt); cur.x = -spot(); cur.r = spot(); sweep = { t0: performance.now() + delay, dur: 2600 }; wake(); } };
+    })();
+    const mo = new MutationObserver(() => { if (L.classList.contains('on')) { L.classList.add('lit'); signal(700); if (!still) lum.intro(1700); mo.disconnect(); } });
     mo.observe(L, { attributes: true, attributeFilter: ['class'] });
     // name: letters near the pointer turn heavier, like the pressure type on the cover.
     // Each letter steps one weight at a time (light, regular, black) so the change rolls in slowly.
