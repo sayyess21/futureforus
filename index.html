@@ -894,6 +894,7 @@ body{margin:0}
 #hire-form [aria-invalid]{outline:2px solid #FCEBD2;outline-offset:2px}
 /* fixes after first look */
 .p1 .go-hire{align-self:flex-start;justify-self:start;width:auto}
+.p1 .cta-row{display:flex;flex-wrap:wrap;gap:.7rem;justify-self:start;margin-top:1.1rem}.p1 .cta-row .go-hire{margin-top:0}
 .seg button.pill{border:1px solid currentColor;padding-bottom:.45rem}
 .room .seg{overflow:visible;height:auto}
 .room .seg .go-hire{min-height:38px;padding-block:.45rem}
@@ -981,7 +982,7 @@ body{margin:0}
     <!-- letter weights ramp from thin to heavy (built by rampWeight() in the script) -->
     <h1 class="name" aria-label="Future For Us"><span class="nm-a" aria-hidden="true" data-ramp="500,500" data-hi="900">Future</span><span class="nm-b" aria-hidden="true" data-ramp="300,300" data-hi="800">For Us</span></h1>
     <!-- owner credit: whose portfolio this is, signed under the group name -->
-    <p class="disc"><span class="by"><i class="by-rule" aria-hidden="true"></i><button class="by-btn" id="resume-open" type="button" aria-label="Open resume"><span class="by-en">by <em>Panudetch Konklin</em></span><span class="by-th">ภาณุเดช ก้อนกลิ่น</span><span class="by-cv">Resume ↗</span></button></span><span class="by-role">Graphic · Photography · Producer</span><span class="by-what">I look after design, photography and production, from the first idea to the finished piece.</span><button class="pill go-hire" type="button" data-go-hire>Hire me</button></p>
+    <p class="disc"><span class="by"><i class="by-rule" aria-hidden="true"></i><button class="by-btn" id="resume-open" type="button" aria-label="Open resume"><span class="by-en">by <em>Panudetch Konklin</em></span><span class="by-th">ภาณุเดช ก้อนกลิ่น</span></button></span><span class="by-role">Graphic · Photography · Producer</span><span class="by-what">I look after design, photography and production, from the first idea to the finished piece.</span><span class="cta-row"><button class="pill go-hire" type="button" data-go-hire>Hire me</button><button class="pill cv-pill" type="button" data-open-resume>Resume</button></span></p>
   </div>
 </section>
 
@@ -1412,6 +1413,7 @@ function buildResume() {
   document.body.append(L);
   return L;
 }
+document.addEventListener('click', e => { const b = e.target.closest('[data-open-resume]'); if (b) { e.preventDefault(); if (!resumeLayer) resumeLayer = buildResume(); showLayer(resumeLayer, b); } });
 $('#resume-open').addEventListener('click', e => {
   if (!resumeLayer) resumeLayer = buildResume();
   showLayer(resumeLayer, e.currentTarget);
