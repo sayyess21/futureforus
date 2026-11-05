@@ -1371,11 +1371,11 @@ $$('[data-go]').forEach(b => b.addEventListener('click', () => $('#' + b.dataset
 
 
 /* ---------------- resume (opens from the name on the cover) ----------------
-   Resume image: works/resume.webp — replace that file to update it. */
-SITE.resume = SITE.resume || 'works/resume.webp';   // the original image, offered as a download
+   Download image: works/resume.jpg, rendered from this resume page. Re-render it after editing the text. */
+SITE.resume = 'works/resume.jpg';   // offered as a download
 let resumeLayer = null;
 function buildResume() {
-  const L = el('div', 'room cvr', `<div class="room-bar"><button class="back" type="button" data-close>back</button><h3 class="room-title">Resume<span>Panudetch Konklin</span></h3><div class="seg"><a class="pill" href="${SITE.resume}" download="Resume-Panudetch-Konklin.webp">Download</a><button class="pill go-hire" type="button" data-go-hire>Hire</button></div></div><div class="cv-body"></div>`);
+  const L = el('div', 'room cvr', `<div class="room-bar"><button class="back" type="button" data-close>back</button><h3 class="room-title">Resume<span>Panudetch Konklin</span></h3><div class="seg"><a class="pill" href="${SITE.resume}" download="Resume-Panudetch-Konklin.jpg">Download</a><button class="pill go-hire" type="button" data-go-hire>Hire</button></div></div><div class="cv-body"></div>`);
   $('.cv-body', L).append($('#cv-tpl').content.cloneNode(true));
   L.hidden = true;
   $('[data-close]', L).addEventListener('click', hideLayer);
