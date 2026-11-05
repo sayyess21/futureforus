@@ -930,7 +930,7 @@ body{margin:0}
 .cvp-res .rw{font-weight:400}
 .cvp-res .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .cvp-pan{font-family:'cv-made',serif;letter-spacing:-.01em}
-.cvp-pan span{display:inline-block;transform-origin:50% 85%}
+.cvp-pan span{display:inline-block;transform-origin:50% 85%;text-shadow:0 0 .06em rgba(255,40,30,.9),0 0 .22em rgba(245,0,0,.55),0 0 .6em rgba(245,0,0,.3)}
 .cvp-pan{cursor:default}
 .cvp-pan .b{font-family:'cv-made-b',serif}
 .cvp-pan .l{font-family:'cv-made-l',serif}
@@ -938,9 +938,9 @@ body{margin:0}
 .cvp-kon b{font-weight:500}
 /* Signal Type (React Bits Pro, rebuilt in vanilla JS): konklin flickers on like a neon sign */
 .cvp-kon .sg{display:inline-block;text-shadow:0 0 .06em rgba(255,40,30,.9),0 0 .22em rgba(245,0,0,.55),0 0 .6em rgba(245,0,0,.3)}
-.cvr .cvp-kon{opacity:1!important;filter:none!important;translate:none!important}
-.cvr .cvp-kon .sg{opacity:.06;text-shadow:none}
-.cvr.lit .cvp-kon .sg{opacity:1;text-shadow:0 0 .06em rgba(255,40,30,.9),0 0 .22em rgba(245,0,0,.55),0 0 .6em rgba(245,0,0,.3)}
+.cvr .cvp-kon,.cvr .cvp-pan{opacity:1!important;filter:none!important;translate:none!important}
+.cvr .cvp-kon .sg,.cvr .cvp-pan span{opacity:.06;text-shadow:none}
+.cvr.lit .cvp-kon .sg,.cvr.lit .cvp-pan span{opacity:1;text-shadow:0 0 .06em rgba(255,40,30,.9),0 0 .22em rgba(245,0,0,.55),0 0 .6em rgba(245,0,0,.3)}
 .cvp-exp,.cvp-skill{font-family:'cv-caslon',serif}
 .cvp-txt{font-family:'cv-torsilp',sans-serif;text-align:center;line-height:1.1;letter-spacing:.025em;transform:translateX(-50%)}
 .cvp-qr{position:absolute;display:block;color:var(--cv-red)}
@@ -1405,12 +1405,12 @@ function buildResume() {
       ph.style.transform = `translate(${(-x * 1.4).toFixed(2)}%, ${(-y * 1.0).toFixed(2)}%) scale(1.03)`;
     });
     card.addEventListener('pointerleave', () => { ph.style.transform = ''; });
-    // konklin: Signal Type. Each letter buzzes on at its own moment, then holds with a neon glow.
-    // Plays when the page opens and again when the pointer comes onto the word.
-    const kon = $('.cvp-kon', card), sgs = $$('.sg', kon);
+    // Panudetch + konklin: Signal Type. Each letter buzzes on at its own moment, then holds with a neon glow.
+    // Both play when the page opens; konklin plays again when the pointer comes onto it (Panudetch has TextPressure on hover).
+    const kon = $('.cvp-kon', card), sgs = [...$$('.cvp-pan span', card), ...$$('.sg', kon)];
     const GLOW = '0 0 .06em rgba(255,40,30,.9),0 0 .22em rgba(245,0,0,.55),0 0 .6em rgba(245,0,0,.3)';
-    const signal = (start = 0) => {
-      sgs.forEach(g => {
+    const signal = (start = 0, list = sgs) => {
+      list.forEach(g => {
         g.getAnimations().forEach(a => a.cancel());
         const o = [.06, .9, .1, .55, .08, 1, .35, 1], t = [0, .14, .2, .34, .42, .58, .7, 1];
         g.animate(o.map((v, k) => ({ opacity: v, textShadow: v > .5 ? GLOW : 'none', offset: t[k], easing: 'steps(1, end)' })),
@@ -1419,7 +1419,7 @@ function buildResume() {
     };
     new MutationObserver(() => { if (L.classList.contains('on') && !L.classList.contains('lit')) { L.classList.add('lit'); signal(700); } if (!L.classList.contains('on')) L.classList.remove('lit'); })
       .observe(L, { attributes: true, attributeFilter: ['class'] });
-    kon.addEventListener('pointerenter', () => signal(0));
+    kon.addEventListener('pointerenter', () => signal(0, $$('.sg', kon)));
     // name: TextPressure (React Bits, rebuilt in vanilla JS for the resume's own font).
     // MADE Canvas has three fixed weights, so pressure steps light > regular > black,
     // while width (scaleX) and italic (skew) glide smoothly. Moves only under the pointer; a click sends a ripple.
