@@ -820,6 +820,10 @@ body{margin:0}
 .p1 .name.tp .nm-a,.p1 .name.tp .nm-b{font-family:'Roboto Flex',var(--cover-font);display:flex;justify-content:space-between;text-transform:uppercase;letter-spacing:0;line-height:1;white-space:nowrap}
 .p1 .name.tp .nm-a span,.p1 .name.tp .nm-b span{font-weight:100!important;transform:none!important;user-select:none}
 .p1 .name.tp .nm-b{margin-top:.04em}
+/* GradientText (React Bits, rebuilt in vanilla JS), variant "flow": soft blobs of the cover reds fill the title.
+   Still at rest; the colours drift and lean toward the pointer only while it is over the title. */
+.p1 .name.gt{-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 .12em rgba(227,34,26,.22))}
+.p1 .name.gt .nm-a,.p1 .name.gt .nm-b{color:transparent;-webkit-text-fill-color:transparent}
 @media (max-width:899px){.p1 .name.tp{width:100%}}
 /* Grainient on pages 2 and 3 (same effect as the cover, in each page's colours) */
 .p2 .grainient,.p3 .grainient{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
@@ -3061,6 +3065,42 @@ const MAX_COLORS = 8;
   mountGrainient($('#p3 .p3-l .grainient'), () => [css('--sum-bg') || '#FCEBD2', css('--sum-h2') || '#FFF2DE', css('--sum-h1') || '#F6DBB4', dark() ? '#3A2422' : '#F1C9A6'], { angle: 30, flow: .55, variation: 4, silk: .25 });
   /* hire: the red panel */
   mountGrainient($('#p3 .p3-r .grainient'), () => ['#B2231A', '#A11E16', '#C42B1F', '#D13427', '#E0533C'], { angle: 210, flow: .6, variation: 6 });
+}
+
+/* GradientText on the cover title (React Bits GradientText, variant "flow", rewritten without React) */
+{
+  const h = document.querySelector('.p1 .name');
+  if (h) {
+    const COLORS = ['#E3221A', '#FF5A3C', '#B3160E', '#FF8A6B'];   // the cover reds; edit to change the mix
+    const SPEED = 9, SCALE = 3;                                       // seconds per cycle, size of the colour blobs
+    const TAU = Math.PI * 2, st = { time: 0, inside: false, px: .5, py: .5, pull: 0 };
+    let raf = 0, last = 0;
+    const paint = () => {
+      const cyc = st.time / SPEED, rad = 26 + SCALE * 9;
+      const blobs = COLORS.map((c, i) => {
+        const rate = .55 + ((i * .618) % 1) * .5;
+        let x = 50 + 44 * Math.sin(cyc * TAU * rate + i * 2.1), y = 50 + 40 * Math.sin(cyc * TAU * (rate * .83 + .21) + i * 1.3);
+        if (i === 1) { x += (st.px * 100 - x) * st.pull; y += (st.py * 100 - y) * st.pull; }
+        return `radial-gradient(circle at ${x.toFixed(1)}% ${y.toFixed(1)}%, ${c} 0%, transparent ${rad}%)`;
+      });
+      h.style.backgroundImage = blobs.join(',') + `, linear-gradient(${COLORS[0]}, ${COLORS[0]})`;
+    };
+    const frame = now => {
+      const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
+      st.time += st.inside ? dt : 0;
+      st.pull += ((st.inside ? .6 : 0) - st.pull) * .06;
+      paint();
+      raf = (st.inside || st.pull > .01) ? requestAnimationFrame(frame) : 0;
+      if (!raf) last = 0;
+    };
+    const wake = () => { if (!raf) raf = requestAnimationFrame(frame); };
+    h.classList.add('gt'); paint();
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      h.addEventListener('pointerenter', () => { st.inside = true; wake(); });
+      h.addEventListener('pointermove', e => { const r = h.getBoundingClientRect(); st.px = (e.clientX - r.left) / r.width; st.py = (e.clientY - r.top) / r.height; });
+      h.addEventListener('pointerleave', () => { st.inside = false; wake(); });
+    }
+  }
 }
 </script>
 
