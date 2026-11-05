@@ -1405,7 +1405,7 @@ function buildResume() {
     });
     card.addEventListener('pointerleave', () => { ph.style.transform = ''; });
     // konklin: Signal Type. Each letter buzzes on at its own moment, then holds with a neon glow.
-    // Plays when the page opens and again when the pointer comes onto the word.
+    // Plays only the first time the resume is opened; after that the word stays lit.
     const kon = $('.cvp-kon', card), sgs = $$('.sg', kon);
     const GLOW = '0 0 .06em rgba(255,40,30,.9),0 0 .22em rgba(245,0,0,.55),0 0 .6em rgba(245,0,0,.3)';
     const signal = (start = 0) => {
@@ -1416,9 +1416,8 @@ function buildResume() {
           { duration: 1100 + Math.random() * 900, delay: start + Math.random() * 900, fill: 'backwards' });
       });
     };
-    new MutationObserver(() => { if (L.classList.contains('on') && !L.classList.contains('lit')) { L.classList.add('lit'); signal(700); } if (!L.classList.contains('on')) L.classList.remove('lit'); })
-      .observe(L, { attributes: true, attributeFilter: ['class'] });
-    kon.addEventListener('pointerenter', () => signal(0));
+    const mo = new MutationObserver(() => { if (L.classList.contains('on')) { L.classList.add('lit'); signal(700); mo.disconnect(); } });
+    mo.observe(L, { attributes: true, attributeFilter: ['class'] });
     // name: letters near the pointer turn heavier, like the pressure type on the cover.
     // Each letter steps one weight at a time (light, regular, black) so the change rolls in slowly.
     const pan = $('.cvp-pan', card), ls = [...pan.children];
