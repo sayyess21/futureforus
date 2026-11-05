@@ -942,8 +942,7 @@ body{margin:0}
 .cvr.lit .cvp-kon .sg,.cvr.lit .cvp-pan span{opacity:1;text-shadow:0 0 .06em rgba(255,40,30,.9),0 0 .22em rgba(245,0,0,.55),0 0 .6em rgba(245,0,0,.3)}
 .cvp-exp,.cvp-skill{font-family:'cv-caslon',serif}
 .cvp-txt{font-family:'cv-torsilp',sans-serif;text-align:center;line-height:1.1;letter-spacing:.025em;transform:translateX(-50%)}
-/* Luminous Type (React Bits Pro, rebuilt in vanilla JS): text is lit by a soft spotlight.
-   At rest the light covers the whole block (fully readable); under the pointer the rest dims and the light drifts after the pointer. */
+/* Luminous Type (React Bits Pro, rebuilt in vanilla JS): a soft light sweeps the text once on first open; at rest it covers the whole block. */
 .cvp-txt{--lx:50%;--ly:50%;--lr:4000px;--dim:rgba(245,0,0,.13);background:radial-gradient(circle var(--lr) at var(--lx) var(--ly),#ff2a1f 0,var(--cv-red) 30%,var(--dim) 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent}
 .cvp-qr{position:absolute;display:block;color:var(--cv-red)}
 .cvp-qr svg{width:100%;height:100%;display:block}
@@ -1419,8 +1418,8 @@ function buildResume() {
           { duration: 1100 + Math.random() * 900, delay: start + Math.random() * 900, fill: 'backwards' });
       });
     };
-    // Experience text: Luminous Type. A soft light drifts toward the pointer; away from it the text dims.
-    // It sweeps across once the first time the page opens, then opens up so everything is readable.
+    // Experience text: Luminous Type. Plays once, the first time the page opens: the text dims, a soft light
+    // sweeps across it, then opens up so everything is readable. No pointer effect after that.
     const lum = (() => {
       const t = $('.cvp-txt', card);
       const cur = { x: 0, y: 0, r: 0 }, tgt = { x: 0, y: 0, r: 0 };
@@ -1441,9 +1440,6 @@ function buildResume() {
         paint(); raf = moving ? requestAnimationFrame(frame) : 0;
       };
       const wake = () => { if (!raf) raf = requestAnimationFrame(frame); };
-      t.addEventListener('pointerenter', () => { inside = true; if (cur.r === 0) { rest(); Object.assign(cur, tgt); } tgt.r = spot(); wake(); });
-      t.addEventListener('pointermove', e => { const r = t.getBoundingClientRect(); tgt.x = e.clientX - r.left; tgt.y = e.clientY - r.top; wake(); });
-      t.addEventListener('pointerleave', () => { inside = false; if (!sweep) rest(); wake(); });
       return { intro(delay) { rest(); Object.assign(cur, tgt); cur.x = -spot(); cur.r = spot(); sweep = { t0: performance.now() + delay, dur: 2600 }; wake(); } };
     })();
     const mo = new MutationObserver(() => { if (L.classList.contains('on')) { L.classList.add('lit'); signal(700); if (!still) lum.intro(1700); mo.disconnect(); } });
