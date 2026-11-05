@@ -930,7 +930,7 @@ body{margin:0}
 .cvp-res .rw{font-weight:400}
 .cvp-res .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .cvp-pan{font-family:'cv-made',serif;letter-spacing:-.01em}
-.cvp-pan span{transition:font-family 0s}
+.cvp-pan span{display:inline-block;transform:translateY(calc(var(--lift,0) * -3%));transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
 .cvp-pan .b{font-family:'cv-made-b',serif}
 .cvp-pan .l{font-family:'cv-made-l',serif}
 .cvp-kon{font-family:'cv-raleway',sans-serif;font-weight:300;letter-spacing:-.025em}
@@ -1398,17 +1398,30 @@ function buildResume() {
       ph.style.transform = `translate(${(-x * 1.4).toFixed(2)}%, ${(-y * 1.0).toFixed(2)}%) scale(1.03)`;
     });
     card.addEventListener('pointerleave', () => { ph.style.transform = ''; });
-    // name: letters near the pointer turn heavier, like the pressure type on the cover
-    const pan = $('.cvp-pan', card), ls = [...pan.children], base = ls.map(s => s.className);
+    // name: letters near the pointer turn heavier, like the pressure type on the cover.
+    // Each letter steps one weight at a time (light, regular, black) so the change rolls in slowly.
+    const pan = $('.cvp-pan', card), ls = [...pan.children];
+    const CLS = ['l', '', 'b'], STEP = 260;   // ms per weight step: raise to slow it down further
+    const st = ls.map(s => { const lv = CLS.indexOf(s.className); return { s, base: lv, now: lv, want: lv }; });
+    let tick = null;
+    const run = () => {
+      let moving = false;
+      st.forEach(o => {
+        if (o.now !== o.want) { o.now += Math.sign(o.want - o.now); o.s.className = CLS[o.now]; moving = true; }
+        o.s.style.setProperty('--lift', o.now === 2 ? 1 : 0);
+      });
+      tick = moving ? setTimeout(run, STEP) : null;
+    };
+    const kick = () => { if (!tick) tick = setTimeout(run, 60); };
     pan.addEventListener('pointermove', e => {
       const fs = parseFloat(getComputedStyle(pan).fontSize);
-      ls.forEach(s => {
-        const r = s.getBoundingClientRect(), d = Math.abs(e.clientX - (r.left + r.width / 2)) / fs;
-        s.className = d < .35 ? 'b' : d < .9 ? '' : d < 1.6 ? 'l' : s.dataset.base;
+      st.forEach(o => {
+        const r = o.s.getBoundingClientRect(), d = Math.abs(e.clientX - (r.left + r.width / 2)) / fs;
+        o.want = d < .4 ? 2 : d < 1 ? 1 : d < 1.7 ? 0 : o.base;
       });
+      kick();
     });
-    ls.forEach((s, i) => s.dataset.base = base[i]);
-    pan.addEventListener('pointerleave', () => ls.forEach((s, i) => s.className = base[i]));
+    pan.addEventListener('pointerleave', () => { st.forEach(o => o.want = o.base); kick(); });
   }
   document.body.append(L);
   return L;
