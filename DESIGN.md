@@ -38,3 +38,6 @@ Grainient (WebGL) on every page, grain fixed (not animated), amount .045.
 ## Focus & errors
 - Focus: 2px solid red outline, offset 3px (cream on red/dark areas)
 - Field errors: cream text on deep red under the field
+
+## Resume page
+Built from the original artwork as a live page: portrait `works/resume-photo.webp` (no text) + real HTML text, QR (SVG) and icons (SVG). Positions are % of the 1498×2000 artwork, sizes in cqw. Effects: blurred staggered reveal, slow photo breathing, pointer parallax and soft light, "Panudetch" letters swell near the pointer. `works/resume.webp` stays as the flat original.
