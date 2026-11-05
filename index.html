@@ -935,6 +935,11 @@ body{margin:0}
 .cvp-pan .l{font-family:'cv-made-l',serif}
 .cvp-kon{font-family:'cv-raleway',sans-serif;font-weight:300;letter-spacing:-.025em}
 .cvp-kon b{font-weight:500}
+/* Signal Type (React Bits Pro, rebuilt in vanilla JS): konklin flickers on like a neon sign */
+.cvp-kon .sg{display:inline-block;text-shadow:0 0 .06em rgba(255,40,30,.9),0 0 .22em rgba(245,0,0,.55),0 0 .6em rgba(245,0,0,.3)}
+.cvr .cvp-kon{opacity:1!important;filter:none!important;translate:none!important}
+.cvr .cvp-kon .sg{opacity:.06;text-shadow:none}
+.cvr.lit .cvp-kon .sg{opacity:1;text-shadow:0 0 .06em rgba(255,40,30,.9),0 0 .22em rgba(245,0,0,.55),0 0 .6em rgba(245,0,0,.3)}
 .cvp-exp,.cvp-skill{font-family:'cv-caslon',serif}
 .cvp-txt{font-family:'cv-torsilp',sans-serif;text-align:center;line-height:1.1;letter-spacing:.025em;transform:translateX(-50%)}
 .cvp-qr{position:absolute;display:block;color:var(--cv-red)}
@@ -1076,7 +1081,7 @@ body{margin:0}
 <a class="cvp-el cvp-port" data-k="port" data-cv-works href="#p2" style="right:3.750cqw;top:20.918cqw;font-size:5.473cqw">P o r t<br>Folio</a>
 <h2 class="cvp-el cvp-res" data-k="res" style="left:9.135cqw;top:43.317cqw;font-size:5.930cqw"><span class="as R">R</span><span class="rw">e </span><span class="as">su</span><span class="ml">me</span><span class="sr"> Resume</span></h2>
 <p class="cvp-el cvp-pan" data-k="pan" style="left:2.933cqw;top:53.009cqw;font-size:10.342cqw" aria-label="Panudetch"><span>P</span><span>a</span><span>n</span><span>u</span><span class="b">d</span><span class="l">e</span><span class="l">t</span><span>c</span><span>h</span></p>
-<p class="cvp-el cvp-kon" data-k="kon" style="left:3.221cqw;top:62.078cqw;font-size:7.897cqw"><b>k</b>on<b>k</b>lin</p>
+<p class="cvp-el cvp-kon" data-k="kon" style="left:3.221cqw;top:62.078cqw;font-size:7.897cqw"><span class="sg"><b>k</b></span><span class="sg">o</span><span class="sg">n</span><span class="sg"><b>k</b></span><span class="sg">l</span><span class="sg">i</span><span class="sg">n</span></p>
 <h3 class="cvp-el cvp-exp" data-k="exp" style="left:40.216cqw;top:73.132cqw;font-size:4.722cqw">Experience</h3>
 <p class="cvp-el cvp-txt" data-k="txt" style="left:50.120cqw;top:79.424cqw;font-size:2.802cqw">ผม ภาณุเดช ก้อนกลิ่น ครับ<br><br>ทำงานออกแบบกราฟิก และเป็น freelance organizer<br>ถนัดมองภาพรวมของงาน และแก้ปัญหาหน้างาน<br>ผมตั้งใจฟังทั้งทีมและลูกค้า เพื่อให้ทุกคนเข้าใจตรงกัน<br><br>พื้นฐานศิลปะของผมมาจาก ปวช. ช่างศิลปลาดกระบัง<br>หลังจากนั้นก็เรียนรู้จากงานจริงมาเรื่อยๆ<br>ทั้งงานออกแบบและงานจัดการ</p>
 <h3 class="cvp-el cvp-skill" data-k="skill" style="left:46.514cqw;top:112.075cqw;font-size:4.849cqw">skill</h3>
@@ -1389,6 +1394,7 @@ function buildResume() {
     setTimeout(() => $('#p2').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }), 450);
   }));
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (still) L.classList.add('lit');
   if (!still) {
     // photo drifts a little with the pointer, only while the pointer is on the page
     const ph = $('.cvp-photo', card);
@@ -1398,6 +1404,21 @@ function buildResume() {
       ph.style.transform = `translate(${(-x * 1.4).toFixed(2)}%, ${(-y * 1.0).toFixed(2)}%) scale(1.03)`;
     });
     card.addEventListener('pointerleave', () => { ph.style.transform = ''; });
+    // konklin: Signal Type. Each letter buzzes on at its own moment, then holds with a neon glow.
+    // Plays when the page opens and again when the pointer comes onto the word.
+    const kon = $('.cvp-kon', card), sgs = $$('.sg', kon);
+    const GLOW = '0 0 .06em rgba(255,40,30,.9),0 0 .22em rgba(245,0,0,.55),0 0 .6em rgba(245,0,0,.3)';
+    const signal = (start = 0) => {
+      sgs.forEach(g => {
+        g.getAnimations().forEach(a => a.cancel());
+        const o = [.06, .9, .1, .55, .08, 1, .35, 1], t = [0, .14, .2, .34, .42, .58, .7, 1];
+        g.animate(o.map((v, k) => ({ opacity: v, textShadow: v > .5 ? GLOW : 'none', offset: t[k], easing: 'steps(1, end)' })),
+          { duration: 1100 + Math.random() * 900, delay: start + Math.random() * 900, fill: 'backwards' });
+      });
+    };
+    new MutationObserver(() => { if (L.classList.contains('on') && !L.classList.contains('lit')) { L.classList.add('lit'); signal(700); } if (!L.classList.contains('on')) L.classList.remove('lit'); })
+      .observe(L, { attributes: true, attributeFilter: ['class'] });
+    kon.addEventListener('pointerenter', () => signal(0));
     // name: letters near the pointer turn heavier, like the pressure type on the cover.
     // Each letter steps one weight at a time (light, regular, black) so the change rolls in slowly.
     const pan = $('.cvp-pan', card), ls = [...pan.children];
