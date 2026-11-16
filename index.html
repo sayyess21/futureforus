@@ -3161,12 +3161,18 @@ const MAX_COLORS = 8;
     st.id = store.createThread(cat, a, []);
     live(true);
   }
-  function live(fresh) {
+  function live(fresh, replay) {
     buttons([]); form.hidden = false; text.placeholder = 'พิมพ์ข้อความ';
     if (fresh) msg('sys', 'ส่งแล้ว · คำตอบจะขึ้นในแชตนี้');
     if (fresh && store.mode === 'preview') msg('bot', 'ระหว่างที่ระบบแชตยังอยู่ในช่วงทดลอง ถ้าอยากได้คำตอบเร็ว ติดต่อผมได้ที่ panudetch.er@gmail.com หรือ 093 528 9324 ครับ');
     st.seen = 0; if (st.stop) st.stop();
+    let first = !!replay;
     st.stop = store.watch(st.id, t => {
+      if (!t) { if (replay && st.id === store.myThreadId()) { store.forgetMine(); start(true); } return; }
+      if (first) { /* a returning visitor: show the earlier answers, then the conversation */
+        first = false; st.answers = Object.assign({ cat: t.cat }, t.answers || {});
+        CHAT_Q.forEach(q => { msg('bot', q.q); msg('client', shown(q.k, st.answers[q.k]) || 'ข้าม'); });
+      }
       const vis = t.msgs.filter(m => !m.draft);
       vis.slice(st.seen).forEach(m => msg(m.from, m.text)); st.seen = vis.length;
       const n = replies(t);
@@ -3180,9 +3186,7 @@ const MAX_COLORS = 8;
     note.textContent = 'คำถามชุดแรกเป็นข้อความอัตโนมัติ บางคำตอบอาจมาจากผู้ช่วย AI ส่วนภาณุเดชอ่านทุกแชตเองครับ';
     const mine = !fresh && store && store.myThreadId();
     if (mine) {
-      const t = store.get(mine); st.id = mine; st.answers = Object.assign({ cat: t.cat }, t.answers);
-      CHAT_Q.forEach(q => { msg('bot', q.q); msg('client', shown(q.k, st.answers[q.k]) || 'ข้าม'); });
-      live(false); return;
+      st.id = mine; live(false, true); return;
     }
     if (fresh && store) store.forgetMine();
     ask();
@@ -3208,10 +3212,12 @@ const MAX_COLORS = 8;
   text.addEventListener('input', () => { text.style.height = 'auto'; text.style.height = Math.min(text.scrollHeight, 120) + 'px'; });
   /* every old "Hire" entry point now opens the chat */
   window.goHire = () => openChat();
+  let warned = false;
+  if (store && store.onError) store.onError(() => { if (warned || !st.started) return; warned = true; msg('sys', 'ส่งข้อความไม่สำเร็จ ลองใหม่อีกครั้ง หรือติดต่อ panudetch.er@gmail.com · 093 528 9324'); });
   document.addEventListener('click', e => { const b = e.target.closest('[data-go-hire]'); if (b) { e.preventDefault(); openChat(b); } });
   const ho = $('#hire-open'); if (ho) ho.addEventListener('click', () => openChat(ho));
   /* a returning visitor with an earlier chat sees the badge when replies came in */
-  if (store) { const id = store.myThreadId(); if (id) store.watch(id, t => { if (!W.hidden || st.started) return; const n = replies(t); if (n > seenGet()) { badge.textContent = n - seenGet(); badge.hidden = false; } }); }
+  if (store) { const id = store.myThreadId(); if (id) store.watch(id, t => { if (!t || !W.hidden || st.started) return; const n = replies(t); if (n > seenGet()) { badge.textContent = n - seenGet(); badge.hidden = false; } }); }
 })();
 </script>
 

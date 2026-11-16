@@ -1,0 +1,53 @@
+rules_version = '2';
+// Future For Us chat. Paste into Firebase console > Firestore > Rules.
+// Clients sign in anonymously and can only see their own thread and the replies in it (never AI drafts).
+// Only the owner account (Google sign-in) can read every chat, reply, send drafts and change settings.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'panudetch.er@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+    function signedIn() { return request.auth != null; }
+    function shortText(v, n) { return v is string && v.size() <= n; }
+
+    match /threads/{tid} {
+      function ownsThread() { return signedIn() && resource.data.uid == request.auth.uid; }
+
+      allow read: if isAdmin() || ownsThread();
+      allow create: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid', 'cat', 'answers', 'createdAt', 'updatedAt', 'unread', 'needsReply', 'lastText'])
+        && shortText(request.resource.data.cat, 40)
+        && request.resource.data.answers is map
+        && request.resource.data.answers.keys().hasOnly(['name', 'detail', 'budget', 'when', 'where', 'contact'])
+        && request.resource.data.answers.size() <= 6
+        && shortText(request.resource.data.get('lastText', ''), 1000);
+      // a client may only bump these flags on its own thread
+      allow update: if isAdmin() || (ownsThread()
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['updatedAt', 'unread', 'needsReply', 'lastText'])
+        && shortText(request.resource.data.get('lastText', ''), 1000));
+      allow delete: if isAdmin();
+
+      match /msgs/{mid} {
+        function parentOwned() {
+          return signedIn() && get(/databases/$(database)/documents/threads/$(tid)).data.uid == request.auth.uid;
+        }
+        allow read: if isAdmin() || (parentOwned() && resource.data.draft == false);
+        allow create: if isAdmin() || (parentOwned()
+          && request.resource.data.keys().hasOnly(['from', 'text', 't', 'draft'])
+          && request.resource.data.from == 'client'
+          && request.resource.data.draft == false
+          && shortText(request.resource.data.text, 1000)
+          && request.resource.data.text.size() > 0);
+        allow update, delete: if isAdmin();
+      }
+    }
+
+    match /settings/{doc} {
+      allow read, write: if isAdmin();
+    }
+  }
+}

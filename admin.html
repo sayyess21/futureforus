@@ -85,6 +85,10 @@ button,textarea,input,select{font:inherit;color:inherit}
   .sum{grid-template-columns:repeat(2,minmax(0,1fr))}
   .msg{max-width:92%}
 }
+.gate{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;background:var(--ink);text-align:center;padding:24px}
+.gate[hidden]{display:none}
+.gate h1{font-family:var(--display);font-style:italic;font-weight:400;font-size:2.4rem;margin:0}
+.gate p{margin:0;color:var(--mute);max-width:40ch}
 </style>
 </head>
 <body>
@@ -94,6 +98,7 @@ button,textarea,input,select{font:inherit;color:inherit}
     <span class="meta" id="meta"></span>
     <span class="sp"></span>
     <a class="pill" href="index.html">Site</a>
+    <button class="pill" type="button" id="signout" hidden>Sign out</button>
     <button class="pill" type="button" id="alerts">Enable alerts</button>
   </header>
   <nav class="list" id="list" aria-label="Conversations"></nav>
@@ -120,6 +125,11 @@ button,textarea,input,select{font:inherit;color:inherit}
     </div>
   </aside>
 </div>
+<section class="gate" id="gate" hidden>
+  <h1>Back Office</h1>
+  <p id="gate-msg">เข้าสู่ระบบด้วยบัญชี Google ของภาณุเดชเพื่ออ่านและตอบแชต</p>
+  <button class="pill solid" type="button" id="signin">Sign in with Google</button>
+</section>
 <script src="chat-store.js"></script>
 <script>
 const $ = (s, r = document) => r.querySelector(s);
@@ -128,57 +138,57 @@ const LABELS = [['detail', 'Project'], ['budget', 'Budget'], ['when', 'Timing'],
 const CATS = { graphic: 'Graphic', photo: 'Photography', organizer: 'Producer' };
 const WHO = { client: 'Client', owner: 'You', bot: 'Auto', ai: 'AI' };
 const fmt = t => new Date(t).toLocaleString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-let threads = [], current = null, known = null, renderedKey = null;
+let threads = [], current = null, cur = null, stopCur = null, known = null, renderedKey = null, started = false;
 
 function status(t) {
-  if (t.msgs.some(m => m.draft)) return ['AI draft ready', true];
+  if (t.hasDraft) return ['AI draft ready', true];
   if (t.needsReply) return ['Waiting', true];
-  const last = [...t.msgs].reverse().find(m => !m.draft && m.from !== 'client');
-  return [last && last.from === 'ai' ? 'AI answered' : 'You replied', false];
+  return [t.lastFrom === 'ai' ? 'AI answered' : 'You replied', false];
 }
 function renderList() {
   const list = $('#list'); list.innerHTML = '';
-  const open = threads.filter(t => t.needsReply || t.msgs.some(m => m.draft)).length;
-  const pv = ChatStore.mode === 'preview';
-  $('#meta').textContent = threads.length ? `${threads.length} chats · ${open} need you` + (pv ? ' · Preview' : '') : (pv ? 'Preview · ข้อมูลอยู่ในเบราว์เซอร์นี้เท่านั้น' : '');
-  if (!threads.length) { list.append(make('p', 'empty', 'ยังไม่มีแชตครับ เมื่อมีคนส่งจากหน้าเว็บ รายการจะขึ้นที่นี่ ลองเปิดหน้าเว็บแล้วกดปุ่ม Chat เพื่อทดสอบได้')); return; }
+  const open = threads.filter(t => t.needsReply || t.hasDraft).length;
+  $('#meta').textContent = threads.length ? `${threads.length} chats · ${open} need you` : '';
+  if (!threads.length) { list.append(make('p', 'empty', 'ยังไม่มีแชตครับ เมื่อมีคนส่งจากหน้าเว็บ รายการจะขึ้นที่นี่')); return; }
   threads.forEach(t => {
     const b = make('button'); b.type = 'button'; if (t.id === current) b.setAttribute('aria-current', 'true');
     const nm = make('span', 'nm'); if (t.unread) { const d = make('i', 'dot'); d.title = 'New'; nm.append(d); }
-    nm.append(t.answers.name || 'No name');
-    const lastMsg = [...t.msgs].reverse().find(m => !m.draft && m.from !== 'bot');
+    nm.append((t.answers && t.answers.name) || 'No name');
     const [st, hot] = status(t);
     const tag = make('span', 'tag', (CATS[t.cat] || '') + ' · ' + fmt(t.updatedAt) + ' · ');
     tag.append(hot ? make('b', '', st) : st);
-    b.append(nm, make('span', 'sub', lastMsg ? lastMsg.text : (t.answers.detail || '')), tag);
+    b.append(nm, make('span', 'sub', t.lastText || ''), tag);
     b.addEventListener('click', () => openThread(t.id)); list.append(b);
   });
 }
 function renderPane() {
-  const t = threads.find(x => x.id === current), pane = $('#pane');
-  if (!t) {
+  const pane = $('#pane'), t = cur && cur.id === current ? cur : null;
+  if (!current) {
     if (renderedKey === '') return; renderedKey = '';
     pane.innerHTML = ''; pane.append(make('div', 'blank', threads.length ? 'เลือกแชตทางซ้ายเพื่ออ่านและตอบ' : 'ยังไม่มีแชต')); $('#app').classList.remove('open'); return;
   }
-  const key = t.id + ':' + t.updatedAt; if (key === renderedKey) return; renderedKey = key;
+  if (!t) { if (renderedKey !== 'loading') { renderedKey = 'loading'; pane.innerHTML = ''; pane.append(make('div', 'blank', 'กำลังโหลด…')); } return; }
+  const key = t.id + ':' + t.updatedAt + ':' + t.msgs.length + ':' + t.msgs.map(m => m.draft ? 1 : 0).join('');
+  if (key === renderedKey) return; renderedKey = key;
   const keep = $('#text') ? $('#text').value : '';
   pane.innerHTML = '';
+  const a = t.answers || {};
   const head = make('div', 'head'), row = make('div', 'head-row');
   const back = make('button', 'pill back', 'Back'); back.type = 'button';
-  back.addEventListener('click', () => { current = null; $('#app').classList.remove('open'); renderList(); renderPane(); });
+  back.addEventListener('click', () => { closeThread(); $('#app').classList.remove('open'); renderList(); renderPane(); });
   const del = make('button', 'pill', 'Delete'); del.type = 'button'; let arm = 0;
-  del.addEventListener('click', () => { if (Date.now() - arm < 4000) { ChatStore.remove(t.id); current = null; return; } arm = Date.now(); del.textContent = 'Click again to delete'; setTimeout(() => { del.textContent = 'Delete'; }, 4000); });
-  row.append(back, make('h2', '', (t.answers.name || 'No name') + ' · ' + (CATS[t.cat] || '')), make('span', 'sp'), del);
-  const sum = make('dl', 'sum'); LABELS.forEach(([k, l]) => { const d = make('div'); d.append(make('dt', '', l), make('dd', '', t.answers[k] || '-')); sum.append(d); });
+  del.addEventListener('click', () => { if (Date.now() - arm < 4000) { const id = t.id; closeThread(); ChatStore.remove(id); renderPane(); return; } arm = Date.now(); del.textContent = 'Click again to delete'; setTimeout(() => { del.textContent = 'Delete'; }, 4000); });
+  row.append(back, make('h2', '', (a.name || 'No name') + ' · ' + (CATS[t.cat] || '')), make('span', 'sp'), del);
+  const sum = make('dl', 'sum'); LABELS.forEach(([k, l]) => { const d = make('div'); d.append(make('dt', '', l), make('dd', '', a[k] || '-')); sum.append(d); });
   head.append(row, sum);
   const sc = make('div', 'scroll');
-  t.msgs.forEach((m, i) => {
+  t.msgs.forEach(m => {
     if (m.draft) {
       const d = make('div', 'draft'); d.append(make('small', '', 'AI draft · waiting for you · ' + fmt(m.t)));
       const ta = make('textarea'); ta.value = m.text; ta.setAttribute('aria-label', 'AI draft, edit before sending');
       const r = make('div', 'row');
-      const x = make('button', 'pill', 'Discard'); x.type = 'button'; x.addEventListener('click', () => ChatStore.discardDraft(t.id, i));
-      const s = make('button', 'pill solid', 'Send'); s.type = 'button'; s.addEventListener('click', () => ChatStore.approveDraft(t.id, i, ta.value));
+      const x = make('button', 'pill', 'Discard'); x.type = 'button'; x.addEventListener('click', () => ChatStore.discardDraft(t.id, m.id));
+      const s = make('button', 'pill solid', 'Send'); s.type = 'button'; s.addEventListener('click', () => ChatStore.approveDraft(t.id, m.id, ta.value));
       r.append(x, s); d.append(ta, r); sc.append(d); return;
     }
     const d = make('div', 'msg ' + m.from); d.append(make('small', '', (WHO[m.from] || m.from) + ' · ' + fmt(m.t)), make('p', '', m.text)); sc.append(d);
@@ -192,10 +202,16 @@ function renderPane() {
   ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 160) + 'px'; });
   pane.append(head, sc, form); sc.scrollTop = sc.scrollHeight;
 }
-function openThread(id) { current = id; renderedKey = null; ChatStore.markRead(id); $('#app').classList.add('open'); renderList(); renderPane(); const ta = $('#text'); if (ta) ta.focus(); }
+function closeThread() { if (stopCur) stopCur(); stopCur = null; current = null; cur = null; renderedKey = null; }
+function openThread(id) {
+  if (stopCur) stopCur(); current = id; cur = null; renderedKey = null;
+  stopCur = ChatStore.watch(id, t => { if (!t) { closeThread(); renderList(); renderPane(); return; } cur = t; renderPane(); });
+  const th = threads.find(x => x.id === id); if (th && th.unread) ChatStore.markRead(id);
+  $('#app').classList.add('open'); renderList(); renderPane();
+  setTimeout(() => { const ta = $('#text'); if (ta) ta.focus(); }, 300);
+}
 
-function loadSettings() {
-  const s = ChatStore.settings();
+function showSettings(s) {
   document.querySelectorAll('input[name="mode"]').forEach(r => r.checked = r.value === s.mode);
   $('#every').value = String(s.every); $('#from').value = s.from; $('#to').value = s.to;
 }
@@ -204,14 +220,13 @@ function saveSettings() {
   ChatStore.saveSettings({ mode: m ? m.value : 'draft', every: +$('#every').value, from: $('#from').value || '09:00', to: $('#to').value || '21:00' });
 }
 document.querySelectorAll('input[name="mode"], #every, #from, #to').forEach(n => n.addEventListener('change', saveSettings));
-loadSettings();
 
 let audio = null;
 function ping(t) {
   try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); const o = audio.createOscillator(), g = audio.createGain();
     o.frequency.value = 660; g.gain.setValueAtTime(.08, audio.currentTime); g.gain.exponentialRampToValueAtTime(.0001, audio.currentTime + .5);
     o.connect(g).connect(audio.destination); o.start(); o.stop(audio.currentTime + .5); } catch (e) {}
-  try { if ('Notification' in window && Notification.permission === 'granted' && document.hidden) new Notification('ข้อความใหม่จาก ' + (t.answers.name || 'ลูกค้า'), { body: (t.msgs[t.msgs.length - 1] || {}).text || '' }); } catch (e) {}
+  try { if ('Notification' in window && Notification.permission === 'granted' && document.hidden) new Notification('ข้อความใหม่จาก ' + ((t.answers && t.answers.name) || 'ลูกค้า'), { body: t.lastText || '' }); } catch (e) {}
 }
 $('#alerts').addEventListener('click', async () => {
   try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); await audio.resume(); } catch (e) {}
@@ -219,15 +234,31 @@ $('#alerts').addEventListener('click', async () => {
   $('#alerts').textContent = ok ? 'Alerts on' : 'Sound on';
 });
 
-ChatStore.watchAll(list => {
-  const stamp = {}; list.forEach(t => stamp[t.id] = t.msgs.filter(m => m.from === 'client').length + 1);
-  if (known) list.forEach(t => { if ((stamp[t.id] || 0) > (known[t.id] || 0)) ping(t); });
-  known = stamp; threads = list;
-  if (current && !threads.some(t => t.id === current)) { current = null; renderedKey = null; }
-  if (current && document.hasFocus() && threads.some(t => t.id === current && t.unread)) ChatStore.markRead(current);
-  const n = threads.filter(t => t.unread).length; document.title = (n ? '(' + n + ') ' : '') + 'Back Office';
-  renderList(); renderPane();
+function start() {
+  if (started) return; started = true;
+  ChatStore.onSettings(showSettings); showSettings(ChatStore.settings());
+  ChatStore.watchAll(list => {
+    if (known) list.forEach(t => { if (t.needsReply && t.unread && (!known[t.id] || t.updatedAt > known[t.id])) ping(t); });
+    known = {}; list.forEach(t => known[t.id] = t.updatedAt);
+    threads = list;
+    if (current && !threads.some(t => t.id === current)) closeThread();
+    if (current && document.hasFocus() && threads.some(t => t.id === current && t.unread)) ChatStore.markRead(current);
+    const n = threads.filter(t => t.unread).length; document.title = (n ? '(' + n + ') ' : '') + 'Back Office';
+    renderList(); renderPane();
+  });
+}
+/* sign-in gate: only the owner's Google account gets in (the database rules enforce the same) */
+ChatStore.onAuth(u => {
+  const ok = ChatStore.isAdmin();
+  $('#gate').hidden = ok; $('#app').style.visibility = ok ? '' : 'hidden'; $('#signout').hidden = !ok;
+  if (u && !ok) $('#gate-msg').textContent = 'บัญชีนี้ไม่มีสิทธิ์เข้าหลังบ้าน กรุณาเข้าสู่ระบบด้วย ' + ChatStore.adminEmail;
+  if (ok) start();
 });
+$('#app').style.visibility = 'hidden';
+ChatStore.ready.then(() => { if (!ChatStore.isAdmin()) $('#gate').hidden = false; }).catch(() => { $('#gate').hidden = false; $('#gate-msg').textContent = 'เชื่อมต่อฐานข้อมูลไม่ได้ ลองรีเฟรชหน้านี้อีกครั้ง'; });
+$('#signin').addEventListener('click', () => ChatStore.signIn().catch(e => { $('#gate-msg').textContent = 'เข้าสู่ระบบไม่สำเร็จ: ' + (e && e.code || e); }));
+$('#signout').addEventListener('click', () => ChatStore.signOut().then(() => location.reload()));
+ChatStore.onError(e => { const m = $('#meta'); if (m) m.textContent = 'มีข้อผิดพลาด: ' + (e && (e.code || e.message) || e); });
 </script>
 </body>
 </html>
