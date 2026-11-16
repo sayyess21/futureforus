@@ -3095,7 +3095,7 @@ const MAX_COLORS = 8;
     { k: 'budget',  label: 'Budget',   q: 'มีงบประมาณในใจไว้ประมาณเท่าไรครับ ถ้ายังไม่แน่ใจ ตอบว่ายังไม่มีก็ได้ครับ' },
     { k: 'when',    label: 'Timing',   q: 'อยากได้งานช่วงไหน หรือมีกำหนดส่งวันไหนครับ' },
     { k: 'where',   label: 'Location', q: 'งานนี้ทำที่ไหนครับ หรือเป็นงานที่ทำออนไลน์ได้' },
-    { k: 'contact', label: 'Contact',  q: 'ถ้าผมตอบตอนที่คุณไม่ได้อยู่หน้านี้ สะดวกให้ติดต่อกลับทางไหนครับ เช่น เบอร์โทรหรือ LINE', skip: true }
+    { k: 'contact', label: 'Contact',  q: 'ถ้าผมตอบตอนที่คุณไม่ได้อยู่หน้านี้ สะดวกให้ติดต่อกลับทางไหนครับ เลือกได้มากกว่าหนึ่งช่องทาง', contact: true }
   ];
   const WHO = { bot: 'Auto', owner: 'ภาณุเดช', ai: 'ผู้ช่วย AI' };
   const store = typeof ChatStore !== 'undefined' ? ChatStore : null;
@@ -3114,15 +3114,35 @@ const MAX_COLORS = 8;
     log.append(m); log.scrollTop = log.scrollHeight;
   }
   function buttons(list) { acts.innerHTML = ''; list.forEach(([label, fn]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = label; b.addEventListener('click', fn); acts.append(b); }); }
+  /* contact step: pick a channel, type the ID or number, repeat; Done (or Skip) moves on */
+  const CH = [
+    { label: 'LINE', ph: 'LINE ID' }, { label: 'Phone', ph: 'เบอร์โทร' }, { label: 'Email', ph: 'อีเมล' },
+    { label: 'Facebook', ph: 'ชื่อหรือลิงก์ Facebook' }, { label: 'Instagram', ph: '@ชื่อบัญชี' }, { label: 'Other', ph: 'ช่องทางอื่น เช่น WhatsApp: 08x-xxx-xxxx' }
+  ];
+  function channels(more) {
+    const list = CH.map(c => [c.label, () => {
+      st.channel = c; [...acts.children].forEach(b => b.classList.toggle('on', b.textContent === c.label));
+      form.hidden = false; text.placeholder = c.ph; text.focus({ preventScroll: true });
+    }]);
+    list.push(more ? ['Done', contactDone] : ['Skip', contactDone]);
+    buttons(list); form.hidden = true;
+  }
+  function contactDone() {
+    if (!st.contacts.length) msg('client', 'ข้าม');
+    st.answers.contact = st.contacts.join('\n'); st.channel = null;
+    st.step++; st.step < CHAT_Q.length ? ask() : summary();
+  }
   function ask() {
     const q = CHAT_Q[st.step]; msg('bot', q.q);
     if (q.pick) { buttons(Object.keys(SITE.rooms).map(k => [SITE.rooms[k].en, () => answer(k)])); form.hidden = true; return; }
+    if (q.contact) { st.contacts = []; channels(); return; }
     buttons(q.skip ? [['Skip', () => answer('')]] : []);
     form.hidden = false; text.placeholder = 'พิมพ์คำตอบ'; text.focus({ preventScroll: true });
   }
   const shown = (k, v) => k === 'cat' ? (SITE.rooms[v] ? SITE.rooms[v].en : v) : v;
   function answer(v) {
     const q = CHAT_Q[st.step]; v = String(v).trim();
+    if (q.contact) { if (!v) return; const c = st.channel || CH[CH.length - 1]; st.contacts.push(c.label === 'Other' ? v : c.label + ': ' + v); msg('client', st.contacts[st.contacts.length - 1]); st.channel = null; if (st.contacts.length === 1) msg('bot', 'มีช่องทางอื่นอีกไหมครับ ถ้าครบแล้วกด Done ได้เลย'); channels(true); return; }
     if (!v && !q.skip) return;
     st.answers[q.k] = v; msg('client', shown(q.k, v) || 'ข้าม');
     st.step++; st.step < CHAT_Q.length ? ask() : summary();
@@ -3156,7 +3176,7 @@ const MAX_COLORS = 8;
   }
   function start(fresh) {
     if (st.stop) { st.stop(); st.stop = null; }
-    log.innerHTML = ''; st.step = 0; st.answers = {}; st.id = null; st.started = true;
+    log.innerHTML = ''; st.step = 0; st.answers = {}; st.id = null; st.started = true; st.contacts = []; st.channel = null;
     note.textContent = 'คำถามชุดแรกเป็นข้อความอัตโนมัติ บางคำตอบอาจมาจากผู้ช่วย AI ส่วนภาณุเดชอ่านทุกแชตเองครับ';
     const mine = !fresh && store && store.myThreadId();
     if (mine) {
