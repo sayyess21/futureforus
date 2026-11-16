@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Back Office</title>
+<style>
+/* Future For Us back office. Same palette as the site: ink, cream, red. */
+:root{--ink:#231F20;--cream:#FCEBD2;--red:#E3221A;--deep:#C1281C;--line:rgba(252,235,210,.18);--mute:#BFAE9A;
+  --sans:'Prompt','Noto Sans Thai',system-ui,-apple-system,'Segoe UI',sans-serif;--display:'Bodoni Moda','Didot','Bodoni 72','Times New Roman',serif}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--ink);color:var(--cream);font-family:var(--sans);font-weight:300;line-height:1.65}
+button,textarea,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
+.app{display:grid;grid-template-columns:320px minmax(0,1fr) 320px;grid-template-rows:auto minmax(0,1fr);height:100svh}
+.top{grid-column:1/-1;display:flex;align-items:baseline;gap:1.2rem;flex-wrap:wrap;padding:1.1rem clamp(16px,3vw,40px);border-bottom:1px solid var(--line)}
+.top h1{font-family:var(--display);font-style:italic;font-weight:400;font-size:1.75rem;margin:0}
+.top .meta{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.sp{flex:1}
+.pill{color:var(--cream);min-height:40px;padding:.4rem 1.1rem;border:1px solid currentColor;border-radius:999px;background:transparent;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;transition:background .35s,color .35s,border-color .35s}
+.pill:hover{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+.pill.solid{background:var(--deep);border-color:var(--deep);color:var(--cream)}
+.pill.solid:hover{background:var(--cream);border-color:var(--cream);color:var(--ink)}
+.list{overflow-y:auto;border-right:1px solid var(--line)}
+.list button{display:grid;gap:.05rem;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(252,235,210,.1);padding:1rem 24px;cursor:pointer;transition:background .3s}
+.list button:hover{background:rgba(252,235,210,.05)}
+.list button[aria-current="true"]{background:rgba(193,40,28,.22);box-shadow:inset 2px 0 0 var(--red)}
+.list .nm{font-weight:400;display:flex;align-items:center;gap:.5rem}
+.list .dot{width:.5rem;height:.5rem;border-radius:50%;background:var(--red);flex:none}
+.list .sub{font-size:.82rem;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list .tag{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.list .tag b{font-weight:400;color:#F28B7E}
+.empty{padding:2rem 24px;color:var(--mute)}
+.pane{display:flex;flex-direction:column;min-height:0}
+.head{padding:1rem clamp(16px,3vw,40px);border-bottom:1px solid var(--line);display:grid;gap:.6rem}
+.head-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.head h2{font-weight:400;font-size:1.1rem;margin:0}
+.head .back{display:none}
+.sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem 1.5rem;margin:0}
+.sum div{display:grid}
+.sum dt{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.sum dd{margin:0;font-size:.88rem;white-space:pre-wrap;overflow-wrap:anywhere}
+.scroll{flex:1;overflow-y:auto;padding:1.4rem clamp(16px,3vw,40px);display:flex;flex-direction:column;gap:1rem}
+.msg{max-width:72%;overflow-wrap:anywhere;font-size:.92rem}
+.msg p{margin:0;white-space:pre-wrap}
+.msg small{display:block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.msg.client{align-self:flex-start;border-left:1px solid var(--mute);padding-left:1rem}
+.msg.owner,.msg.ai,.msg.bot{align-self:flex-end;text-align:right;padding-right:1rem}
+.msg.owner{border-right:1px solid var(--red)}
+.msg.ai{border-right:1px dashed var(--red);color:#E8D9C4}
+.msg.bot{border-right:1px solid var(--line);color:var(--mute)}
+.draft{align-self:flex-end;width:min(100%,560px);border:1px dashed var(--red);border-radius:12px;padding:.9rem 1rem;display:grid;gap:.6rem}
+.draft small{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#F28B7E}
+.draft textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--mute);resize:vertical;min-height:4.5rem;padding:.3rem 0;outline:0}
+.draft .row{display:flex;gap:.5rem;justify-content:flex-end;flex-wrap:wrap}
+.reply{display:flex;align-items:flex-end;gap:.9rem;padding:1rem clamp(16px,3vw,40px);border-top:1px solid var(--line)}
+.reply textarea{flex:1;background:transparent;border:0;border-bottom:1px solid var(--mute);resize:none;padding:.5rem 0;min-height:2.6rem;max-height:160px;outline:0}
+.reply textarea:focus{border-bottom-color:var(--cream)}
+.reply textarea::placeholder,.draft textarea::placeholder{color:var(--mute)}
+.blank{flex:1;display:flex;align-items:center;justify-content:center;color:var(--mute);padding:2rem;text-align:center}
+.side{border-left:1px solid var(--line);padding:1.4rem 24px;overflow-y:auto;display:flex;flex-direction:column;gap:1.3rem}
+.side h3{margin:0;font-size:.68rem;letter-spacing:.22em;font-weight:400;text-transform:uppercase;color:var(--mute)}
+.side fieldset{margin:.8rem 0 0;padding:0;border:0;display:grid;gap:.6rem}
+.opt{display:flex;gap:.8rem;align-items:flex-start;padding:.75rem .9rem;border:1px solid rgba(252,235,210,.25);border-radius:12px;cursor:pointer;transition:border-color .3s,background .3s}
+.opt:has(input:checked){border-color:var(--red);background:rgba(193,40,28,.16)}
+.opt input{margin-top:.35rem;accent-color:var(--red)}
+.opt b{font-weight:400;display:block}
+.opt span span{font-size:.8rem;color:var(--mute)}
+.blockline{display:grid;gap:.4rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.86rem}
+.blockline label{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.blockline select,.blockline input{background:transparent;border:1px solid rgba(252,235,210,.3);border-radius:8px;padding:.3rem .5rem;min-height:36px;color-scheme:dark}
+.blockline select option{color:var(--ink)}
+.muted{color:var(--mute);font-size:.8rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media (max-width:1100px){.app{grid-template-columns:300px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto}.side{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);flex-direction:row;flex-wrap:wrap}.side>*{flex:1 1 260px}}
+@media (max-width:760px){
+  .app{display:flex;flex-direction:column;height:auto;min-height:100svh}
+  .app.open .list,.app.open .side{display:none}
+  .app:not(.open) .pane{display:none}
+  .app.open .pane{height:calc(100svh - 70px)}
+  .side{flex-direction:column}
+  .head .back{display:inline-flex}
+  .sum{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .msg{max-width:92%}
+}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <header class="top">
+    <h1>Back Office</h1>
+    <span class="meta" id="meta"></span>
+    <span class="sp"></span>
+    <a class="pill" href="index.html">Site</a>
+    <button class="pill" type="button" id="alerts">Enable alerts</button>
+  </header>
+  <nav class="list" id="list" aria-label="Conversations"></nav>
+  <section class="pane" id="pane" aria-label="Conversation"></section>
+  <aside class="side" aria-label="Reply settings">
+    <div>
+      <h3>Reply mode</h3>
+      <fieldset>
+        <legend class="sr">Who replies</legend>
+        <label class="opt"><input type="radio" name="mode" value="manual"><span><b>ตอบเองทั้งหมด</b><span>AI ไม่ทำอะไร</span></span></label>
+        <label class="opt"><input type="radio" name="mode" value="draft"><span><b>AI ร่าง ผมกดส่ง</b><span>AI เตรียมคำตอบไว้ตามรอบ คุณตรวจแล้วกด Send</span></span></label>
+        <label class="opt"><input type="radio" name="mode" value="auto"><span><b>AI ตอบเองตามรอบ</b><span>ส่งถึงลูกค้าเลย คุณเข้ามาต่อเมื่อพร้อม</span></span></label>
+      </fieldset>
+    </div>
+    <div class="blockline">
+      <h3>Rounds</h3>
+      <label>ทุก <select id="every" aria-label="Hours between rounds"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="6">6</option></select> ชั่วโมง</label>
+      <label><input type="time" id="from" aria-label="Start time"> ถึง <input type="time" id="to" aria-label="End time"></label>
+      <span class="muted">รอบจะทำงานเมื่อคอมเปิดอยู่และแอป Claude ออนไลน์</span>
+    </div>
+    <div class="blockline">
+      <h3>AI will not</h3>
+      <span>บอกราคา · รับปากวันหรือคิวงาน · รับงานแทนคุณ · คุยเรื่องอื่นนอกจากงาน</span>
+    </div>
+  </aside>
+</div>
+<script src="chat-store.js"></script>
+<script>
+const $ = (s, r = document) => r.querySelector(s);
+const make = (tag, cls, txt) => { const n = document.createElement(tag); if (cls) n.className = cls; if (txt != null) n.textContent = txt; return n; };
+const LABELS = [['detail', 'Project'], ['budget', 'Budget'], ['when', 'Timing'], ['where', 'Location'], ['contact', 'Contact']];
+const CATS = { graphic: 'Graphic', photo: 'Photography', organizer: 'Producer' };
+const WHO = { client: 'Client', owner: 'You', bot: 'Auto', ai: 'AI' };
+const fmt = t => new Date(t).toLocaleString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+let threads = [], current = null, known = null, renderedKey = null;
+
+function status(t) {
+  if (t.msgs.some(m => m.draft)) return ['AI draft ready', true];
+  if (t.needsReply) return ['Waiting', true];
+  const last = [...t.msgs].reverse().find(m => !m.draft && m.from !== 'client');
+  return [last && last.from === 'ai' ? 'AI answered' : 'You replied', false];
+}
+function renderList() {
+  const list = $('#list'); list.innerHTML = '';
+  const open = threads.filter(t => t.needsReply || t.msgs.some(m => m.draft)).length;
+  const pv = ChatStore.mode === 'preview';
+  $('#meta').textContent = threads.length ? `${threads.length} chats · ${open} need you` + (pv ? ' · Preview' : '') : (pv ? 'Preview · ข้อมูลอยู่ในเบราว์เซอร์นี้เท่านั้น' : '');
+  if (!threads.length) { list.append(make('p', 'empty', 'ยังไม่มีแชตครับ เมื่อมีคนส่งจากหน้าเว็บ รายการจะขึ้นที่นี่ ลองเปิดหน้าเว็บแล้วกดปุ่ม Chat เพื่อทดสอบได้')); return; }
+  threads.forEach(t => {
+    const b = make('button'); b.type = 'button'; if (t.id === current) b.setAttribute('aria-current', 'true');
+    const nm = make('span', 'nm'); if (t.unread) { const d = make('i', 'dot'); d.title = 'New'; nm.append(d); }
+    nm.append(t.answers.name || 'No name');
+    const lastMsg = [...t.msgs].reverse().find(m => !m.draft && m.from !== 'bot');
+    const [st, hot] = status(t);
+    const tag = make('span', 'tag', (CATS[t.cat] || '') + ' · ' + fmt(t.updatedAt) + ' · ');
+    tag.append(hot ? make('b', '', st) : st);
+    b.append(nm, make('span', 'sub', lastMsg ? lastMsg.text : (t.answers.detail || '')), tag);
+    b.addEventListener('click', () => openThread(t.id)); list.append(b);
+  });
+}
+function renderPane() {
+  const t = threads.find(x => x.id === current), pane = $('#pane');
+  if (!t) {
+    if (renderedKey === '') return; renderedKey = '';
+    pane.innerHTML = ''; pane.append(make('div', 'blank', threads.length ? 'เลือกแชตทางซ้ายเพื่ออ่านและตอบ' : 'ยังไม่มีแชต')); $('#app').classList.remove('open'); return;
+  }
+  const key = t.id + ':' + t.updatedAt; if (key === renderedKey) return; renderedKey = key;
+  const keep = $('#text') ? $('#text').value : '';
+  pane.innerHTML = '';
+  const head = make('div', 'head'), row = make('div', 'head-row');
+  const back = make('button', 'pill back', 'Back'); back.type = 'button';
+  back.addEventListener('click', () => { current = null; $('#app').classList.remove('open'); renderList(); renderPane(); });
+  const del = make('button', 'pill', 'Delete'); del.type = 'button'; let arm = 0;
+  del.addEventListener('click', () => { if (Date.now() - arm < 4000) { ChatStore.remove(t.id); current = null; return; } arm = Date.now(); del.textContent = 'Click again to delete'; setTimeout(() => { del.textContent = 'Delete'; }, 4000); });
+  row.append(back, make('h2', '', (t.answers.name || 'No name') + ' · ' + (CATS[t.cat] || '')), make('span', 'sp'), del);
+  const sum = make('dl', 'sum'); LABELS.forEach(([k, l]) => { const d = make('div'); d.append(make('dt', '', l), make('dd', '', t.answers[k] || '-')); sum.append(d); });
+  head.append(row, sum);
+  const sc = make('div', 'scroll');
+  t.msgs.forEach((m, i) => {
+    if (m.draft) {
+      const d = make('div', 'draft'); d.append(make('small', '', 'AI draft · waiting for you · ' + fmt(m.t)));
+      const ta = make('textarea'); ta.value = m.text; ta.setAttribute('aria-label', 'AI draft, edit before sending');
+      const r = make('div', 'row');
+      const x = make('button', 'pill', 'Discard'); x.type = 'button'; x.addEventListener('click', () => ChatStore.discardDraft(t.id, i));
+      const s = make('button', 'pill solid', 'Send'); s.type = 'button'; s.addEventListener('click', () => ChatStore.approveDraft(t.id, i, ta.value));
+      r.append(x, s); d.append(ta, r); sc.append(d); return;
+    }
+    const d = make('div', 'msg ' + m.from); d.append(make('small', '', (WHO[m.from] || m.from) + ' · ' + fmt(m.t)), make('p', '', m.text)); sc.append(d);
+  });
+  const form = make('form', 'reply'); form.autocomplete = 'off';
+  const ta = make('textarea'); ta.id = 'text'; ta.rows = 1; ta.maxLength = 1000; ta.placeholder = 'พิมพ์ตอบลูกค้า แล้วกด Enter'; ta.setAttribute('aria-label', 'Reply'); ta.value = keep;
+  const sb = make('button', 'pill solid', 'Reply'); sb.type = 'submit';
+  form.append(ta, sb);
+  form.addEventListener('submit', e => { e.preventDefault(); if (!ta.value.trim()) return; const v = ta.value; ta.value = ''; ChatStore.send(t.id, 'owner', v); });
+  ta.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
+  ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 160) + 'px'; });
+  pane.append(head, sc, form); sc.scrollTop = sc.scrollHeight;
+}
+function openThread(id) { current = id; renderedKey = null; ChatStore.markRead(id); $('#app').classList.add('open'); renderList(); renderPane(); const ta = $('#text'); if (ta) ta.focus(); }
+
+function loadSettings() {
+  const s = ChatStore.settings();
+  document.querySelectorAll('input[name="mode"]').forEach(r => r.checked = r.value === s.mode);
+  $('#every').value = String(s.every); $('#from').value = s.from; $('#to').value = s.to;
+}
+function saveSettings() {
+  const m = document.querySelector('input[name="mode"]:checked');
+  ChatStore.saveSettings({ mode: m ? m.value : 'draft', every: +$('#every').value, from: $('#from').value || '09:00', to: $('#to').value || '21:00' });
+}
+document.querySelectorAll('input[name="mode"], #every, #from, #to').forEach(n => n.addEventListener('change', saveSettings));
+loadSettings();
+
+let audio = null;
+function ping(t) {
+  try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); const o = audio.createOscillator(), g = audio.createGain();
+    o.frequency.value = 660; g.gain.setValueAtTime(.08, audio.currentTime); g.gain.exponentialRampToValueAtTime(.0001, audio.currentTime + .5);
+    o.connect(g).connect(audio.destination); o.start(); o.stop(audio.currentTime + .5); } catch (e) {}
+  try { if ('Notification' in window && Notification.permission === 'granted' && document.hidden) new Notification('ข้อความใหม่จาก ' + (t.answers.name || 'ลูกค้า'), { body: (t.msgs[t.msgs.length - 1] || {}).text || '' }); } catch (e) {}
+}
+$('#alerts').addEventListener('click', async () => {
+  try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); await audio.resume(); } catch (e) {}
+  let ok = false; try { ok = 'Notification' in window && (await Notification.requestPermission()) === 'granted'; } catch (e) {}
+  $('#alerts').textContent = ok ? 'Alerts on' : 'Sound on';
+});
+
+ChatStore.watchAll(list => {
+  const stamp = {}; list.forEach(t => stamp[t.id] = t.msgs.filter(m => m.from === 'client').length + 1);
+  if (known) list.forEach(t => { if ((stamp[t.id] || 0) > (known[t.id] || 0)) ping(t); });
+  known = stamp; threads = list;
+  if (current && !threads.some(t => t.id === current)) { current = null; renderedKey = null; }
+  if (current && document.hasFocus() && threads.some(t => t.id === current && t.unread)) ChatStore.markRead(current);
+  const n = threads.filter(t => t.unread).length; document.title = (n ? '(' + n + ') ' : '') + 'Back Office';
+  renderList(); renderPane();
+});
+</script>
+</body>
+</html>
